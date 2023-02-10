@@ -6,17 +6,20 @@ import { AppComponent } from './app.component';
 import { HomeFooterComponent } from './home/home-footer/home-footer.component';
 import { HomeHeaderComponent } from './home/home-header/home-header.component';
 import { HomeBodyComponent } from './home/home-body/home-body.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeFooterComponent,
     HomeHeaderComponent,
-    HomeBodyComponent
+    HomeBodyComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
