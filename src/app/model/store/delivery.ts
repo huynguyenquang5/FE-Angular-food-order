@@ -1,6 +1,6 @@
 export interface Delivery {
-  id?: number;
-  name?: string;
-  phone?: string;
-  wallet?: number;
+  id: number;
+  name: string;
+  phone: string;
+  wallet: number;
 }

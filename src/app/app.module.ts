@@ -6,17 +6,23 @@ import { AppComponent } from './app.component';
 import { HomeFooterComponent } from './home/home-footer/home-footer.component';
 import { HomeHeaderComponent } from './home/home-header/home-header.component';
 import { HomeBodyComponent } from './home/home-body/home-body.component';
+import { DetailStoreComponent } from './detail-store/detail-store.component';
+import { HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeFooterComponent,
     HomeHeaderComponent,
-    HomeBodyComponent
+    HomeBodyComponent,
+    DetailStoreComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
