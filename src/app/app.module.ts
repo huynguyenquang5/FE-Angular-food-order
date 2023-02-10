@@ -13,7 +13,7 @@ import {HttpClientModule} from "@angular/common/http";
     AppComponent,
     HomeFooterComponent,
     HomeHeaderComponent,
-    HomeBodyComponent
+    HomeBodyComponent,
   ],
   imports: [
     BrowserModule,
