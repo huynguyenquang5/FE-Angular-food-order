@@ -1,8 +1,8 @@
 import {User} from "./user";
 
 export interface Address {
-  id?: number;
-  name?: string;
-  status?: number;
-  user?: User;
+  id: number;
+  name: string;
+  status: number;
+  user: User;
 }
