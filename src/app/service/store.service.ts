@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Product} from "../model/product/product";
+import {Store} from "../model/store/store";
 import {environment} from "../../environments/environment";
 const apiUrl = environment.apiUrl
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
-  constructor(private http: HttpClient) { }
+export class StoreService {
 
-  findAllByStore(storeId:number): Observable<Product[]>{
-    return this.http.get<Product[]>(`${apiUrl}/products`)
+  constructor(private http: HttpClient) { }
+  findById(id : number): Observable<Store>{
+    return this.http.get<Store>(`${apiUrl}/store/${id}`)
   }
 }
