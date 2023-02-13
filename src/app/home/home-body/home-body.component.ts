@@ -1,9 +1,42 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { ProductService } from 'src/app/service/product.service';
+import {StoreService} from "../../service/store.service";
+import {Product} from "../../model/product/product";
+import {Store} from "../../model/store/store";
+import { ImageService } from 'src/app/service/image.service';
+import {Image} from "../../model/product/image";
 
 @Component({
   selector: 'app-home-body',
   templateUrl: './home-body.component.html',
   styleUrls: ['./home-body.component.css']
 })
-export class HomeBodyComponent {
+export class HomeBodyComponent implements OnInit{
+  products : Product[] = [];
+  stores : Store[] = [];
+  listImg : Image[] = [];
+  ngOnInit(): void {
+    this.findAllImg()
+    this.findAllStore()
+    this.findAllStore()
+  }
+  constructor(private productService: ProductService,
+              private storeService: StoreService,
+              private imageService: ImageService) {
+  }
+  findAllProduct(){
+    this.productService.findAll().subscribe(data =>{
+      this.products = data;
+    })
+  }
+  findAllStore(){
+    this.storeService.findAll().subscribe(data =>{
+      this.stores = data;
+    })
+  }
+  findAllImg(){
+    this.imageService.findAllFilter().subscribe(data =>{
+      this.listImg = data;
+    })
+  }
 }
