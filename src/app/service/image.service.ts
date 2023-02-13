@@ -11,4 +11,5 @@ export class ImageService {
   findAllByProduct(productId: number):Observable<Image[]>{
     return this.http.get<Image[]>(`http://localhost:8080/images/product/${productId}`);
   }
+
 }
