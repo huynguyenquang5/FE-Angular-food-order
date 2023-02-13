@@ -9,6 +9,7 @@ import { HomeBodyComponent } from './home/home-body/home-body.component';
 import { DetailStoreComponent } from './detail-store/detail-store.component';
 import { HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

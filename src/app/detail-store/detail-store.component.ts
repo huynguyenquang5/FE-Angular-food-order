@@ -17,16 +17,16 @@ import {Store} from "../model/store/store";
 export class DetailStoreComponent implements OnInit {
   show : boolean = false;
   ngOnInit(): void {
-    const id = Number(this.routerActive.snapshot.paramMap.get("id"))
-    this.storeService.findById(1).subscribe(data => {
+    const id = Number(this.routerActive.snapshot.paramMap.get("storeId"))
+    this.storeService.findById(id).subscribe(data => {
       this.store = data
+      this.productService.findAllByStore(id).subscribe(data =>{
+        this.listProduct = data;
+        this.classify(data);
+        this.product = this.listProduct[0];
+        console.log(this.store)
+      })
     })
-    this.productService.findAllByStore(id).subscribe(data =>{
-      this.listProduct = data;
-      this.classify(data);
-      this.product = this.listProduct[0];
-    })
-    console.log(this.store)
   }
 
   constructor(private productService: ProductService,

@@ -11,6 +11,8 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   findAllByStore(storeId:number): Observable<Product[]>{
+    return this.http.get<Product[]>(`${apiUrl}/products/store/${storeId}`)  }
+  findAll(): Observable<Product[]>{
     return this.http.get<Product[]>(`${apiUrl}/products`)
   }
 }

@@ -13,4 +13,7 @@ export class StoreService {
   findById(id : number): Observable<Store>{
     return this.http.get<Store>(`${apiUrl}/store/${id}`)
   }
+  findAll(): Observable<Store[]>{
+    return this.http.get<Store[]>(`${apiUrl}/store`)
+  }
 }

@@ -12,4 +12,7 @@ export class ImageService {
   findAllByProduct(productId: number):Observable<Image[]>{
     return this.http.get<Image[]>(`${apiUrl}/images/product/${productId}`);
   }
+  findAllFilter():Observable<Image[]>{
+    return this.http.get<Image[]>(`${apiUrl}/images/filters`);
+  }
 }
