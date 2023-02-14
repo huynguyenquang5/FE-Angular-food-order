@@ -6,36 +6,47 @@
       </a>
     </div>
     <div class="layer"></div><!-- Opacity Mask Menu Mobile -->
-    <ul id="top_menu">
+    <ul class="top_menu">
       <li><a href="#sign-in-dialog" id="sign-in" class="login">Sign In</a></li>
       <li>
         <div class="dropdown dropdown-cart">
-          <a class="cart_bt"><strong>2</strong></a>
-          <div class="dropdown-menu">
-            <ul>
+          <a class="cart_bt"><strong hidden>2</strong></a>
+          <div class="dropdown-menu" style="width: 300px; padding: 10px;max-height: 650px;">
+            <ul style="overflow: scroll;max-height: 500px;">
               <li>
-                <figure><img src="assets/img/menu-thumb-placeholder.jpg" alt="" width="50" height="50" class="lazy"></figure>
+                <figure><img src="../../../assets/img/hero_in_restaurants_detail.jpg" alt="" width="50" height="50"
+                             class="lazy"></figure>
                 <strong><span>1x Pizza Napoli</span>$12.00</strong>
-                <a href="#0" class="action"><i class="icon_trash_alt"></i></a>
-              </li>
-              <li>
-                <figure><img src="assets/img/menu-thumb-placeholder.jpg" alt="" width="50" height="50" class="lazy"></figure>
-                <strong><span>1x Hamburgher Maxi</span>$10.00</strong>
-                <a href="#0" class="action"><i class="icon_trash_alt"></i></a>
-              </li>
-              <li>
-                <figure><img src="assets/img/menu-thumb-placeholder.jpg" alt="" width="50" height="50" class="lazy"></figure>
-                <strong><span>1x Red Wine Bottle</span>$20.00</strong>
                 <a href="#0" class="action"><i class="icon_trash_alt"></i></a>
               </li>
             </ul>
             <div class="total_drop">
               <div class="clearfix add_bottom_15"><strong>Total</strong><span>$32.00</span></div>
-              <a href="order.html" class="btn_1 outline">View Cart</a><a href="order.html" class="btn_1">Checkout</a>
+              <a href="order.html" class="btn_1 outline">View Cart</a>
+              <a href="order.html" class="btn_1 " >Checkout</a>
             </div>
           </div>
         </div>
         <!-- /dropdown-cart-->
+      </li>
+    </ul>
+    <ul class="drop_user top_menu">
+      <li>
+        <div class="dropdown user clearfix">
+          <a data-toggle="dropdown">
+            <figure><img src="assets/img/avatar1.jpg" alt=""></figure><span style="padding-right: 5px">Nguyen Ngoc Tu </span>
+          </a>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-content">
+              <ul>
+                <li><a href="#0"><i class="icon_cog"></i>Dashboard</a></li>
+                <li><a href="#0"><i class="fa-brands fa-shopify"></i>Shop</a></li>
+                <li><a href="#0"><i class="icon_key"></i>Log out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /dropdown -->
       </li>
     </ul>
     <!-- /top_menu -->
@@ -53,56 +64,13 @@
         <li class="submenu">
           <a href="#0" class="show-submenu">Home</a>
           <ul>
-            <li><a href="index.html">Address Autocomplete</a></li>
             <li><a href="index-2.html">Search by Keyword</a></li>
-            <li><a href="index-3.html">Home Version 2</a></li>
-            <li><a href="index-4.html">Video Bg Fallback Mobile</a></li>
-            <li class="third-level"><a href="#0">Sliders - Parallax <strong>New!</strong></a>
-              <ul>
-                <li><a href="index-6.html">Owl Carousel</a></li>
-                <li><a href="index-7.html">Revolution Slider 1</a></li>
-                <li><a href="index-8.html">Revolution Slider 2</a></li>
-                <li><a href="index-9.html">Youtube/Vimeo Parallax</a></li>
-                <li><a href="index-10.html">MP4 Video Parallax</a></li>
-                <li><a href="index-11.html">Parallax Image</a></li>
-              </ul>
-            </li>
-            <li><a href="index-12.html">Text Rotator <strong>New!</strong></a></li>
-            <li><a href="index-5.html">GDPR Cookie Bar EU Law</a></li>
-            <li><a href="header-user-logged.html">Header User Logged</a></li>
             <li><a href="header-cart-top.html">Header Cart Top</a></li>
-            <li><a href="modal-advertise.html">Modal 1 Cookie Session</a></li>
-            <li><a href="modal-newsletter.html">Modal 2 Cookie Session</a></li>
           </ul>
         </li>
         <li class="submenu">
           <a href="#0" class="show-submenu">Listing</a>
           <ul>
-            <li class="third-level"><a href="#0">List pages</a>
-              <ul>
-                <li><a href="grid-listing-filterscol.html">List default</a></li>
-                <li><a href="grid-listing-filterscol-map.html">List with map</a></li>
-                <li><a href="listing-map.html">List side map</a></li>
-                <li><a href="grid-listing-masonry.html">List Masonry Filter</a></li>
-              </ul>
-            </li>
-            <li class="third-level"><a href="#0">Detail pages</a>
-              <ul>
-                <li><a href="detail-restaurant.html">Detail page 1</a></li>
-                <li><a href="detail-restaurant-2.html">Detail page 2</a></li>
-                <li><a href="detail-restaurant-3.html">Detail page 3</a></li>
-                <li><a href="detail-restaurant-4.html">Detail page 4</a></li>
-              </ul>
-            </li>
-            <li class="third-level"><a href="#0">OpenStreetMap</a>
-              <ul>
-                <li><a href="grid-listing-filterscol-openstreetmap.html">List with map</a></li>
-                <li><a href="listing-map-openstreetmap.html">List side map</a></li>
-                <li><a href="grid-listing-masonry-openstreetmap.html">List Masonry Filter</a></li>
-              </ul>
-            </li>
-            <li><a href="submit-restaurant.html">Submit Restaurant</a></li>
-            <li><a href="submit-rider.html">Submit Rider</a></li>
             <li><a href="order.html">Order</a></li>
             <li><a href="confirm.html">Confirm Order</a></li>
           </ul>
@@ -111,22 +79,58 @@
           <a href="#0" class="show-submenu">Other Pages</a>
           <ul>
             <li><a href="admin_section/index.html" target="_blank">Admin Section</a></li>
-            <li><a href="404.html">404 Error</a></li>
-            <li><a href="help.html">Help and Faq</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="leave-review.html">Leave a review</a></li>
-            <li><a href="contacts.html">Contacts</a></li>
-            <li><a href="coming_soon/index.html">Coming Soon</a></li>
-            <li><a href="login.html">Sign In</a></li>
-            <li><a href="register.html">Sign Up</a></li>
-            <li><a href="icon-pack-1.html">Icon Pack 1</a></li>
-            <li><a href="icon-pack-2.html">Icon Pack 2</a></li>
-            <li><a href="shortcodes.html">Shortcodes</a></li>
           </ul>
         </li>
-        <li><a href="#0">Buy this template</a></li>
       </ul>
     </nav>
   </div>
 </header>
 <!-- /header -->
+<!-- Sign In Modal -->
+<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+  <div class="modal_header">
+    <h3>Sign In</h3>
+  </div>
+  <form>
+    <div class="sign-in-wrapper">
+      <div>
+        <img src="assets/img/logo_sticky.svg" width="162" height="35" alt="">
+      </div>
+      <div class="divider"><span></span></div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email" id="email">
+        <i class="ti-email"></i>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="password" id="password" value="">
+        <i class="ti-lock"></i>
+      </div>
+      <div class="clearfix add_bottom_15">
+        <div class="checkboxes float-left">
+          <label class="container_check">Remember me
+            <input type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="float-right"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
+      </div>
+      <div class="text-center">
+        <input type="submit" value="Log In" class="btn_1 full-width mb_5">
+        Don’t have an account? <a href="register.html">Sign up</a>
+      </div>
+      <div id="forgot_pw">
+        <div class="form-group">
+          <label>Please confirm login email below</label>
+          <input type="email" class="form-control" name="email_forgot" id="email_forgot">
+          <i class="icon_mail_alt"></i>
+        </div>
+        <p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p>
+        <div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
+      </div>
+    </div>
+  </form>
+  <!--form -->
+</div>
+<!-- /Sign In Modal -->

@@ -4,7 +4,7 @@ Theme URI: http://www.ansonika.com/fooyes/
 Author: Ansonika
 Author URI: http://themeforest.net/user/Ansonika/
 
-[Table of contents] 
+[Table of contents]
 
 0. ICONS
 
@@ -1814,7 +1814,7 @@ header.header_in.is_sticky {
   top: 0;
   width: 100%;
 }
-header.header_in ul#top_menu li a {
+header.header_in ul. li a {
   color: #444;
 }
 @media (max-width: 991px) {
@@ -2228,7 +2228,7 @@ header.sticky .main-menu > ul > li:hover > a, header.header_in .main-menu > ul >
     width: 100%;
   }
 }
-ul#top_menu {
+ul.top_menu {
   float: right;
   margin: 0 0 0 10px;
   padding: 0;
@@ -2237,7 +2237,7 @@ ul#top_menu {
   font-size: 0.8125rem;
 }
 @media (max-width: 991px) {
-  ul#top_menu {
+  ul.top_menu {
     position: absolute;
     top: 12px;
     right: 15px;
@@ -2245,30 +2245,30 @@ ul#top_menu {
     margin: -2px 0 0 10px;
   }
 }
-ul#top_menu li {
+ul.top_menu li {
   float: left;
   margin: 0;
   line-height: 1;
   margin-right: 15px;
 }
-ul#top_menu li:last-child {
+ul.top_menu li:last-child {
   margin-right: 0;
   position: relative;
   top: 0;
 }
 @media (max-width: 991px) {
-  ul#top_menu li {
+  ul.top_menu li {
     margin: 2px 0 0 10px;
   }
 }
-ul#top_menu li a {
+ul.top_menu li a {
   color: #fff;
 }
-ul#top_menu li a:hover {
+ul.top_menu li a:hover {
   color: #fff;
   opacity: 0.7;
 }
-ul#top_menu li a.login, ul#top_menu li a.cart_bt, ul#top_menu li a.wishlist_bt_top {
+ul.top_menu li a.login, ul.top_menu li a.cart_bt, ul.top_menu li a.wishlist_bt_top {
   display: block;
   width: 22px;
   height: 23px;
@@ -2281,11 +2281,11 @@ ul#top_menu li a.login, ul#top_menu li a.cart_bt, ul#top_menu li a.wishlist_bt_t
   transition: opacity 0.5s ease;
 }
 @media (max-width: 991px) {
-  ul#top_menu li a.login, ul#top_menu li a.cart_bt, ul#top_menu li a.wishlist_bt_top {
+  ul.top_menu li a.login, ul.top_menu li a.cart_bt, ul.top_menu li a.wishlist_bt_top {
     top: 2px;
   }
 }
-ul#top_menu li a.login:before, ul#top_menu li a.cart_bt:before, ul#top_menu li a.wishlist_bt_top:before {
+ul.top_menu li a.login:before, ul.top_menu li a.cart_bt:before, ul.top_menu li a.wishlist_bt_top:before {
   font-family: 'Glyphter';
   font-size: 21px;
   font-size: 1.3125rem;
@@ -2296,24 +2296,24 @@ ul#top_menu li a.login:before, ul#top_menu li a.cart_bt:before, ul#top_menu li a
   font-weight: normal;
   line-height: 1;
 }
-.sticky ul#top_menu li a.login:before, .sticky ul#top_menu li a.cart_bt:before, .sticky ul#top_menu li a.wishlist_bt_top:before {
+.sticky ul.top_menu li a.login:before, .sticky ul.top_menu li a.cart_bt:before, .sticky ul.top_menu li a.wishlist_bt_top:before {
   color: #444;
 }
-ul#top_menu li a.cart_bt {
+ul.top_menu li a.cart_bt {
   top: 5px;
   text-indent: -9999px;
 }
 @media (max-width: 991px) {
-  ul#top_menu li a.cart_bt {
+  ul.top_menu li a.cart_bt {
     top: -1px;
   }
 }
-ul#top_menu li a.cart_bt:before {
+ul.top_menu li a.cart_bt:before {
   content: '\0041';
   font-size: 24px;
   font-size: 1.5rem;
 }
-ul#top_menu li a.cart_bt strong {
+ul.top_menu li a.cart_bt strong {
   font-size: 10px;
   font-size: 0.625rem;
   font-weight: 700;
@@ -2334,20 +2334,20 @@ ul#top_menu li a.cart_bt strong {
   color: #fff !important;
 }
 @media (max-width: 767px) {
-  ul#top_menu li a.cart_bt strong {
+  ul.top_menu li a.cart_bt strong {
     bottom: -3px;
   }
 }
-ul#top_menu li a.wishlist_bt_top {
+ul.top_menu li a.wishlist_bt_top {
   text-indent: -9999px;
 }
-ul#top_menu li a.wishlist_bt_top:before {
+ul.top_menu li a.wishlist_bt_top:before {
   content: '\0043';
 }
-ul#top_menu li a.login {
+ul.top_menu li a.login {
   text-indent: -9999px;
 }
-ul#top_menu li a.login:before {
+ul.top_menu li a.login:before {
   content: '\0042';
 }
 
@@ -3018,8 +3018,8 @@ ul#top_menu li a.login:before {
   }
 }
 
-header.black_nav ul#top_menu li > a,
-header.black_nav ul#top_menu li .dropdown-cart > a,
+header.black_nav ul.top_menu li > a,
+header.black_nav ul.top_menu li .dropdown-cart > a,
 header.black_nav .dropdown.user > a {
   color: #333 !important;
 }
@@ -3158,14 +3158,14 @@ header.black_nav .dropdown.user a:hover {
 }
 
 @media (max-width: 991px) {
-  ul#top_menu.drop_user {
+  ul.top_menu.drop_user {
     top: 6px;
     right: 10px;
   }
 }
 
 @media (max-width: 991px) {
-  .header_in ul#top_menu.drop_user {
+  .header_in ul.top_menu.drop_user {
     right: 0;
   }
 }
