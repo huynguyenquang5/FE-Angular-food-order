@@ -16,12 +16,13 @@ import {Store} from "../model/store/store";
 })
 export class DetailStoreComponent implements OnInit {
   show : boolean = false;
+  storeId !:number;
   ngOnInit(): void {
-    const id = Number(this.routerActive.snapshot.paramMap.get("storeId"))
-    this.storeService.findById(id).subscribe(data => {
+    this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
+    this.storeService.findById(this.storeId).subscribe(data => {
       this.store = data
-      this.productService.findAllByStore(id).subscribe(data =>{
-        this.listProduct = data;
+      this.imageService.findAllFilterStore(this.storeId).subscribe(data =>{
+        this.listImageFilter = data;
         this.classify(data);
         this.product = this.listProduct[0];
         console.log(this.store)
@@ -35,12 +36,13 @@ export class DetailStoreComponent implements OnInit {
               private storeService: StoreService) {
   }
   listProduct : Product[] = [];
-  listProductMains : Product[] = [];
-  listProductDrinks : Product[] = [];
+  listProductMains : Image[] = [];
+  listProductDrinks : Image[] = [];
   listImage : Image[] = [];
-  classify(products : Product[]){
+  listImageFilter : Image[] = [];
+  classify(products : Image[]){
     for (let i = 0; i < products.length; i++) {
-      if (products[i].productMethod.category.name.toUpperCase() !== "DRINK"){
+      if (products[i].product.productMethod.category.name.toUpperCase() !== "DRINK"){
         this.listProductMains.push(products[i]);
       }else {
         this.listProductDrinks.push(products[i]);
