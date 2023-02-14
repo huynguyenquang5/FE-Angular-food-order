@@ -7,6 +7,7 @@ import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.compone
 import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admin-merchant-pending.component";
 import {AdminMerchantComponent} from "./admin/admin-merchant/admin-merchant.component";
 import {AdminUserComponent} from "./admin/admin-user/admin-user.component";
+import {MerchantStoreComponent} from "./merchant/merchant-store/merchant-store.component";
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'store/:storeId',
     component: DetailStoreComponent
+  },
+  {
+    path: 'store/user/:userId',
+    component: MerchantStoreComponent
   }];
 
 @NgModule({
