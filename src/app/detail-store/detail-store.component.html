@@ -1,29 +1,31 @@
 <body data-spy="scroll" data-target="#secondary_nav" data-offset="75">
 <app-home-header></app-home-header>
 <main>
-  <div class="hero_in detail_page background-image" id="background">
-    <div class="wrapper opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-      <div class="container">
-        <div class="main_info">
-          <div class="row">
-            <div class="col-xl-4 col-lg-5 col-md-6">
-              <div class="head">
-                <div class="score"><span>Superb<em>999 Reviews</em></span><strong>10.0</strong></div>
+  <div >
+    <div class="hero_in detail_page background-image" id="background">
+      <div class="wrapper opacity-mask">
+        <div class="container">
+          <div class="main_info">
+            <div class="row" style="color:#000;">
+              <div class="col-xl-4 col-lg-5 col-md-6">
+                <div class="head">
+                  <div class="score"><span>Superb<em>999 Reviews</em></span><strong>10.0</strong></div>
+                </div>
+                <h1 style="color:#000;">{{store?.nameStore}}</h1>
+                {{store?.addressStore}} - <a
+                href="https://www.google.com/maps/dir/CodeGym,+Ph%E1%BB%91+H%C3%A0m+Nghi,+M%E1%BB%B9+%C4%90%C3%ACnh+1,+M%E1%BB%B9+%C4%90%C3%ACnh+2,+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i/CodeGym,+Nh%C3%A0+s%E1%BB%91+23,+L%C3%B4+TT-01,+Khu+%C4%91%C3%B4+th%E1%BB%8B+MonCity,+Ph%E1%BB%91+H%C3%A0m+Nghi,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0357866,105.7331979,13z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x313454b9444c676b:0xe713200541b7456d!2m2!1d105.7682175!2d21.0357101!1m5!1m1!1s0x313454b9444c676b:0xe713200541b7456d!2m2!1d105.7682175!2d21.0357101"
+                target="blank" style="color:#000;">Get Map</a>
               </div>
-              <h1>{{store?.nameStore}}</h1>
-              {{store?.addressStore}} - <a
-              href="https://www.google.com/maps/dir/CodeGym,+Ph%E1%BB%91+H%C3%A0m+Nghi,+M%E1%BB%B9+%C4%90%C3%ACnh+1,+M%E1%BB%B9+%C4%90%C3%ACnh+2,+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i/CodeGym,+Nh%C3%A0+s%E1%BB%91+23,+L%C3%B4+TT-01,+Khu+%C4%91%C3%B4+th%E1%BB%8B+MonCity,+Ph%E1%BB%91+H%C3%A0m+Nghi,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0357866,105.7331979,13z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x313454b9444c676b:0xe713200541b7456d!2m2!1d105.7682175!2d21.0357101!1m5!1m1!1s0x313454b9444c676b:0xe713200541b7456d!2m2!1d105.7682175!2d21.0357101"
-              target="blank">Get Map</a>
-            </div>
-            <div class="col-xl-8 col-lg-7 col-md-6">
-              <div class="buttons clearfix">
-                <a href="#0" class="btn_hero wishlist"><i class="icon_heart"></i>Wishlist</a>
+              <div class="col-xl-8 col-lg-7 col-md-6">
+                <div class="buttons clearfix">
+                  <a href="#0" class="btn_hero wishlist"><i class="icon_heart"></i>Wishlist</a>
+                </div>
               </div>
             </div>
+            <!-- /row -->
           </div>
-          <!-- /row -->
+          <!-- /main_info -->
         </div>
-        <!-- /main_info -->
       </div>
     </div>
   </div>
@@ -32,8 +34,8 @@
   <nav class="secondary_nav sticky_horizontal">
     <div class="container">
       <ul id="secondary_nav">
-        <li><a class="list-group-item list-group-item-action" href="#section-1">Main Courses</a></li>
-        <li><a class="list-group-item list-group-item-action" href="#section-4">Drinks</a></li>
+        <li><a class="list-group-item list-group-item-action" href="store/{{storeId}}/#section-1">Main Courses</a></li>
+        <li><a class="list-group-item list-group-item-action" href="store/{{storeId}}/#section-4">Drinks</a></li>
       </ul>
     </div>
     <span></span>
@@ -65,16 +67,16 @@
                 <tr *ngFor="let p of listProductMains,index as index">
                   <td class="d-md-flex align-items-center">
                     <a type="button" data-toggle="modal" data-target="#exampleModalCenter" style="border-style: outset"
-                       (click)="onDetailFood(p)">
-                      <img src="../../assets/img/hero_general_2.jpg" alt="" style="width: 60px;height: 60px">
+                       (click)="onDetailFood(p.product)">
+                      <img src="{{p.name}}" alt="" style="width: 60px;height: 60px">
                     </a>
                     <div style="padding-left: 10px">
-                      <h4>{{index + 1}}. {{p.name}}</h4>
-                      <p>Category: <a class="btn-success">{{p.productMethod.category.name}}</a></p>
+                      <h4>{{index + 1}}. {{p.product.name}}</h4>
+                      <p>Category: <a class="btn-success">{{p.product.productMethod.category.name}}</a></p>
                     </div>
                   </td>
                   <td>
-                    <strong>${{p.productMethod.price}}</strong>
+                    <strong>${{p.product.productMethod.price}}</strong>
                   </td>
                   <td class="options">
                     <a href="#"><i
@@ -105,18 +107,18 @@
                 <tbody>
                 <tr *ngFor="let p of listProductDrinks,index as index">
                   <td class="d-md-flex align-items-center">
-                    <a type="button" data-toggle="modal" data-target="#exampleModalCentern" style="border-style: outset"
-                       (click)="onDetailFood(p)">
-                      <img src="../../assets/img/hero_general_2.jpg" alt="" style="width: 60px;height: 60px">
+                    <a type="button" data-toggle="modal" data-target="#exampleModalCenter" style="border-style: outset"
+                       (click)="onDetailFood(p.product)">
+                      <img src="{{p.name}}" alt="" style="width: 60px;height: 60px">
                     </a>
                     <div class="flex-md-column" style="padding-left: 10px">
-                      <h4>{{index + 1}}. {{p.name}}</h4>
-                      <p>Category: <a class="btn-success">{{p.productMethod.category.name}}</a></p>
+                      <h4>{{index + 1}}. {{p.product.name}}</h4>
+                      <p>Category: <a class="btn-success">{{p.product.productMethod.category.name}}</a></p>
 
                     </div>
                   </td>
                   <td>
-                    <strong>${{p.productMethod.price}}</strong>
+                    <strong>${{p.product.productMethod.price}}</strong>
                   </td>
                   <td class="options">
                     <a href="#"><i
@@ -262,7 +264,8 @@
 </footer>
 <!-- /modal detail -->>
 
-<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -302,11 +305,11 @@
           <div style="float: left;" class="col-lg-5">
             <table class="table table-striped">
               <tr>
-                <td><p>Price :${{product?.productMethod?.price}}</p></td>
+                <td><p>Price :  ${{product?.productMethod?.price}}</p></td>
               </tr>
               <div>
                 <tr>
-                  <td><p>Category : <a style="color: red">{{product?.productMethod?.category?.name}}</a> </p></td>
+                  <td><p>Category : <a style="color: red">{{product?.productMethod?.category?.name}}</a></p></td>
                 </tr>
               </div>
               <tr>
