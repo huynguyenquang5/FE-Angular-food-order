@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from "../../service/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from "../../model/product/product";
@@ -28,8 +28,10 @@ export class AllProductComponent implements OnInit {
 
   ngOnInit() {
     const id = Number(this.routerActive.snapshot.paramMap.get("id"))
-    this.productService.findAllByStore(id).subscribe((data) => {
+    // this.productService.findAllByStore(id).subscribe((data) => {
+    this.productService.findAll().subscribe((data) => {
         this.listProduct = data
+        this.listProducts = data
       }
     )
     this.formImage = new FormGroup({
@@ -43,19 +45,19 @@ export class AllProductComponent implements OnInit {
 
   product !: Product;
   listProduct: Product[] = [];
+  listProducts: Product[] = [];
   listProductMains: Product[] = [];
   listProductDrinks: Product[] = [];
   listImage: Image[] = [];
   image!: Image;
   formImage!: FormGroup
   productId!: number
-  imageId!:number
+  imageId!: number
   pathEdit!: string
 
   onDetailFood(p: Product) {
     this.imageService.findAllByProduct(p.id).subscribe(data => {
       this.listImage = data;
-
     })
   }
 
@@ -65,40 +67,43 @@ export class AllProductComponent implements OnInit {
       this.listImage = data;
     })
   }
-  submitImage(event: any){
-    if(event.target.files && event.target.files[0]){
+
+  submitImage(event: any) {
+    if (event.target.files && event.target.files[0]) {
       this.imageFile = event.target.files[0];
-      if(this.pathName !== this.imageFile.name){
+      if (this.pathName !== this.imageFile.name) {
         this.pathName = this.imageFile.name
-        const imagePath = `image/${this.imageFile.name.split('.').slice(0,-1).join('.')}_${new Date().getTime()}`;
+        const imagePath = `image/${this.imageFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
         const fileRef = this.storage.ref(imagePath);
         this.storage.upload(imagePath, this.imageFile).snapshotChanges().pipe(
-          finalize(()=>{
-            fileRef.getDownloadURL().subscribe(url =>{
-              this.path= url
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe(url => {
+              this.path = url
             });
           })
         ).subscribe()
       }
     }
   }
-  submitImageEdit(event: any){
-    if(event.target.files && event.target.files[0]){
+
+  submitImageEdit(event: any) {
+    if (event.target.files && event.target.files[0]) {
       this.imageFile = event.target.files[0];
-      if(this.pathName !== this.imageFile.name){
+      if (this.pathName !== this.imageFile.name) {
         this.pathName = this.imageFile.name
-        const imagePath = `image/${this.imageFile.name.split('.').slice(0,-1).join('.')}_${new Date().getTime()}`;
+        const imagePath = `image/${this.imageFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
         const fileRef = this.storage.ref(imagePath);
         this.storage.upload(imagePath, this.imageFile).snapshotChanges().pipe(
-          finalize(()=>{
-            fileRef.getDownloadURL().subscribe(url =>{
-              this.pathEdit= url
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe(url => {
+              this.pathEdit = url
             });
           })
         ).subscribe()
       }
     }
   }
+
   onSubmit() {
     const imagePath = `image/${this.imageFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
     const fileRef = this.storage.ref(imagePath);
@@ -113,32 +118,49 @@ export class AllProductComponent implements OnInit {
       })
     ).subscribe()
     this.showImage(this.productId)
-    this.path=""
+    this.path = ""
   }
-  editImage(id: number){
+
+  editImage(id: number) {
     const imagePath = `image/${this.imageFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
     const fileRef = this.storage.ref(imagePath);
     this.storage.upload(imagePath, this.imageFile).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe(url => {
           this.image = this.formImage.value
-          this.image.id= id
+          this.image.id = id
           this.image.name = url
           this.image.product.id = this.productId
           this.imageService.update(this.image, id).subscribe(() => {
           })
-          this.pathEdit=""
+          this.pathEdit = ""
         });
       })
     ).subscribe()
   }
-  deleteImage(id: number){
+
+  deleteImage(id: number) {
     this.imageService.deleteById(id).subscribe()
-    this.imageService.findAllByProduct(this.productId).subscribe((data)=>{
+    this.imageService.findAllByProduct(this.productId).subscribe((data) => {
       this.listImage = data
     })
 
   }
 
+  @ViewChild('valueSearch') valueSearch: ElementRef | undefined ;
+  searchByKeyWord(){
+    let value = this.valueSearch?.nativeElement.value
+    if (value === "" || value === undefined || value === null){
+      this.listProduct = this.listProducts
+    }else{
+      let products : Product[] = []
+      for (let i = 0; i < this.listProducts.length; i++){
+        if (this.listProducts[i].name.toLowerCase().includes(value.toLowerCase())){
+          products.push(this.listProducts[i])
+        }
+      }
+      this.listProduct = products ;
+    }
+  }
 
 }
