@@ -20,6 +20,7 @@ import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admi
 import {AdminNavComponent} from "./admin/admin-nav/admin-nav.component";
 import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.component";
 import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-partner-pending.component";
+import { HomeFilterComponent } from './home/home-filter/home-filter.component';
 
 
 
@@ -37,7 +38,8 @@ import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-
     AdminMerchantPendingComponent,
     AdminNavComponent,
     AdminPartnerComponent,
-    AdminPartnerPendingComponent
+    AdminPartnerPendingComponent,
+    HomeFilterComponent
 
   ],
     imports: [
