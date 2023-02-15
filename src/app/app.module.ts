@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {HomeFooterComponent} from './home/home-footer/home-footer.component';
 import {HomeHeaderComponent} from './home/home-header/home-header.component';
 import {HomeBodyComponent} from './home/home-body/home-body.component';
-import {ProductCreateComponent} from './product/product-create/product-create.component';
+import {ProductCreateComponent} from "./product/product-create/product-create.component";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
@@ -23,6 +23,9 @@ import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-
 import { MerchantStoreComponent } from './merchant/merchant-store/merchant-store.component';
 
 
+
+
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
