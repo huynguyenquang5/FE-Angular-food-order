@@ -32,7 +32,7 @@ export class AllProductComponent implements OnInit {
   ngOnInit() {
 
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("id"));
-    this.productService.findAllByStore(this.storeId).subscribe(data=>{
+    this.productService.findAllByStore(this.storeId).subscribe(data => {
         this.listProduct = data
       }
     )
@@ -56,9 +56,6 @@ export class AllProductComponent implements OnInit {
   productId!: number
   imageId!: number
   pathEdit!: string
-
-
-
 
 
   onDetailFood(p: Product) {
@@ -217,5 +214,7 @@ export class AllProductComponent implements OnInit {
 
       }
     })
+
   }
+
 }
