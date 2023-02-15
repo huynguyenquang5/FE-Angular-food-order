@@ -230,34 +230,36 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Quantity</th>
-              <th>Description</th>
-              <th>Image</th>
-              <th colspan="2">Action</th>
+              <th style="text-align: center">Serial</th>
+              <th style="text-align: center">Name</th>
+              <th style="text-align: center">Price</th>
+              <th style="text-align: center">Category</th>
+              <th style="text-align: center">Description</th>
+              <th style="text-align: center">Image</th>
+              <th colspan="2" style="text-align: center">Action</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let p of listProduct, index as index">
-              <td>{{index + 1}}</td>
-              <td>{{p.name}}</td>
-              <td>{{p.productMethod.price}}</td>
-              <td>{{p.productMethod.category.name}}</td>
-              <td>{{p.productMethod.quantity}}</td>
-              <td>{{p.productMethod.description}}</td>
-              <td>
-                <button (click)="showImage(p.id)" type="button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#exampleModal">
-                  Click to show
+              <td style="text-align: center">{{index + 1}}</td>
+              <td style="text-align: center">{{p.name}}</td>
+              <td style="text-align: center">{{p.productMethod.price}}</td>
+              <td style="text-align: center">{{p.productMethod.category.name}}</td>
+              <td style="text-align: center">{{p.productMethod.description}}</td>
+              <td style="text-align: center">
+                <button (click)="showImage(p.id)" type="button" class="btn btn-light" data-toggle="modal"
+                        data-target="#exampleModal"><i class="fa-solid fa-eye">
+                </i></button>
+
+              </td>
+              <td style="text-align: center">
+                <button class="btn btn-info" [routerLink]="['/update', p.id]"><i class="fa-solid fa-pen-to-square"></i>
                 </button>
               </td>
-              <td ><button class="btn btn-info" [routerLink]="['/update', p.id]">Edit</button></td>
-              <td>Delete</td>
-              <td><i class="fa-solid fa-pen-to-square"></i></td>
-              <td (click)="deleteProduct(p)"><i class="fa-sharp fa-solid fa-trash"></i></td>
+              <td style="text-align: center">
+                <button (click)="deleteProduct(p)" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>
+                </button>
+              </td>
             </tr>
             </tbody>
           </table>
@@ -328,7 +330,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 

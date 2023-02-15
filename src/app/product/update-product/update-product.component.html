@@ -246,20 +246,10 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label>Quantity</label>
-                <input type="text" class="form-control" placeholder="Enter quantity" formControlName="quantity">
-                <p *ngIf="formProduct.get('productMethod.quantity')?.errors?.['required']" style="color: red">Quantity required</p>
-                <p *ngIf="formProduct.get('productMethod.quantity')?.errors?.['pattern']" style="color: red">Quantity must only number</p>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
                 <label>Description</label>
-                <input type="text" class="form-control" placeholder="Enter description" id="description"
+                <textarea type="text" class="form-control" placeholder="Enter description" id="description"
                        name="description"
-                       formControlName="description">
+                          formControlName="description"></textarea>
                 <p *ngIf="formProduct.get('productMethod.description')?.errors?.['required']" style="color: red">Description required</p>
               </div>
             </div>

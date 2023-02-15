@@ -36,7 +36,6 @@ import { UpdateProductComponent } from './product/update-product/update-product.
     HomeBodyComponent,
     DetailStoreComponent,
     ProductCreateComponent,
-    AllProductComponent,
     UpdateProductComponent,
     AllProductComponent,
     AdminUserComponent,

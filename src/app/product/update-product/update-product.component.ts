@@ -40,7 +40,7 @@ export class UpdateProductComponent implements OnInit {
       productMethod: new FormGroup({
         id: new FormControl(''),
         price: new FormControl('',Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])),
-        quantity: new FormControl('',Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])),
+        quantity: new FormControl(''),
         description: new FormControl('',Validators.required),
         category: new FormGroup({
           id: new FormControl('')

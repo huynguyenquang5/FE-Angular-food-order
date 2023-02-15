@@ -7,6 +7,7 @@ import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ImageService} from "../../service/product/image.service";
+
 // @ts-ignore
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -162,7 +163,6 @@ export class AllProductComponent implements OnInit {
   }
 
   @ViewChild('valueSearch') valueSearch: ElementRef | undefined;
-
   searchByKeyWord() {
     let value = this.valueSearch?.nativeElement.value
     if (value === "" || value === undefined || value === null) {
@@ -207,14 +207,13 @@ export class AllProductComponent implements OnInit {
           'Your file has been deleted.',
           'success'
         )
+        this.ngOnInit()
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
-
       }
     })
-
   }
 
 }
