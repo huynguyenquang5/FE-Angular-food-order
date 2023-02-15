@@ -7,34 +7,51 @@
     </div>
     <div class="layer"></div><!-- Opacity Mask Menu Mobile -->
     <ul class="top_menu">
-      <li><a href="#sign-in-dialog" id="sign-in" class="login">Sign In</a></li>
-      <li>
-        <div class="dropdown dropdown-cart">
-          <a class="cart_bt"><strong hidden>2</strong></a>
-          <div class="dropdown-menu" style="width: 300px; padding: 10px;max-height: 650px;">
-            <ul style="overflow: scroll;max-height: 500px;">
-              <li>
-                <figure><img src="../../../assets/img/hero_in_restaurants_detail.jpg" alt="" width="50" height="50"
-                             class="lazy"></figure>
-                <strong><span>1x Pizza Napoli</span>$12.00</strong>
-                <a href="#0" class="action"><i class="icon_trash_alt"></i></a>
-              </li>
-            </ul>
-            <div class="total_drop">
-              <div class="clearfix add_bottom_15"><strong>Total</strong><span>$32.00</span></div>
-              <a href="order.html" class="btn_1 outline">View Cart</a>
-              <a href="order.html" class="btn_1 " >Checkout</a>
+      <li class="nav-item dropdown" style="border: none">
+        <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <i class="fa-solid fa-cart-shopping" style="padding-right: 15px"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="alertsDropdown"
+             style="width: 310px;max-height: 700px;margin: 5px;box-shadow: 5px 8px 8px 8px #888888;">
+          <h6 class="dropdown-header">Cart :</h6>
+          <div class="dropdown-divider"></div>
+          <div style="width: 100%;max-height: 500px;min-height: 200px;overflow: auto;">
+            <div class="col-md-12">
+              <div >
+                <div class="row" style="height: 60px;">
+                  <div class="col-md-3">
+                    <img src="../../../assets/img/modal_advertise.png" alt="" style="width: 60px;height: 60px">
+                  </div>
+                  <div class="col-md-7" style="display: flex;">
+                  <span style="padding: 8px;font-size: 13px;">name product
+                    <p style="margin-top: 5px;font-size: 14px;font-weight: 600">1 x $40.00</p>
+                  </span>
+                  </div>
+                  <div class="col-md-2">
+                    <span style="font-size: 20px;font-weight: 400;color: red">X</span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+              </div>
             </div>
           </div>
+          <div class="dropdown-divider"></div>
+          <div class="clearfix add_bottom_15" style="margin-top: 15px"><strong>Total</strong><span> : $32.00</span>
+          </div>
+          <div style="margin-right: 15px">
+            <p class="btn-cart-custom">View Cart</p>
+            <p class="btn-cart-custom-outline ">Checkout</p>
+          </div>
         </div>
-        <!-- /dropdown-cart-->
       </li>
     </ul>
     <ul class="drop_user top_menu">
       <li>
         <div class="dropdown user clearfix">
           <a data-toggle="dropdown">
-            <figure><img src="assets/img/avatar1.jpg" alt=""></figure><span style="padding-right: 5px">Nguyen Ngoc Tu </span>
+            <figure><img src="assets/img/avatar1.jpg" alt=""></figure>
+            <span style="padding-right: 5px">Nguyen Ngoc Tu </span>
           </a>
           <div class="dropdown-menu">
             <div class="dropdown-menu-content">
@@ -134,3 +151,5 @@
   <!--form -->
 </div>
 <!-- /Sign In Modal -->
+<script src="assets/js/common_scripts.min.js"></script>
+<script src="assets/js/common_func.js"></script>

@@ -28,4 +28,5 @@ export class ImageService {
   deleteProduct(id: number):Observable<any>{
     return this.httpClient.delete<any>(`${apiUrl}/images/delete/product/${id}`);
   }
+
 }
