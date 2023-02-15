@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-  <a class="navbar-brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="167" height="36"></a>
+  <a class="navbar-brand" href="index.html"><img src="img/logo.svg" alt="" width="167" height="36"></a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
           data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
           aria-label="Toggle navigation">
@@ -190,16 +190,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <form class="form-inline my-2 my-lg-0 mr-lg-2">
-          <div class="input-group">
-            <input class="form-control search-top" type="text" placeholder="Search for...">
-            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-          </div>
-        </form>
+
       </li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#exampleModal"><i
@@ -220,68 +211,70 @@
     </ol>
     <div class="box_general padding_bottom">
       <div class="header_box version_2">
-        <h2><i class="fa fa-file"></i>Create</h2>
+        <h2><i class="fa fa-file"></i>Basic info</h2>
       </div>
-      <form [formGroup]="formImage" (ngSubmit)="onSubmit()">
-        <div formGroupName="product">
+      <form [formGroup]="formProduct" (ngSubmit)="updateProduct()">
+        <div class="row" hidden>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Store</label>
+              <input type="text" class="form-control" placeholder="Enter store" formControlName="id">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Enter name">
+              <p *ngIf="formProduct.get(['name'])?.errors?.['required']" style="color: red">Name required</p>
+              <p *ngIf="formProduct.get(['name'])?.errors?.['pattern']" style="color: red">Name must only letter</p>
+          </div>
+        </div>
+        </div>
+        <div formGroupName="productMethod">
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control" placeholder="Enter name" formControlName="name">
+                <label>Price</label>
+                <input type="text" class="form-control" placeholder="Enter price" formControlName="price">
+                <p *ngIf="formProduct.get('productMethod.price')?.errors?.['required']" style="color: red">Price required</p>
+                <p *ngIf="formProduct.get('productMethod.price')?.errors?.['pattern']" style="color: red">Price must only number or float</p>
               </div>
             </div>
           </div>
-          <div class="row" hidden>
-            <div class="col-md-4" formGroupName="store">
+          <div class="row">
+            <div class="col-md-4">
               <div class="form-group">
-                <label>Store</label>
-                <input type="text" class="form-control" placeholder="Enter store" formControlName="id">
+                <label>Description</label>
+                <textarea type="text" class="form-control" placeholder="Enter description" id="description"
+                       name="description"
+                          formControlName="description"></textarea>
+                <p *ngIf="formProduct.get('productMethod.description')?.errors?.['required']" style="color: red">Description required</p>
               </div>
             </div>
           </div>
-          <div formGroupName="productMethod">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Price</label>
-                  <input type="text" class="form-control" placeholder="Enter price" formControlName="price">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label>Description</label>
-                  <textarea type="text" class="form-control" placeholder="Enter description"
-                            formControlName="description"></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group" formGroupName="category">
-                  <label>Category</label>
-                  <div class="styled-select">
-                    <select formControlName="id">
-                      <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group" formGroupName="category">
+                <label>Category</label>
+                <div class="styled-select">
+                  <select formControlName="id">
 
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div><label>Image</label></div>
-            <div><input type="file" class="drop-zone" (change)="submitImage($event)"></div>
-            <img src="{{path}}" alt="">
+                    <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <button type="submit" class="btn_1 medium">Create</button>
+        <button class="btn btn-info" type="submit">Update information</button>
+        <button class="btn btn-secondary" [routerLink]="['/products/store', product.store.id]">Back</button>
+
       </form>
+      <!-- /row-->
+
+
     </div>
   </div>
 </div>
