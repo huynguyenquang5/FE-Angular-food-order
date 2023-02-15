@@ -7,6 +7,8 @@ import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ImageService} from "../../service/product/image.service";
+// @ts-ignore
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 
 @Component({
@@ -18,6 +20,31 @@ export class AllProductComponent implements OnInit {
   path!: string
   pathName!: string
   imageFile: any
+  storeId!: number;
+
+  constructor(private productService: ProductService,
+              private imageService: ImageService,
+              private routerActive: ActivatedRoute,
+              private storage: AngularFireStorage,
+              private router: Router) {
+  }
+
+  ngOnInit() {
+
+    this.storeId = Number(this.routerActive.snapshot.paramMap.get("id"));
+    this.productService.findAllByStore(this.storeId).subscribe(data=>{
+        this.listProduct = data
+      }
+    )
+    this.formImage = new FormGroup({
+      id: new FormControl(''),
+      product: new FormGroup({
+        id: new FormControl('')
+      })
+    })
+
+  }
+
   product !: Product;
   listProduct: Product[] = [];
   listProducts: Product[] = [];
@@ -29,34 +56,24 @@ export class AllProductComponent implements OnInit {
   productId!: number
   imageId!: number
   pathEdit!: string
-  storeId !:number;
 
-  constructor(private productService: ProductService,
-              private imageService: ImageService,
-              private routerActive: ActivatedRoute,
-              private storage: AngularFireStorage,
-              private router: Router) {
-  }
 
-  ngOnInit() {
-    this.storeId = Number(this.routerActive.snapshot.paramMap.get("id"));
-    this.productService.findAllByStore(this.storeId).subscribe(data=>{
-      this.listProduct = data
-    }
-    )
-    this.formImage = new FormGroup({
-      id: new FormControl(''),
-      product: new FormGroup({
-        id: new FormControl('')
-      })
-    })
 
-  }
+
 
   onDetailFood(p: Product) {
     this.imageService.findAllByProduct(p.id).subscribe(data => {
       this.listImage = data;
     })
+  }
+
+  findAllProduct(id: number) {
+    // this.productService.findAllByStore(id).subscribe((data) => {
+    this.productService.findAll().subscribe((data) => {
+        this.listProduct = data
+        this.listProducts = data
+      }
+    )
   }
 
   showImage(id: number) {
@@ -132,7 +149,6 @@ export class AllProductComponent implements OnInit {
           this.imageService.update(this.image, id).subscribe(() => {
           })
           this.pathEdit = ""
-
         });
       })
     ).subscribe()
@@ -148,20 +164,58 @@ export class AllProductComponent implements OnInit {
 
   }
 
-  @ViewChild('valueSearch') valueSearch: ElementRef | undefined ;
-  searchByKeyWord(){
+  @ViewChild('valueSearch') valueSearch: ElementRef | undefined;
+
+  searchByKeyWord() {
     let value = this.valueSearch?.nativeElement.value
-    if (value === "" || value === undefined || value === null){
+    if (value === "" || value === undefined || value === null) {
       this.listProduct = this.listProducts
-    }else{
-      let products : Product[] = []
-      for (let i = 0; i < this.listProducts.length; i++){
-        if (this.listProducts[i].name.toLowerCase().includes(value.toLowerCase())){
+    } else {
+      let products: Product[] = []
+      for (let i = 0; i < this.listProducts.length; i++) {
+        if (this.listProducts[i].name.toLowerCase().includes(value.toLowerCase())) {
           products.push(this.listProducts[i])
         }
       }
-      this.listProduct = products ;
+      this.listProduct = products;
     }
   }
 
+  deleteProduct(p: Product) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger',
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      backgroundColor: 'white',
+      reverseButtons: true
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        let check: string = ""
+        this.imageService.deleteProduct(p.id).subscribe(data => {
+          check = data
+        })
+        this.findAllProduct(this.storeId);
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+
+      }
+    })
+  }
 }

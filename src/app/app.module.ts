@@ -14,6 +14,13 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { AllProductComponent } from './product/all-product/all-product.component';
+import {AdminUserComponent} from "./admin/admin-user/admin-user.component";
+import {AdminMerchantComponent} from "./admin/admin-merchant/admin-merchant.component";
+import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admin-merchant-pending.component";
+import {AdminNavComponent} from "./admin/admin-nav/admin-nav.component";
+import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.component";
+import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-partner-pending.component";
+import { MerchantStoreComponent } from './merchant/merchant-store/merchant-store.component';
 
 
 
@@ -30,7 +37,15 @@ import { UpdateProductComponent } from './product/update-product/update-product.
     DetailStoreComponent,
     ProductCreateComponent,
     AllProductComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    AllProductComponent,
+    AdminUserComponent,
+    AdminMerchantComponent,
+    AdminMerchantPendingComponent,
+    AdminNavComponent,
+    AdminPartnerComponent,
+    AdminPartnerPendingComponent,
+    MerchantStoreComponent
 
   ],
     imports: [

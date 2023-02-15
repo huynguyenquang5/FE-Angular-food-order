@@ -1,0 +1,82 @@
+<app-admin-nav></app-admin-nav>
+<div class="content-wrapper">
+  <div class="container-fluid" style="margin-top: 60px">
+    <!-- Example DataTables Card-->
+    <div class="card mb-3">
+      <div class="card-header"><i class="fa fa-table" style="padding-right: 10px"></i>Merchant Pending List</div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users; index as i">
+              <td>{{i + 1}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.phone}}</td>
+              <td><i class="pending">Pending</i>
+              <td><a (click)="getId(user.id)" href="#" data-toggle="modal" data-target="#pendingAcceptModal">
+              <strong>Accept</strong></a> |
+              <a (click)="getId(user.id)" data-toggle="modal" data-target="#pendingDenyModal" href="#">
+                <strong>Deny</strong></a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- /tables-->
+  </div>
+  <!-- /container-fluid-->
+</div>
+<!-- /container-wrapper-->
+
+<!--Pending Accept Modal-->
+<div class="modal fade" id="pendingAcceptModal" tabindex="-1" role="dialog" aria-labelledby="pendingAcceptModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pendingAcceptModalLabel">Are you sure ?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">This user will become a merchant ?</div>
+      <div class="modal-footer">
+        <a class="btn btn-secondary" href="#" data-dismiss="modal">Cancel</a>
+        <a class="btn btn-primary" href="#" (click)="acceptMerchant()">Accept</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Pending Deny Modal-->
+<div class="modal fade" id="pendingDenyModal" tabindex="-1" role="dialog" aria-labelledby="pendingDenyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pendingDenyModalLabel">Deny merchant ?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Are you sure to deny this user ?</div>
+      <div class="modal-footer">
+        <a class="btn btn-secondary" href="#" data-dismiss="modal">Cancel</a>
+        <a class="btn btn-danger" href="#" (click)="denyMerchant()">Deny</a>
+      </div>
+    </div>
+  </div>
+</div>
+

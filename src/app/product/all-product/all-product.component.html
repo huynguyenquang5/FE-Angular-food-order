@@ -256,6 +256,8 @@
               </td>
               <td ><button class="btn btn-info" [routerLink]="['/update', p.id]">Edit</button></td>
               <td>Delete</td>
+              <td><i class="fa-solid fa-pen-to-square"></i></td>
+              <td (click)="deleteProduct(p)"><i class="fa-sharp fa-solid fa-trash"></i></td>
             </tr>
             </tbody>
           </table>

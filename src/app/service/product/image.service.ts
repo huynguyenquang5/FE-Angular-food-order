@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Image} from "../../model/product/image";
 import {Observable} from "rxjs";
-
+import {environment} from "../../../environments/environment";
+const apiUrl = environment.apiUrl
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +24,9 @@ export class ImageService {
   }
   deleteById(id: number): Observable<any>{
     return this.httpClient.delete<Image>(`http://localhost:8080/images/${id}`)
+  }
+  deleteProduct(id: number):Observable<any>{
+    return this.httpClient.delete<any>(`${apiUrl}/images/delete/product/${id}`);
   }
 
 }
