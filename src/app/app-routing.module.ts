@@ -8,6 +8,8 @@ import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admi
 import {AdminMerchantComponent} from "./admin/admin-merchant/admin-merchant.component";
 import {AdminUserComponent} from "./admin/admin-user/admin-user.component";
 import {MerchantStoreComponent} from "./merchant/merchant-store/merchant-store.component";
+import {ProductCreateComponent} from "./product/product-create/product-create.component";
+import {AllProductComponent} from "./product/all-product/all-product.component";
 
 const routes: Routes = [
   {
@@ -40,6 +42,14 @@ const routes: Routes = [
   {
     path: 'store/user/:userId',
     component: MerchantStoreComponent
+  },
+  {
+    path: 'product/create',
+    component: ProductCreateComponent
+  },
+  {
+    path: 'product',
+    component: AllProductComponent
   }];
 
 @NgModule({
