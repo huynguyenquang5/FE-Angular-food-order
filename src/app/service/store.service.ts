@@ -16,4 +16,10 @@ export class StoreService {
   findAll(): Observable<Store[]>{
     return this.http.get<Store[]>(`${apiUrl}/store`)
   }
+  findByUserId(id: number): Observable<Store> {
+    return this.http.get<Store>(`${apiUrl}/store/user/${id}`);
+  }
+  updateStoreByUserId(id: number, store: Store): Observable<Store> {
+    return this.http.put<Store>(`${apiUrl}/store/user/${id}`, store);
+  }
 }
