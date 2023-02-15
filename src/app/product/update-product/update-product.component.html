@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-  <a class="navbar-brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="167" height="36"></a>
+  <a class="navbar-brand" href="index.html"><img src="img/logo.svg" alt="" width="167" height="36"></a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
           data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
           aria-label="Toggle navigation">
@@ -190,17 +190,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <form class="form-inline my-2 my-lg-0 mr-lg-2">
-          <div class="input-group">
-            <input class="form-control search-top" type="text" placeholder="Search for..."
-                   (keyup)="searchByKeyWord()" #valueSearch>
-            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-          </div>
-        </form>
+
       </li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#exampleModal"><i
@@ -210,7 +200,6 @@
   </div>
 </nav>
 <!-- /Navigation-->
-
 <div class="content-wrapper">
   <div class="container-fluid">
     <!-- Breadcrumbs-->
@@ -218,118 +207,85 @@
       <li class="breadcrumb-item">
         <a href="#">Dashboard</a>
       </li>
-      <li class="breadcrumb-item active">Orders</li>
+      <li class="breadcrumb-item active">Add listing</li>
     </ol>
-    <!-- Example DataTables Card-->
-    <div class="card mb-3">
-      <div class="card-header">
-        <i class="fa fa-table"></i> Orders Table Example
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2><i class="fa fa-file"></i>Basic info</h2>
       </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Quantity</th>
-              <th>Description</th>
-              <th>Image</th>
-              <th colspan="2">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let p of listProduct, index as index">
-              <td>{{index + 1}}</td>
-              <td>{{p.name}}</td>
-              <td>{{p.productMethod.price}}</td>
-              <td>{{p.productMethod.category.name}}</td>
-              <td>{{p.productMethod.quantity}}</td>
-              <td>{{p.productMethod.description}}</td>
-              <td>
-                <button (click)="showImage(p.id)" type="button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#exampleModal">
-                  Click to show
-                </button>
-              </td>
-              <td ><button class="btn btn-info" [routerLink]="['/update', p.id]">Edit</button></td>
-              <td>Delete</td>
-            </tr>
-            </tbody>
-          </table>
+      <form [formGroup]="formProduct" (ngSubmit)="updateProduct()">
+        <div class="row" hidden>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Store</label>
+              <input type="text" class="form-control" placeholder="Enter store" formControlName="id">
+            </div>
+          </div>
         </div>
-      </div>
-
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1"
-           role="dialog" aria-labelledby="exampleModalLabel"
-           aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <!-- Modal heading -->
-            <div class="modal-header" style="text-align: center">
-              <div>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    Add image
-                  </button>
-                  <div class="dropdown-menu">
-                    <div style="text-align: center"><input type="file" class="drop-zone"
-                                                           (change)="submitImage($event)"></div>
-                    <div style="text-align: center"><img src="{{path}}"></div>
-                    <div class="dropdown-divider"></div>
-                    <div style="text-align: center">
-                      <button class="btn btn-info" (click)="onSubmit()">Save</button>
-                      <button type="button" class="btn btn-secondary"
-                              data-dismiss="modal">Close
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal">Close
-                </button>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Enter name">
+              <p *ngIf="formProduct.get(['name'])?.errors?.['required']" style="color: red">Name required</p>
+              <p *ngIf="formProduct.get(['name'])?.errors?.['pattern']" style="color: red">Name must only letter</p>
+          </div>
+        </div>
+        </div>
+        <div formGroupName="productMethod">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Price</label>
+                <input type="text" class="form-control" placeholder="Enter price" formControlName="price">
+                <p *ngIf="formProduct.get('productMethod.price')?.errors?.['required']" style="color: red">Price required</p>
+                <p *ngIf="formProduct.get('productMethod.price')?.errors?.['pattern']" style="color: red">Price must only number or float</p>
               </div>
             </div>
-            <!-- Modal body with image -->
-            <div class="modal-body" *ngFor="let img of listImage">
-              <div style="text-align: center"><img src="{{img.name}}"/><br></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Quantity</label>
+                <input type="text" class="form-control" placeholder="Enter quantity" formControlName="quantity">
+                <p *ngIf="formProduct.get('productMethod.quantity')?.errors?.['required']" style="color: red">Quantity required</p>
+                <p *ngIf="formProduct.get('productMethod.quantity')?.errors?.['pattern']" style="color: red">Quantity must only number</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" placeholder="Enter description" id="description"
+                       name="description"
+                       formControlName="description">
+                <p *ngIf="formProduct.get('productMethod.description')?.errors?.['required']" style="color: red">Description required</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group" formGroupName="category">
+                <label>Category</label>
+                <div class="styled-select">
+                  <select formControlName="id">
 
-              <div style="text-align: center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    Edit
-                  </button>
-                  <div class="dropdown-menu">
-                    <div style="text-align: center"><input type="file" class="drop-zone"
-                                                           (change)="submitImageEdit($event)"></div>
-                    <div style="text-align: center"><img src="{{pathEdit}}"></div>
-
-                    <div class="dropdown-divider"></div>
-                    <div style="text-align: center">
-                      <button class="btn btn-info" (click)="editImage(img.id)">Save</button>
-                      <button type="button" class="btn btn-secondary"
-                              data-dismiss="modal">Close
-                      </button>
-                    </div>
-                  </div>
+                    <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
+                  </select>
                 </div>
-                <button class="btn btn-danger" (click)="deleteImage(img.id)">Delete</button>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+        <button class="btn btn-info" type="submit">Update information</button>
+        <button class="btn btn-secondary" [routerLink]="['/products/store', product.store.id]">Back</button>
 
+      </form>
+      <!-- /row-->
+
+
+    </div>
   </div>
 </div>
-
-
-
 

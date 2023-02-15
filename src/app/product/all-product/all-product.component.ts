@@ -18,31 +18,6 @@ export class AllProductComponent implements OnInit {
   path!: string
   pathName!: string
   imageFile: any
-
-  constructor(private productService: ProductService,
-              private imageService: ImageService,
-              private routerActive: ActivatedRoute,
-              private storage: AngularFireStorage,
-              private router: Router) {
-  }
-
-  ngOnInit() {
-    const id = Number(this.routerActive.snapshot.paramMap.get("id"))
-    // this.productService.findAllByStore(id).subscribe((data) => {
-    this.productService.findAll().subscribe((data) => {
-        this.listProduct = data
-        this.listProducts = data
-      }
-    )
-    this.formImage = new FormGroup({
-      id: new FormControl(''),
-      product: new FormGroup({
-        id: new FormControl('')
-      })
-    })
-
-  }
-
   product !: Product;
   listProduct: Product[] = [];
   listProducts: Product[] = [];
@@ -54,6 +29,29 @@ export class AllProductComponent implements OnInit {
   productId!: number
   imageId!: number
   pathEdit!: string
+  storeId !:number;
+
+  constructor(private productService: ProductService,
+              private imageService: ImageService,
+              private routerActive: ActivatedRoute,
+              private storage: AngularFireStorage,
+              private router: Router) {
+  }
+
+  ngOnInit() {
+    this.storeId = Number(this.routerActive.snapshot.paramMap.get("id"));
+    this.productService.findAllByStore(this.storeId).subscribe(data=>{
+      this.listProduct = data
+    }
+    )
+    this.formImage = new FormGroup({
+      id: new FormControl(''),
+      product: new FormGroup({
+        id: new FormControl('')
+      })
+    })
+
+  }
 
   onDetailFood(p: Product) {
     this.imageService.findAllByProduct(p.id).subscribe(data => {
@@ -134,9 +132,11 @@ export class AllProductComponent implements OnInit {
           this.imageService.update(this.image, id).subscribe(() => {
           })
           this.pathEdit = ""
+
         });
       })
     ).subscribe()
+    this.ngOnInit()
   }
 
   deleteImage(id: number) {
@@ -144,6 +144,7 @@ export class AllProductComponent implements OnInit {
     this.imageService.findAllByProduct(this.productId).subscribe((data) => {
       this.listImage = data
     })
+    this.ngOnInit()
 
   }
 

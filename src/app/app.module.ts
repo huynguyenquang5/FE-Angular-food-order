@@ -19,6 +19,7 @@ import { AllProductComponent } from './product/all-product/all-product.component
 
 
 import {RouterModule} from "@angular/router";
+import { UpdateProductComponent } from './product/update-product/update-product.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {RouterModule} from "@angular/router";
     HomeBodyComponent,
     DetailStoreComponent,
     ProductCreateComponent,
-    AllProductComponent
+    AllProductComponent,
+    UpdateProductComponent
 
   ],
     imports: [

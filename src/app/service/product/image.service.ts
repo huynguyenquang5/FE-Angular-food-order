@@ -24,4 +24,5 @@ export class ImageService {
   deleteById(id: number): Observable<any>{
     return this.httpClient.delete<Image>(`http://localhost:8080/images/${id}`)
   }
+
 }

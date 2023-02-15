@@ -225,24 +225,24 @@
       <form [formGroup]="formImage" (ngSubmit)="onSubmit()">
         <div formGroupName="product">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" placeholder="Enter name" formControlName="name">
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6" formGroupName="store">
+          <div class="row" hidden>
+            <div class="col-md-4" formGroupName="store" >
               <div class="form-group">
                 <label>Store</label>
-                <input type="text" class="form-control" placeholder="Enter store" formControlName="id">
+                <input type="text" class="form-control" placeholder="Enter store" formControlName="id" >
               </div>
             </div>
           </div>
           <div formGroupName="productMethod">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label>Price</label>
                   <input type="text" class="form-control" placeholder="Enter price" formControlName="price">
@@ -250,7 +250,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label>Quantity</label>
                   <input type="text" class="form-control" placeholder="Enter quantity" formControlName="quantity">
@@ -258,7 +258,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label>Description</label>
                   <input type="text" class="form-control" placeholder="Enter description"
@@ -267,7 +267,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group" formGroupName="category">
                   <label>Category</label>
                   <div class="styled-select">
@@ -279,6 +279,7 @@
               </div>
             </div>
           </div>
+
         </div>
         <div class="row">
           <div class="col-md-12">
