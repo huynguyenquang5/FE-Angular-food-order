@@ -7,7 +7,6 @@ import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 })
 export class MerchantNavComponent implements OnInit {
   constructor(private elementRef: ElementRef) {
-    // Bootstrap core JavaScript
     let s2 = document.createElement("script");
     s2.type = "text/javascript";
     s2.src = "assets/admin_section/vendor/jquery/jquery.min.js";
@@ -18,8 +17,8 @@ export class MerchantNavComponent implements OnInit {
     s1.src = "assets/admin_section/vendor/bootstrap/js/bootstrap.min.js";
     this.elementRef.nativeElement.appendChild(s1);
   }
-
   ngOnInit() {
 
   }
+
 }
