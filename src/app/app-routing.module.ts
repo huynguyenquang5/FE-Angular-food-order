@@ -34,7 +34,7 @@ const routes: Routes = [
     component: AdminPartnerPendingComponent
   },
   {
-    path:"", component: HomeBodyComponent
+    path: "", component: HomeBodyComponent
   },
   {
     path: 'store/:storeId',
@@ -51,16 +51,20 @@ const routes: Routes = [
   {
     path: 'product',
     component: AllProductComponent
-  },{
-  path:'update/:id',
+  },
+  {
+    path: 'update/:id',
     component: UpdateProductComponent
-  },{
-  path:'products/store/:id',
+  },
+  {
+    path: 'products/store/:id',
     component: AllProductComponent
-  },{
-  path:'products/create',
+  },
+  {
+    path: 'products/create',
     component: ProductCreateComponent
-  }];
+  }
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
