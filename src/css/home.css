@@ -42,7 +42,7 @@
 }
 .intro_txt:before {
   content: '';
-  background: url(../img/shape_element_2.svg) no-repeat 0 0;
+  background: url(src/login-css-js-img/img/shape_element_2.svg) no-repeat 0 0;
   position: absolute;
   display: block;
   width: 195px;
@@ -287,7 +287,7 @@
   position: absolute;
   right: 20px;
   bottom: 80px;
-  background: url(../img/drag_icon.svg) 0 0 no-repeat;
+  background: url(src/login-css-js-img/img/drag_icon.svg) 0 0 no-repeat;
   width: 50px;
   height: 30px;
   opacity: 0.6;
@@ -511,7 +511,7 @@
 .header-video .shape_element {
   position: absolute;
   z-index: 9;
-  background: url(../img/shape_element_1.svg) no-repeat;
+  background: url(src/login-css-js-img/img/shape_element_1.svg) no-repeat;
 }
 @media (max-width: 767px) {
   .header-video .shape_element {
@@ -564,7 +564,7 @@
 
 @media (max-width: 1024px) {
   #hero_video {
-    background: #ededed url(../img/home_section_1.jpg) center center no-repeat;
+    background: #ededed url(src/login-css-js-img/img/home_section_1.jpg) center center no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

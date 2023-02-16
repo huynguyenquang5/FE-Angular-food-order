@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {User} from "../../model/user/user";
+import {environment} from "../../../environments/environment";
+const apiUrl = environment.apiUrl
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  constructor(private httpClient: HttpClient) { }
+  findAll(): Observable<User[]>{
+    return this.httpClient.get<User[]>(`${apiUrl}/users`)
+  }
+  findUserById(id : number): Observable<User>{
+    return this.httpClient.get<User>(`${apiUrl}/users/${id}`)
+  }
+  save(user: User): Observable<any>{
+    return this.httpClient.post<User>(`${apiUrl}/users/register`, user)
+  }
+  login(user : User): Observable<any>{
+    return this.httpClient.post<User>(`${apiUrl}/users/login`, user)
+  }
+}

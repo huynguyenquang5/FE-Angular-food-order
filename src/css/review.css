@@ -149,6 +149,6 @@ input[type=file].valid::-webkit-file-upload-button {
   border: 0;
   border-radius: 3px;
   padding: 8px 10px 8px 38px;
-  background: #e54750 url(../img/camera.svg) 8px center no-repeat;
+  background: #e54750 url(src/login-css-js-img/img/camera.svg) 8px center no-repeat;
   outline: none;
 }

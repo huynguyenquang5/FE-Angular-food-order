@@ -20,6 +20,9 @@
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
     "@sweetalert2/themes": "^5.0.15",
+    "install": "^0.13.0",
+    "ngx-toastr": "^16.0.2",
+    "npm": "^9.5.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

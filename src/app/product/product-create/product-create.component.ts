@@ -31,9 +31,7 @@ export class ProductCreateComponent implements OnInit {
   storeId!: number
 
   ngOnInit() {
-    const id = Number(this.routerActive.snapshot.paramMap.get('id'))
-    // this.storeId = Number(this.routerActive.snapshot.paramMap.get('storeId'))
-    this.storeId = 1;
+    this.storeId = Number(this.routerActive.snapshot.paramMap.get('storeId'))
     this.formImage = new FormGroup({
       id: new FormControl(''),
       product: new FormGroup({

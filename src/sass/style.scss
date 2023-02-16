@@ -4,7 +4,7 @@ Theme URI: http://www.ansonika.com/fooyes/
 Author: Ansonika
 Author URI: http://themeforest.net/user/Ansonika/
 
-[Table of contents] 
+[Table of contents]
 
 0. ICONS
 
@@ -1291,7 +1291,7 @@ hr {
 }
 
 /*General links color*/
-a{	
+a{
 	color: $color-1;
 	text-decoration: none;
 	@include transition-default;
@@ -1461,7 +1461,7 @@ header.sticky a.open_close,
     float: right;
     @include transition-default;
     ul, ul li {
-        position: relative; 
+        position: relative;
         margin: 0;
         padding: 0;
         a {
@@ -1473,17 +1473,17 @@ header.sticky a.open_close,
         }
     }
 }
-		
-/*First level styles */			
+
+/*First level styles */
 .main-menu > ul > li {
     > a {
-        color: #fff; 
-        padding: 0 8px 10px  8px; 
+        color: #fff;
+        padding: 0 8px 10px  8px;
         @include fontSize(14px);
         font-weight: 500;
     }
     &.black > ul > li > a {
-        color: #444; 
+        color: #444;
     }
     &:hover > a {color: $color-1;}
 }
@@ -1500,18 +1500,18 @@ header.sticky .main-menu>ul>li,  header.header_in .main-menu>ul>li, header.black
 
 #close_in,#header_menu{display:none;}
 
-		
+
 /* All styles for screen size over 992px
 ================================================== */
 @media only screen and (min-width: 992px) {
-	
+
 .main-menu {width: auto;}
-.main-menu a {white-space: nowrap;}	
+.main-menu a {white-space: nowrap;}
 .main-menu ul li {display: inline-block;}
 
 .main-menu ul li.submenu:hover > a:before,
 .main-menu ul li.submenu:hover > a:after {bottom: -10px;opacity: 0;}
-		
+
 /* Submenu*/
 .main-menu ul ul{
 	position: absolute;
@@ -1559,7 +1559,7 @@ header.sticky .main-menu>ul>li,  header.header_in .main-menu>ul>li, header.black
 		-webkit-transition-duration: 0s, 0.2s, 0.2s;
 		transition-duration: 0s, 0.2s, 0.2s
 	}
-.main-menu ul ul li {display: block;height: auto;padding: 0;}		
+.main-menu ul ul li {display: block;height: auto;padding: 0;}
 .main-menu ul ul li a {@include fontSize(13px);color: $body-text-color;display: block; padding: 12px 15px; @include transition-default (all,0.3s, ease);}
 .main-menu ul ul li:last-child a {border-bottom:none;}
 
@@ -1596,15 +1596,15 @@ header.sticky .main-menu>ul>li,  header.header_in .main-menu>ul>li, header.black
 		margin-top: -2px;
 	}
 }
-	
-.main-menu ul ul ul{position: absolute;border-top: 0;z-index: 1;height: auto;left: 100%;top: 0;margin: 0;padding: 0;background: #fff;min-width:190px;@include box-shadow (0px 6px 12px 0px rgba(0, 0, 0, 0.175));}	
+
+.main-menu ul ul ul{position: absolute;border-top: 0;z-index: 1;height: auto;left: 100%;top: 0;margin: 0;padding: 0;background: #fff;min-width:190px;@include box-shadow (0px 6px 12px 0px rgba(0, 0, 0, 0.175));}
 
 /* Arrows top 3rd level*/
 .main-menu ul ul ul:before {
 	border-width: 0;
 	margin-left: 0;
 }
-	
+
 }
 
 @media only screen and (max-width: 991px) {
@@ -1622,19 +1622,19 @@ header.sticky .main-menu>ul>li,  header.header_in .main-menu>ul>li, header.black
 		color: #fff!important;
 	}
 }
-	
+
 .main-menu ul li a:hover,
-a.show-submenu:hover{color:$color-1 !important;background-color:#f9f9f9; opacity: 1!important;}	
-	
+a.show-submenu:hover{color:$color-1 !important;background-color:#f9f9f9; opacity: 1!important;}
+
 .main-menu ul li {border-top: none;border-bottom: 1px solid #ededed;color: #fff;}
 
-/* Menu mobile first level */	
+/* Menu mobile first level */
 .main-menu ul li a  {padding:15px !important; }
-	
+
 .main-menu li,
 .main-menu a {display: block;color:#333 !important;}
 .main-menu li {position: relative;}
-	
+
 .main-menu ul > li {padding-bottom: 0;}
 .main-menu ul > li i{float:right;}
 
@@ -1656,14 +1656,14 @@ a.show-submenu:hover{color:$color-1 !important;background-color:#f9f9f9; opacity
     @include transition-default;
 }
 
-/* Menu mobile second level */	
+/* Menu mobile second level */
 .main-menu ul li.submenu ul{border-left:1px solid #ededed;margin:0 0 10px 25px;}
 .main-menu ul li.submenu ul li{border:0;@include fontSize(13px);}
 
-/* Menu mobile 3rd level */	
+/* Menu mobile 3rd level */
 .main-menu ul li.submenu ul ul{border-left:none;margin:0 0 0 15px;}
 
-/* Menu mobile left panel */	
+/* Menu mobile left panel */
 .main-menu {
 	overflow-y: scroll;
 	transform: translateX(-100%);
@@ -1683,7 +1683,7 @@ a.show-submenu:hover{color:$color-1 !important;background-color:#f9f9f9; opacity
 
 .main-menu .show-submenu + ul{display: none;visibility: hidden;}
 .main-menu a.show-submenu + ul.show_normal  {display: block;visibility: visible;}
-	
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -1896,10 +1896,10 @@ ul#top_menu {
 
     &.version_1 {
         height: 620px;
-        background: #faf3cc url(../img/hero_5.svg) center top no-repeat;
+        background: #faf3cc url(src/login-css-js-img/img/hero_5.svg) center top no-repeat;
 
         @include tablet {
-            background: #faf3cc url(../img/hero_5_mobile.svg) center top no-repeat;
+            background: #faf3cc url(src/login-css-js-img/img/hero_5_mobile.svg) center top no-repeat;
         }
 
         .opacity-mask {
@@ -1920,7 +1920,7 @@ ul#top_menu {
 
     &.version_2 {
         height: 620px;
-        background: #faf3cc url(../img/home_section_2.jpg) center center no-repeat;
+        background: #faf3cc url(src/login-css-js-img/img/home_section_2.jpg) center center no-repeat;
         @include background-size(cover);
 
         .opacity-mask {
@@ -2964,7 +2964,7 @@ ul#top_menu.drop_user {
 	visibility: visible;
 }
 
-.owl-theme {  
+.owl-theme {
   .owl-nav {
     position: absolute;
     top: 50%;
@@ -2983,7 +2983,7 @@ ul#top_menu.drop_user {
       @include border-radius(50%);
       border: 1px solid rgba(0,0,0,.04);
       @include box-shadow (0 1px 4px rgba(0,0,0,.08));
-      
+
     }
     .owl-prev {
       left: -24px;
@@ -3033,7 +3033,7 @@ $arrow_color: $gray_light !default;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   background-color: #fff;
   border-radius: $input_border_radius;
-  border: none; 
+  border: none;
   clear: both;
   cursor: pointer;
   display: block;
@@ -3058,23 +3058,23 @@ $arrow_color: $gray_light !default;
     border-color: $primary_light;
   }
   // Arrow
-  &:after { 
+  &:after {
     border-bottom: 2px solid $arrow_color;
     border-right: 2px solid $arrow_color;
     content: '';
-    display: block; 
+    display: block;
     height: 8px;
     margin-top: -5px;
     pointer-events: none;
-    position: absolute; 
-    right: 20px; 
-    top: 50%; 
+    position: absolute;
+    right: 20px;
+    top: 50%;
     transform-origin: 66% 66%;
     transform: rotate(45deg);
     transition: all 0.15s ease-in-out;
     width: 8px;
   }
-  
+
   &.open {
     @extend :active;
     &:after {
@@ -3086,7 +3086,7 @@ $arrow_color: $gray_light !default;
       transform: scale(1) translateY(0);
     }
   }
-  
+
   // Modifiers
   &.wide {
     width: 100%;
@@ -3095,7 +3095,7 @@ $arrow_color: $gray_light !default;
       right: -1px !important;
     }
   }
-  
+
   // List and options
   .list {
     background-color: #fff;
@@ -3115,7 +3115,7 @@ $arrow_color: $gray_light !default;
     &:hover .option:not(:hover) {
       background-color: transparent !important;
     }
-    
+
     // for custom scrollbar inside select box
     &::-webkit-scrollbar{
       width: 14px;
@@ -3149,10 +3149,10 @@ $arrow_color: $gray_light !default;
     padding-right: $dropdown_padding + 11;
     text-align: left;
     transition: all 0.2s;
-    &:hover, &.focus, &.selected.focus { 
+    &:hover, &.focus, &.selected.focus {
       background-color: $gray_lighter;
     }
-    &.selected { 
+    &.selected {
       color: $body-text-color;
       font-weight: 500;
     }
@@ -3424,7 +3424,7 @@ $arrow_color: $gray_light !default;
     height: 65px;
     top: -65px;
     left: 0;
-    background: url("../img/wave_white.svg");
+    background: url("src/login-css-js-img/img/wave_white.svg");
     z-index: 99;
     animation: waves 20s linear infinite;
 
@@ -3433,7 +3433,7 @@ $arrow_color: $gray_light !default;
         content: '';
         width: 100%;
         height: 65px;
-        background: url("../img/wave_white.svg");
+        background: url("src/login-css-js-img/img/wave_white.svg");
         position: absolute;
         top: 0;
         left: 0;
@@ -3461,11 +3461,11 @@ $arrow_color: $gray_light !default;
     }
 
     &.gray {
-        background: url("../img/wave_gray.svg");
+        background: url("src/login-css-js-img/img/wave_gray.svg");
 
         &:before,
         &:after {
-            background: url("../img/wave_gray.svg");
+            background: url("src/login-css-js-img/img/wave_gray.svg");
             position: absolute;
         }
     }
@@ -3493,7 +3493,7 @@ $arrow_color: $gray_light !default;
 }
 
 .promo {
-    background: #e54750 url(../img/pattern.svg) center center repeat;
+    background: #e54750 url(src/login-css-js-img/img/pattern.svg) center center repeat;
     @include border-radius(5px);
     margin-bottom: 25px;
     padding: 20px 25px;
@@ -3535,7 +3535,7 @@ $arrow_color: $gray_light !default;
     background-color: #f9fafb;
 
     &.pattern {
-        background: #f4f4f4 url(../img/pattern_2.svg) repeat;
+        background: #f4f4f4 url(src/login-css-js-img/img/pattern_2.svg) repeat;
     }
 
     &.waves_divider {
@@ -3545,7 +3545,7 @@ $arrow_color: $gray_light !default;
 
         &:before {
             content: '';
-            background: url(../img/wave_gray.svg) repeat;
+            background: url(src/login-css-js-img/img/wave_gray.svg) repeat;
             width: 100%;
             height: 65px;
             @include background-size(cover);
@@ -3557,7 +3557,7 @@ $arrow_color: $gray_light !default;
         &:after {
             transform: scale(-1, -1);
             content: '';
-            background: url(../img/wave_gray.svg) repeat;
+            background: url(src/login-css-js-img/img/wave_gray.svg) repeat;
             width: 100%;
             height: 65px;
             @include background-size(cover);
@@ -5142,11 +5142,11 @@ a.social_bt {
 }
 
 a.social_bt.facebook {
-    background: #3B5998 url(../img/Facebook__logo.svg) 10px center no-repeat;
+    background: #3B5998 url(src/login-css-js-img/img/Facebook__logo.svg) 10px center no-repeat;
 }
 
 a.social_bt.google {
-    background: #444 url(../img/Google__G__Logo.svg) 10px center no-repeat;
+    background: #444 url(src/login-css-js-img/img/Google__G__Logo.svg) 10px center no-repeat;
 }
 
 .divider {

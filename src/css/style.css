@@ -4,7 +4,7 @@ Theme URI: http://www.ansonika.com/fooyes/
 Author: Ansonika
 Author URI: http://themeforest.net/user/Ansonika/
 
-[Table of contents] 
+[Table of contents]
 
 0. ICONS
 
@@ -2425,11 +2425,11 @@ ul#top_menu li a.login:before {
 }
 .hero_single.version_1 {
   height: 620px;
-  background: #faf3cc url(../img/hero_5.svg) center top no-repeat;
+  background: #faf3cc url(src/login-css-js-img/img/hero_5.svg) center top no-repeat;
 }
 @media (max-width: 991px) {
   .hero_single.version_1 {
-    background: #faf3cc url(../img/hero_5_mobile.svg) center top no-repeat;
+    background: #faf3cc url(src/login-css-js-img/img/hero_5_mobile.svg) center top no-repeat;
   }
 }
 @media (max-width: 991px) {
@@ -2446,7 +2446,7 @@ ul#top_menu li a.login:before {
 }
 .hero_single.version_2 {
   height: 620px;
-  background: #faf3cc url(../img/home_section_2.jpg) center center no-repeat;
+  background: #faf3cc url(src/login-css-js-img/img/home_section_2.jpg) center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -3969,7 +3969,7 @@ header.black_nav .dropdown.user a:hover {
   height: 65px;
   top: -65px;
   left: 0;
-  background: url("../img/wave_white.svg");
+  background: url("src/login-css-js-img/img/wave_white.svg");
   z-index: 99;
   animation: waves 20s linear infinite;
 }
@@ -3977,7 +3977,7 @@ header.black_nav .dropdown.user a:hover {
   content: '';
   width: 100%;
   height: 65px;
-  background: url("../img/wave_white.svg");
+  background: url("src/login-css-js-img/img/wave_white.svg");
   position: absolute;
   top: 0;
   left: 0;
@@ -4000,10 +4000,10 @@ header.black_nav .dropdown.user a:hover {
   top: 0;
 }
 .wave.gray {
-  background: url("../img/wave_gray.svg");
+  background: url("src/login-css-js-img/img/wave_gray.svg");
 }
 .wave.gray:before, .wave.gray:after {
-  background: url("../img/wave_gray.svg");
+  background: url("src/login-css-js-img/img/wave_gray.svg");
   position: absolute;
 }
 
@@ -4025,7 +4025,7 @@ header.black_nav .dropdown.user a:hover {
   }
 }
 .promo {
-  background: #e54750 url(../img/pattern.svg) center center repeat;
+  background: #e54750 url(src/login-css-js-img/img/pattern.svg) center center repeat;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -4071,7 +4071,7 @@ header.black_nav .dropdown.user a:hover {
   background-color: #f9fafb;
 }
 .bg_gray.pattern {
-  background: #f4f4f4 url(../img/pattern_2.svg) repeat;
+  background: #f4f4f4 url(src/login-css-js-img/img/pattern_2.svg) repeat;
 }
 .bg_gray.waves_divider {
   position: relative;
@@ -4080,7 +4080,7 @@ header.black_nav .dropdown.user a:hover {
 }
 .bg_gray.waves_divider:before {
   content: '';
-  background: url(../img/wave_gray.svg) repeat;
+  background: url(src/login-css-js-img/img/wave_gray.svg) repeat;
   width: 100%;
   height: 65px;
   -webkit-background-size: cover;
@@ -4094,7 +4094,7 @@ header.black_nav .dropdown.user a:hover {
 .bg_gray.waves_divider:after {
   transform: scale(-1, -1);
   content: '';
-  background: url(../img/wave_gray.svg) repeat;
+  background: url(src/login-css-js-img/img/wave_gray.svg) repeat;
   width: 100%;
   height: 65px;
   -webkit-background-size: cover;
@@ -5709,11 +5709,11 @@ a.social_bt:hover {
 }
 
 a.social_bt.facebook {
-  background: #3B5998 url(../img/Facebook__logo.svg) 10px center no-repeat;
+  background: #3B5998 url(src/login-css-js-img/img/Facebook__logo.svg) 10px center no-repeat;
 }
 
 a.social_bt.google {
-  background: #444 url(../img/Google__G__Logo.svg) 10px center no-repeat;
+  background: #444 url(src/login-css-js-img/img/Google__G__Logo.svg) 10px center no-repeat;
 }
 
 .divider {
