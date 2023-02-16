@@ -23,6 +23,8 @@ import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-
 import { HomeFilterComponent } from './home/home-filter/home-filter.component';
 import { MerchantStoreComponent } from './merchant/merchant-store/merchant-store.component';
 import { UpdateProductComponent } from './product/update-product/update-product.component';
+import { MerchantNavComponent } from './merchant/merchant-nav/merchant-nav.component';
+import { DemoComponent } from './demo/demo.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { UpdateProductComponent } from './product/update-product/update-product.
     AdminPartnerComponent,
     AdminPartnerPendingComponent,
     MerchantStoreComponent,
-    HomeFilterComponent
+    HomeFilterComponent,
+    MerchantNavComponent,
+    DemoComponent
 
   ],
     imports: [
