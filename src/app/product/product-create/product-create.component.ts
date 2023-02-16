@@ -28,9 +28,12 @@ export class ProductCreateComponent implements OnInit {
   path!: string
   pathName!: string
   imageFile: any
+  storeId!: number
 
   ngOnInit() {
     const id = Number(this.routerActive.snapshot.paramMap.get('id'))
+    // this.storeId = Number(this.routerActive.snapshot.paramMap.get('storeId'))
+    this.storeId = 1;
     this.formImage = new FormGroup({
       id: new FormControl(''),
       product: new FormGroup({
@@ -46,7 +49,7 @@ export class ProductCreateComponent implements OnInit {
           })
         }),
         store: new FormGroup({
-            id: new FormControl('')
+            id: new FormControl(this.storeId)
           }
         )
       })
@@ -67,12 +70,6 @@ export class ProductCreateComponent implements OnInit {
 
   }
 
-  createCategory(){
-    this.formCategory = new FormGroup({
-      id: new FormControl(''),
-      name: new FormControl('')
-    })
-  }
   submitImage(event: any){
     if(event.target.files && event.target.files[0]){
       this.imageFile = event.target.files[0];

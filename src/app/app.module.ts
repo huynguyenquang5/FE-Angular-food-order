@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {HomeFooterComponent} from './home/home-footer/home-footer.component';
 import {HomeHeaderComponent} from './home/home-header/home-header.component';
 import {HomeBodyComponent} from './home/home-body/home-body.component';
-import {ProductCreateComponent} from './product/product-create/product-create.component';
+import {ProductCreateComponent} from "./product/product-create/product-create.component";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
@@ -21,8 +21,8 @@ import {AdminNavComponent} from "./admin/admin-nav/admin-nav.component";
 import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.component";
 import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-partner-pending.component";
 import { HomeFilterComponent } from './home/home-filter/home-filter.component';
-
-
+import { MerchantStoreComponent } from './merchant/merchant-store/merchant-store.component';
+import { UpdateProductComponent } from './product/update-product/update-product.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { HomeFilterComponent } from './home/home-filter/home-filter.component';
     HomeBodyComponent,
     DetailStoreComponent,
     ProductCreateComponent,
+    UpdateProductComponent,
     AllProductComponent,
     AdminUserComponent,
     AdminMerchantComponent,
@@ -39,6 +40,7 @@ import { HomeFilterComponent } from './home/home-filter/home-filter.component';
     AdminNavComponent,
     AdminPartnerComponent,
     AdminPartnerPendingComponent,
+    MerchantStoreComponent,
     HomeFilterComponent
 
   ],

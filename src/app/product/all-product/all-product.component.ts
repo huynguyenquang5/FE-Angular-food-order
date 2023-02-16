@@ -7,6 +7,7 @@ import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ImageService} from "../../service/product/image.service";
+
 // @ts-ignore
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -30,7 +31,8 @@ export class AllProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.storeId = Number(this.routerActive.snapshot.paramMap.get("id"))
+
+    this.storeId = Number(this.routerActive.snapshot.paramMap.get("id"));
     this.findAllProduct(this.storeId)
     this.formImage = new FormGroup({
       id: new FormControl(''),
@@ -52,6 +54,7 @@ export class AllProductComponent implements OnInit {
   productId!: number
   imageId!: number
   pathEdit!: string
+
 
   onDetailFood(p: Product) {
     this.imageService.findAllByProduct(p.id).subscribe(data => {
@@ -144,6 +147,7 @@ export class AllProductComponent implements OnInit {
         });
       })
     ).subscribe()
+    this.ngOnInit()
   }
 
   deleteImage(id: number) {
@@ -151,11 +155,11 @@ export class AllProductComponent implements OnInit {
     this.imageService.findAllByProduct(this.productId).subscribe((data) => {
       this.listImage = data
     })
+    this.ngOnInit()
 
   }
 
   @ViewChild('valueSearch') valueSearch: ElementRef | undefined;
-
   searchByKeyWord() {
     let value = this.valueSearch?.nativeElement.value
     if (value === "" || value === undefined || value === null) {
@@ -200,12 +204,13 @@ export class AllProductComponent implements OnInit {
           'Your file has been deleted.',
           'success'
         )
+        this.ngOnInit()
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
-
       }
     })
   }
+
 }
