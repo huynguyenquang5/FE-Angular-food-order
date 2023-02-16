@@ -25,6 +25,7 @@ import { MerchantStoreComponent } from './merchant/merchant-store/merchant-store
 import { UpdateProductComponent } from './product/update-product/update-product.component';
 import { MerchantNavComponent } from './merchant/merchant-nav/merchant-nav.component';
 import { DemoComponent } from './demo/demo.component';
+import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DemoComponent } from './demo/demo.component';
     AdminPartnerComponent,
     AdminPartnerPendingComponent,
     MerchantStoreComponent,
+    MerchantDetailComponent,
     HomeFilterComponent,
     MerchantNavComponent,
     DemoComponent

@@ -11,6 +11,7 @@ import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admi
 import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.component";
 import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-partner-pending.component";
 import {MerchantStoreComponent} from "./merchant/merchant-store/merchant-store.component";
+import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
 
 const routes: Routes = [
   {
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: 'products/create',
     component: ProductCreateComponent
+  },
+  {
+    path: 'users/merchant/:userId',
+    component: MerchantDetailComponent
   }
   ];
 
