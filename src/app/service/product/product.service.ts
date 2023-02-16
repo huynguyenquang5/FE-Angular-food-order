@@ -15,8 +15,8 @@ export class ProductService {
   findProduct(id: number): Observable<Product>{
     return  this.httpClient.get<Product>(`http://localhost:8080/products/${id}`)
   }
-
-
-
+  update(product: Product, id: number): Observable<any>{
+    return this.httpClient.put<Product>(`http://localhost:8080/products/${id}`, product)
+  }
 
 }

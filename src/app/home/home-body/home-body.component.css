@@ -1,3 +1,12 @@
 #background-baner{
   background-image: url(../../../assets/img/banner_bg_desktop.jpg);
 }
+p{
+  font-weight: 200;margin: 0 ;width: 200px;word-wrap: break-word;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+}
+p:hover{
+  overflow: visible;
+  white-space: pre-line;
+  width: 210px;
+}
+

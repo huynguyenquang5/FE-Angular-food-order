@@ -20,12 +20,9 @@ import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admi
 import {AdminNavComponent} from "./admin/admin-nav/admin-nav.component";
 import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.component";
 import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-partner-pending.component";
+import { HomeFilterComponent } from './home/home-filter/home-filter.component';
 import { MerchantStoreComponent } from './merchant/merchant-store/merchant-store.component';
-
-
-
-
-import {RouterModule} from "@angular/router";
+import { UpdateProductComponent } from './product/update-product/update-product.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +32,7 @@ import {RouterModule} from "@angular/router";
     HomeBodyComponent,
     DetailStoreComponent,
     ProductCreateComponent,
+    UpdateProductComponent,
     AllProductComponent,
     AdminUserComponent,
     AdminMerchantComponent,
@@ -42,7 +40,8 @@ import {RouterModule} from "@angular/router";
     AdminNavComponent,
     AdminPartnerComponent,
     AdminPartnerPendingComponent,
-    MerchantStoreComponent
+    MerchantStoreComponent,
+    HomeFilterComponent
 
   ],
     imports: [

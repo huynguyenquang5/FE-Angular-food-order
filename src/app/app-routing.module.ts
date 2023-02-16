@@ -2,14 +2,15 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DetailStoreComponent} from "./detail-store/detail-store.component";
 import {HomeBodyComponent} from "./home/home-body/home-body.component";
-import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-partner-pending.component";
-import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.component";
-import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admin-merchant-pending.component";
-import {AdminMerchantComponent} from "./admin/admin-merchant/admin-merchant.component";
-import {AdminUserComponent} from "./admin/admin-user/admin-user.component";
-import {MerchantStoreComponent} from "./merchant/merchant-store/merchant-store.component";
-import {ProductCreateComponent} from "./product/product-create/product-create.component";
+import {UpdateProductComponent} from "./product/update-product/update-product.component";
 import {AllProductComponent} from "./product/all-product/all-product.component";
+import {ProductCreateComponent} from "./product/product-create/product-create.component";
+import {AdminUserComponent} from "./admin/admin-user/admin-user.component";
+import {AdminMerchantComponent} from "./admin/admin-merchant/admin-merchant.component";
+import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admin-merchant-pending.component";
+import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.component";
+import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-partner-pending.component";
+import {MerchantStoreComponent} from "./merchant/merchant-store/merchant-store.component";
 
 const routes: Routes = [
   {
@@ -50,6 +51,15 @@ const routes: Routes = [
   {
     path: 'product',
     component: AllProductComponent
+  },{
+  path:'update/:id',
+    component: UpdateProductComponent
+  },{
+  path:'products/store/:id',
+    component: AllProductComponent
+  },{
+  path:'products/create',
+    component: ProductCreateComponent
   }];
 
 @NgModule({

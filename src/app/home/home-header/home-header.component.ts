@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeHeaderComponent implements OnInit {
   ngOnInit(): void {
+    this.list.push(10)
   }
   constructor() {
   }
-
+  list: number[] = [1, 2, 3, 4, 5,6,7,8,9]
 }
 
