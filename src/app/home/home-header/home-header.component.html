@@ -1,4 +1,5 @@
-<header class="header black_nav clearfix element_to_stick">
+<header class="header black_nav clearfix element_to_stick"
+        style="background-color: #ffffff;box-shadow: 0 0 1px 0 #a8a5a5">
   <div class="container">
     <div id="logo">
       <a routerLink="">
@@ -17,12 +18,13 @@
           <h6 class="dropdown-header">New Alerts:</h6>
           <div class="col-md-12" *ngFor="let i of list">
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item alert-my-custom" href="#" >
+            <a class="dropdown-item alert-my-custom" href="#">
               <div style="padding: 0;margin: -8px 0">
                  <span class="text-success">
                               <strong><i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
                             </span>
-                <div class="small" style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
+                <div class="small"
+                     style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
                   oi doi oi vai ca lon luon cai dit con me may chan vai ca lon luon
                 </div>
               </div>
@@ -44,26 +46,29 @@
           <div class="dropdown-divider"></div>
           <div style="width: 100%;max-height: 500px;min-height: 200px;overflow: auto;">
             <div class="col-md-12">
-              <div>
-                <div class="row" style="height: 60px;">
-                  <div class="col-md-3">
-                    <img src="../../../assets/img/modal_advertise.png" alt="" style="width: 60px;height: 60px">
-                  </div>
-                  <div class="col-md-7" style="display: flex;">
-                  <span style="padding: 8px;font-size: 13px;">name product
-                    <p style="margin-top: 5px;font-size: 14px;font-weight: 600">1 x $40.00</p>
+              <div *ngIf="checkCart">
+                <div  *ngFor="let i of listCart">
+                  <div class="row" style="height: 60px;">
+                    <div class="col-md-3">
+                      <img src="{{map.get(i.product.id).name}}" alt="" style="width: 60px;height: 60px">
+                    </div>
+                    <div class="col-md-7" style="display: flex;">
+                  <span style="padding: 8px;font-size: 13px;">{{i.product.name}}
+                    <p style="margin-top: 5px;font-size: 14px;font-weight: 600">{{i.quantity}} x
+                      ${{i.product.productMethod.price}}</p>
                   </span>
+                    </div>
+                    <div class="col-md-2">
+                      <span style="font-size: 20px;font-weight: 400;color: red">X</span>
+                    </div>
                   </div>
-                  <div class="col-md-2">
-                    <span style="font-size: 20px;font-weight: 400;color: red">X</span>
-                  </div>
+                  <div class="dropdown-divider"></div>
                 </div>
-                <div class="dropdown-divider"></div>
               </div>
             </div>
           </div>
           <div class="dropdown-divider"></div>
-          <div class="clearfix add_bottom_15" style="margin-top: 15px"><strong>Total</strong><span> : $32.00</span>
+          <div class="clearfix add_bottom_15" style="margin-top: 15px"><strong>Total</strong><span> : ${{total}}</span>
           </div>
           <div style="margin-right: 15px">
             <div class="btn-cart-custom">View Cart</div>

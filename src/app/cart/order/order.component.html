@@ -1,0 +1,213 @@
+<app-home-header></app-home-header>
+<main class="bg_gray" style="margin-top: 50px">
+  <div class="container margin_60_20">
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-8">
+        <div class="box_order_form">
+          <div class="head">
+            <div class="title">
+              <h3>Personal Details</h3>
+            </div>
+          </div>
+          <!-- /head -->
+          <div class="main">
+            <form action="">
+              <div class="form-group">
+                <label>First and Last Name</label>
+                <input class="form-control" value="{{user.name}}" disabled>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Email Address</label>
+                    <input class="form-control" value="{{user.email}}" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Phone</label>
+                    <input class="form-control" value="{{user.phone}}" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div style="font-weight: 500;color: #1a1a1a;">Full Address</div>
+                <div class="row col-md-12" style="height: 35px;">
+                  <select class="col-md-8" name="address" id="address" style="border: 1px solid #726f6f;border-radius: 5px">
+                    <option value="1">Select One</option>
+                  </select>
+                  <div class="col-md-4 btn-cart-custom" type="button" data-toggle="modal" data-target="#exampleModal" >New Address</div>
+                </div>
+              </div>
+              <div id="paypal">
+                <div class="payment_select">
+                  <label class="container_radio" style="color: black">Payment by Wallet
+                    <input type="radio" value="Wallet" name="payment_method">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="payment_select">
+                  <label class="container_radio" style="color: black">Pay with Cash
+                    <input type="radio" value="Cash" name="payment_method">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <!--                <div class="col-md-6">-->
+                <!--                  <div class="form-group">-->
+                <!--                    <label>City</label>-->
+                <!--                    <input class="form-control" placeholder="City">-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-md-3">-->
+                <!--                  <div class="form-group">-->
+                <!--                    <label>Postal Code</label>-->
+                <!--                    <input class="form-control" placeholder="0123">-->
+                <!--                  </div>-->
+                <!--                </div>-->
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--         /box_order_form-->
+        <!--        <div class="box_order_form">-->
+        <!--          <div class="head">-->
+        <!--            <div class="title">-->
+        <!--              <h3>Payment Method</h3>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          &lt;!&ndash; /head &ndash;&gt;-->
+        <!--          <div class="main">-->
+        <!--            <div class="payment_select">-->
+        <!--              <label class="container_radio">Credit Card-->
+        <!--                <input type="radio" value="" checked name="payment_method">-->
+        <!--                <span class="checkmark"></span>-->
+        <!--              </label>-->
+        <!--              <i class="icon_creditcard"></i>-->
+        <!--            </div>-->
+        <!--            <div class="form-group">-->
+        <!--              <label>Name on card</label>-->
+        <!--              <input type="text" class="form-control" id="name_card_order" name="name_card_order" placeholder="First and last name">-->
+        <!--            </div>-->
+        <!--            <div class="form-group">-->
+        <!--              <label>Card number</label>-->
+        <!--              <input type="text" id="card_number" name="card_number" class="form-control" placeholder="Card number">-->
+        <!--            </div>-->
+        <!--            <div class="row">-->
+        <!--              <div class="col-md-6">-->
+        <!--                <label>Expiration date</label>-->
+        <!--                <div class="row">-->
+        <!--                  <div class="col-md-6 col-6">-->
+        <!--                    <div class="form-group">-->
+        <!--                      <input type="text" id="expire_month" name="expire_month" class="form-control" placeholder="mm">-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                  <div class="col-md-6 col-6">-->
+        <!--                    <div class="form-group">-->
+        <!--                      <input type="text" id="expire_year" name="expire_year" class="form-control" placeholder="yyyy">-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--              <div class="col-md-6 col-sm-12">-->
+        <!--                <div class="form-group">-->
+        <!--                  <label>Security code</label>-->
+        <!--                  <div class="row">-->
+        <!--                    <div class="col-md-4 col-6">-->
+        <!--                      <div class="form-group">-->
+        <!--                        <input type="text" id="ccv" name="ccv" class="form-control" placeholder="CCV">-->
+        <!--                      </div>-->
+        <!--                    </div>-->
+        <!--                    <div class="col-md-8 col-6">-->
+        <!--                      <img src="img/icon_ccv.gif" width="50" height="29" alt="ccv"><small>Last 3 digits</small>-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--            &lt;!&ndash;End row &ndash;&gt;-->
+        <!--            <div class="payment_select" id="paypal">-->
+        <!--              <label class="container_radio">Pay with Paypal-->
+        <!--                <input type="radio" value="" name="payment_method">-->
+        <!--                <span class="checkmark"></span>-->
+        <!--              </label>-->
+        <!--            </div>-->
+        <!--            <div class="payment_select">-->
+        <!--              <label class="container_radio">Pay with Cash-->
+        <!--                <input type="radio" value="" name="payment_method">-->
+        <!--                <span class="checkmark"></span>-->
+        <!--              </label>-->
+        <!--              <i class="icon_wallet"></i>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!-- /box_order_form -->
+      </div>
+      <!-- /col -->
+      <div class="col-xl-4 col-lg-4" id="sidebar_fixed">
+        <div class="box_order">
+          <div class="head">
+            <h3>Order Summary</h3>
+            <div>Pizzeria da Alfredo</div>
+          </div>
+          <!-- /head -->
+          <div class="main">
+            <ul>
+              <li>Date<span>Today {{toDay}}</span></li>
+              <li>Type<span>Delivery</span></li>
+            </ul>
+            <hr>
+            <ul class="clearfix">
+              <li *ngFor="let c of listCart" class="row"><p class="col-md-1"></p><a class="col-md-2"
+                                                                                    (click)="onActionQuantity(c)">{{c.quantity}}
+                x </a>
+                <a class="col-md-6" (click)="onDeleteProduct(c.product)">{{c.product.name}}</a>
+                <span class="col-md-2" style="float: right">${{c.price}}</span></li>
+            </ul>
+            <ul class="clearfix">
+              <li>Subtotal<span>${{total}}</span></li>
+              <li>Delivery fee<span>$10</span></li>
+              <li class="total">Total<span>${{total + 10}}</span></li>
+            </ul>
+            <a href="confirm.html" class="btn_1 gradient full-width mb_5">Order Now</a>
+            <div class="text-center"><small>Or Call Us at <strong>0432 48432854</strong></small></div>
+          </div>
+        </div>
+        <!-- /box_booking -->
+      </div>
+
+    </div>
+    <!-- /row -->
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top: 190px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">My Address</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="margin: 10px">
+          <div class="row">
+            <input type="text" class="col-md-9" placeholder="New address....." style="height: 35px">
+            <span class="col-md-3" data-icon="&#xe074;" style="font-size: 29px"></span>
+          </div>
+          <div>
+            <div class="row " style="padding-top: 5px">
+              <div class="col-md-1 delete" style="text-align: center;font-size: 25px" data-icon="&#xe07d;"></div>
+              <div class="col-md-11 alert-my-custom address" style="width: 500px;height: 30px;font-weight: 500;text-overflow: ellipsis">
+                asgfa asdgasd wdgsdga sas afa fa asf asfa asfa afafq a fafaa rqaa fqf  fafqwe
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /container -->
+</main>
+<app-home-footer></app-home-footer>

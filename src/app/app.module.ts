@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import { DetailStoreComponent } from './detail-store/detail-store.component';
+import { DetailStoreComponent } from './product/detail-store/detail-store.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeFooterComponent} from './home/home-footer/home-footer.component';
@@ -23,6 +23,7 @@ import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-
 import { HomeFilterComponent } from './home/home-filter/home-filter.component';
 import { MerchantStoreComponent } from './merchant/merchant-store/merchant-store.component';
 import { UpdateProductComponent } from './product/update-product/update-product.component';
+import { OrderComponent } from './cart/order/order.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UpdateProductComponent } from './product/update-product/update-product.
     AdminPartnerComponent,
     AdminPartnerPendingComponent,
     MerchantStoreComponent,
-    HomeFilterComponent
+    HomeFilterComponent,
+    OrderComponent
 
   ],
     imports: [
