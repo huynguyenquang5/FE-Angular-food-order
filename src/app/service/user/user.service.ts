@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../../model/user/user";
 import {environment} from "../../../environments/environment";
+import {Store} from "../../model/store/store";
+
 const apiUrl = environment.apiUrl
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,12 @@ export class UserService {
     return this.httpClient.post<User>(`${apiUrl}/users/register`, user)
   }
   login(user : User): Observable<any>{
-    return this.httpClient.post<User>(`${apiUrl}/users/login`, user)
+    return this.httpClient.post<User>(`${apiUrl}/users/login`, user)}
+
+  findById(id : number): Observable<User> {
+    return this.httpClient.get<User>(`${apiUrl}/users/${id}`)}
+
+  updateUser(id: number, user: User): Observable<User> {
+    return this.httpClient.put<User>(`${apiUrl}/users/${id}`, user);
   }
 }

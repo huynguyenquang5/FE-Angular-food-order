@@ -25,7 +25,9 @@ import {MerchantStoreComponent} from './merchant/merchant-store/merchant-store.c
 import {UpdateProductComponent} from './product/update-product/update-product.component';
 import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from "./user/register/register.component";
-
+import { MerchantNavComponent } from './merchant/merchant-nav/merchant-nav.component';
+import { DemoComponent } from './demo/demo.component';
+import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
 
 @NgModule({
   declarations: [
@@ -47,6 +49,10 @@ import {RegisterComponent} from "./user/register/register.component";
     HomeFilterComponent,
     LoginComponent,
     RegisterComponent
+    MerchantDetailComponent,
+    HomeFilterComponent,
+    MerchantNavComponent,
+    DemoComponent
 
   ],
   imports: [
@@ -64,6 +70,5 @@ import {RegisterComponent} from "./user/register/register.component";
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule{
-
+export class AppModule {
 }

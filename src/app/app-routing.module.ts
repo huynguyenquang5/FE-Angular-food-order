@@ -10,10 +10,10 @@ import {AdminMerchantComponent} from "./admin/admin-merchant/admin-merchant.comp
 import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admin-merchant-pending.component";
 import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.component";
 import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-partner-pending.component";
-
 import {MerchantStoreComponent} from "./merchant/merchant-store/merchant-store.component";
 import {LoginComponent} from "./user/login/login.component";
 import {RegisterComponent} from "./user/register/register.component";
+import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
 
 const routes: Routes = [
   {
@@ -37,7 +37,7 @@ const routes: Routes = [
     component: AdminPartnerPendingComponent
   },
   {
-    path:"", component: HomeBodyComponent
+    path: "", component: HomeBodyComponent
   },
   {
     path: 'store/:storeId',
@@ -46,14 +46,27 @@ const routes: Routes = [
   {
     path: 'store/user/:userId',
     component: MerchantStoreComponent
-  },{
-  path:'update/:id',
+  },
+  {
+    path: 'product/create',
+    component: ProductCreateComponent
+  },
+  {
+    path: 'product',
+    component: AllProductComponent
+  },
+  {
+    path: 'update/:id',
     component: UpdateProductComponent
-  },{
-  path:'products/store/:id',
+  },
+  {
+    path: 'products/store/:id',
     component: AllProductComponent
   },{
   path:'products/create/:id',
+  },
+  {
+    path: 'products/create',
     component: ProductCreateComponent
   },{
   path: 'login',
@@ -61,7 +74,13 @@ const routes: Routes = [
   },{
   path: 'register',
     component: RegisterComponent
-  }];
+  }
+  ,
+  {
+    path: 'users/merchant/:userId',
+    component: MerchantDetailComponent
+  }
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
