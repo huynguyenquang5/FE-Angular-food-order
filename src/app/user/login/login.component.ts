@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   username!: string
   errorMessage = '';
+  status!: number;
+
 
 
   constructor(private userService: UserService,
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService.login(this.formUser.value).subscribe(
       data => {
+
         this.tokenStorageService.saveTokenSession(data.accessToken);
         this.tokenStorageService.saveUserLocal(data);
         this.authService.isLoggedIn = true;

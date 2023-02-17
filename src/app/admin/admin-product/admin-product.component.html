@@ -1,7 +1,8 @@
 <div class="card-body">
   <div class="table-responsive">
-    <select >
-      <option value="git ">----</option>
+    <form class="m-md-3" (change)="search($event)"><input type="text"><button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button></form>
+    <select (change)="filter($event)"  class="m-md-3">
+      <option value="0">----</option>
       <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
     </select>
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

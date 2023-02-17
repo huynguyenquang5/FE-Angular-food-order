@@ -21,6 +21,12 @@ export class ProductService {
   findAll(){
     return this.httpClient.get<Product[]>(`http://localhost:8080/products`)
   }
+  findAllByCategoriesId(id : number){
+    return this.httpClient.get<Product[]>(`http://localhost:8080/admin/products/${id}`)
+  }
+  findAllByName(name: string){
+    return this.httpClient.get<Product[]>(`http://localhost:8080/products/search/${name}`)
+  }
 
 
 }

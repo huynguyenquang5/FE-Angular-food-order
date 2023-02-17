@@ -25,10 +25,10 @@ import {MerchantStoreComponent} from './merchant/merchant-store/merchant-store.c
 import {UpdateProductComponent} from './product/update-product/update-product.component';
 import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from "./user/register/register.component";
-import { MerchantNavComponent } from './merchant/merchant-nav/merchant-nav.component';
-import { DemoComponent } from './demo/demo.component';
+import {MerchantNavComponent} from './merchant/merchant-nav/merchant-nav.component';
+import {DemoComponent} from './demo/demo.component';
 import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
-import { AdminProductComponent } from './admin/admin-product/admin-product.component';
+import {AdminProductComponent} from './admin/admin-product/admin-product.component';
 
 
 @NgModule({
