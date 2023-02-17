@@ -62,25 +62,24 @@ const routes: Routes = [
   {
     path: 'products/store/:id',
     component: AllProductComponent
-  },{
-  path:'products/create/:id',
   },
   {
     path: 'products/create',
     component: ProductCreateComponent
-  },{
-  path: 'login',
+  },
+  {
+    path: 'login',
     component: LoginComponent
-  },{
-  path: 'register',
+  },
+  {
+    path: 'register',
     component: RegisterComponent
-  }
-  ,
+  },
   {
     path: 'users/merchant/:userId',
     component: MerchantDetailComponent
   }
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

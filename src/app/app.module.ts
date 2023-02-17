@@ -48,7 +48,7 @@ import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detai
     MerchantStoreComponent,
     HomeFilterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
     MerchantDetailComponent,
     HomeFilterComponent,
     MerchantNavComponent,
