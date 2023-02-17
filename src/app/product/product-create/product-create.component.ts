@@ -10,6 +10,7 @@ import {Category} from "../../model/product/category";
 import {CategoryService} from "../../service/product/category.service";
 import {ProductMethodService} from "../../service/product/product-method.service";
 import {ImageService} from "../../service/product/image.service";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-product-create',
@@ -29,6 +30,7 @@ export class ProductCreateComponent implements OnInit {
   pathName!: string
   imageFile: any
   storeId!: number
+  id!: string
 
   ngOnInit() {
     this.storeId = Number(this.routerActive.snapshot.paramMap.get('storeId'))
@@ -52,7 +54,6 @@ export class ProductCreateComponent implements OnInit {
         )
       })
     })
-
   }
 
   constructor(private productService: ProductService,
@@ -61,7 +62,8 @@ export class ProductCreateComponent implements OnInit {
               private routerActive: ActivatedRoute,
               private categoryService: CategoryService,
               private productMethodService: ProductMethodService,
-              private imageService: ImageService) {
+              private imageService: ImageService,
+              private tokenService: TokenStorageService) {
     this.categoryService.findAll().subscribe((data)=>{
       this.categories = data
     })
