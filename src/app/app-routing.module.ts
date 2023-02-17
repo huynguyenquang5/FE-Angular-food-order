@@ -83,7 +83,7 @@ const routes: Routes = [
     component: AdminProductComponent
   },
 
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
