@@ -19,7 +19,7 @@ export class UserService {
     return this.httpClient.get<User>(`${apiUrl}/users/${id}`)
   }
   save(user: User): Observable<any>{
-    return this.httpClient.post<User>(`${apiUrl}/users/register`, user)
+    return this.httpClient.post<User>(`${apiUrl}/accounts/register`, user)
   }
   login(user : User): Observable<any>{
     return this.httpClient.post<User>(`${apiUrl}/users/login`, user)}

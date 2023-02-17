@@ -28,6 +28,8 @@ import {RegisterComponent} from "./user/register/register.component";
 import { MerchantNavComponent } from './merchant/merchant-nav/merchant-nav.component';
 import { DemoComponent } from './demo/demo.component';
 import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
+import { AdminProductComponent } from './admin/admin-product/admin-product.component';
+
 
 @NgModule({
   declarations: [
@@ -48,11 +50,13 @@ import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detai
     MerchantStoreComponent,
     HomeFilterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
     MerchantDetailComponent,
     HomeFilterComponent,
     MerchantNavComponent,
-    DemoComponent
+    DemoComponent,
+    AdminProductComponent
+
 
   ],
   imports: [

@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   login(user: User): Observable<any> {
-    return this.http.post(`${apiUrl}/users/login`, {
+    return this.http.post(`${apiUrl}/accounts/login`, {
       username: user.username,
       password: user.password
     }, this.httpOptions);
