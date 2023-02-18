@@ -54,6 +54,7 @@ export class UpdateProductComponent implements OnInit {
     this.productService.findProduct(id).subscribe(data => {
       this.product = data
       this.formProduct.patchValue(data)
+      this.storeId = this.product.store.id
     })
     this.imageService.findAllByProduct(id).subscribe((data) => {
       this.listImage = data
@@ -78,7 +79,7 @@ export class UpdateProductComponent implements OnInit {
   updateProduct() {
     this.product = this.formProduct.value;
     this.productService.update(this.product, this.product.id).subscribe(
-      data => {this.product=data,
+      data => {this.product = data
       this.formProduct.patchValue(data)}
     )
     this.ngOnInit()
