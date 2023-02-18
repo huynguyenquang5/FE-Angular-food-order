@@ -1,5 +1,4 @@
 <app-merchant-nav></app-merchant-nav>
-
 <div class="content-wrapper">
   <div class="container-fluid">
     <!-- Breadcrumbs-->
@@ -21,9 +20,14 @@
             <li><strong>Email</strong>{{user?.email}}</li>
             <li><strong>Wallet</strong>{{user?.wallet}}</li>
           </ul>
-          <button (click)="editProfileBox()" class="btn_1 m-1"><i class="fa fa-fw fa-edit"></i> Edit Profile
+          <button (click)="boxHiddenShow('editProfile')" class="btn_1 m-1"
+          ><i class="fa fa-fw fa-edit"></i> Edit Profile
           </button>
-          <button (click)="changePasswordBox()" class="btn_1 m-1"><i class="fa fa-fw fa-lock"></i>Change Password
+          <button (click)="boxHiddenShow('password')" class="btn_1 m-1"
+          ><i class="fa fa-fw fa-lock"></i> Change Password
+          </button>
+          <button *ngIf="addresses?.length !== 3" (click)="boxHiddenShow('createAddress')" class="btn_1 m-1">
+            <i class="fa fa-fw fa-address-book"></i> Create Address
           </button>
         </div>
         <div class="box_general padding_bottom" id="changePassword" style="display: none">
@@ -46,12 +50,56 @@
             <a href="#0" class="btn_1 medium">Save</a>
           </div>
         </div>
+        <div class="box_general padding_bottom" id="createAddress" style="display: none">
+          <div class="header_box version_2">
+            <h2><i class="fa fa-address-book"></i>Create Address</h2>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input class="form-control" type="text" id="address">
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>District</label>
+              <input class="form-control" type="text" id="district">
+            </div>
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input class="form-control" type="text" id="city">
+            </div>
+          </div>
+          <div class="mt-2">
+            <button class="btn_1 medium" (click)="createAddress()">Create</button>
+          </div>
+        </div>
+        <div class="box_general padding_bottom" id="updateAddress" style="display: none">
+          <div class="header_box version_2">
+            <h2><i class="fa fa-address-book"></i>Update Address</h2>
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input class="form-control" type="text" id="addressUpdate">
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>District</label>
+              <input class="form-control" type="text" id="districtUpdate">
+            </div>
+            <div class="form-group col-md-6">
+              <label>City</label>
+              <input class="form-control" type="text" id="cityUpdate">
+            </div>
+          </div>
+          <div class="mt-2">
+            <button class="btn_1 medium" (click)="updateAddress()">Update</button>
+          </div>
+        </div>
         <div class="box_general padding_bottom" id="editProfile" style="display: none">
           <div class="header_box version_2">
             <h2><i class="fa fa-edit"></i>Edit profile</h2>
           </div>
           <form [formGroup]="userForm" (ngSubmit)="updateUser()">
-            <input type="text" formControlName="id" hidden>
+            <input type="number" formControlName="id" hidden>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -90,7 +138,7 @@
               <p class="text-danger">You are pending for becoming a partner and you cannot change profile.</p>
             </ng-template>
             <div class="mt-2" *ngIf="user?.status == 1">
-              <button type="submit" class="btn_1 medium">Submit</button>
+              <button data-toggle="modal" data-target="#updateUserModal" class="btn_1 medium">???</button>
             </div>
           </form>
         </div>
@@ -98,23 +146,45 @@
       <div class="col-md-6">
         <div class="box_general padding_bottom">
           <div class="header_box version_2">
-            <h2><i class="fa fa-user"></i>Store details</h2>
+            <h2><i class="fa fa-address-book"></i>Address details</h2>
           </div>
-          <h4>Da Alfredo <i class="pending">Pending</i></h4>
-          <ul class="booking_list">
-            <li><strong>Name</strong> Mark Twain</li>
-            <li><strong>Username</strong> 5 November 2020 08.30pm</li>
-            <li><strong>Phone</strong> Barda Bonilla 24 apt. 10, 2414 London</li>
-            <li><strong>Email</strong> <a href="#0">98432983242</a> - <a href="#0">mark@hotmail.com</a></li>
-            <li><strong>Wallet</strong> Paied via Paypal</li>
-          </ul>
-          <p><a href="#0" class="btn_1" data-toggle="modal" data-target="#client_detail_modal"><i
-            class="fa fa-fw fa-pencil"></i> Edit order detail</a></p>
+          <div class="version_2" *ngFor="let a of addresses; index as i">
+            <h4>Address {{i + 1}}
+              <button style="border: none"
+                      (click)="boxHiddenShow('updateAddress'); getAddressById(a.id)" class="pending">Edit</button>
+              <button style="border: none"
+                      (click)="getAddressById(a.id)" data-toggle="modal" data-target="#deleteAddressModal" class="cancel">Delete</button></h4>
+            <ul class="booking_list">
+              <li><strong>Address</strong>{{a.name.split(", ")[0]}}</li>
+              <li><strong>District</strong>{{a.name.split(", ")[1]}}</li>
+              <li><strong>City</strong>{{a.name.split(", ")[2]}}</li>
+            </ul>
+            <hr>
+          </div>
+          <p class="text-danger m-1" *ngIf="addresses?.length == 3">Maximum number of addresses is 3</p>
         </div>
       </div>
+      <!-- /box_general-->
     </div>
-    <!-- /box_general-->
+    <!-- /.container-fluid-->
   </div>
-  <!-- /.container-fluid-->
+
 </div>
 
+<div class="modal fade" id="deleteAddressModal" tabindex="-1" role="dialog" aria-labelledby="deleteAddressModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteAddressModalLabel">Delete address ?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Are you sure to want to delete this address ?</div>
+      <div class="modal-footer">
+        <a class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+        <a class="btn btn-danger" (click)="deleteAddress()">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
