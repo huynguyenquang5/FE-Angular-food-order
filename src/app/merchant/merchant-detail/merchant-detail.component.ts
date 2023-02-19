@@ -1,8 +1,10 @@
-import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {User} from "../../model/user/user";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Address} from "../../model/user/address";
+import {AddressService} from "../../service/user/address.service";
 
 @Component({
   selector: 'app-merchant-detail',
@@ -13,6 +15,9 @@ export class MerchantDetailComponent implements OnInit {
   userId!: number;
   user!: User;
   role!: string;
+  addresses!: Address[];
+  address!: Address;
+  addressId!: number;
   userForm = new FormGroup({
     id: new FormControl(""),
     name: new FormControl(""),
@@ -25,15 +30,26 @@ export class MerchantDetailComponent implements OnInit {
     roles: new FormControl("")
   })
 
+  addressForm = new FormGroup({
+    name: new FormControl(""),
+    user: new FormGroup({
+      id: new FormControl("")
+    })
+  })
+
   constructor(private userService: UserService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private addressService: AddressService) {
   }
 
   ngOnInit() {
     this.userId = Number(this.activatedRoute.snapshot.paramMap.get("userId"))
+    // @ts-ignore
+    this.addressForm.get("user.id")?.setValue(this.userId);
     this.userService.findById(this.userId).subscribe(data => {
       this.user = data;
       this.checkRole();
+      this.getAllAddressById();
       // @ts-ignore
       this.userForm.patchValue(this.user);
       console.log()
@@ -48,35 +64,87 @@ export class MerchantDetailComponent implements OnInit {
     }
   }
 
-  changePasswordBox() {
+  boxHiddenShow(box: string) {
     let changePassword = document.getElementById("changePassword");
     let editProfile = document.getElementById("editProfile");
-    // @ts-ignore
-    if (changePassword.style.display === "none") {
-      // @ts-ignore
-      changePassword.style.display = "block"
-      // @ts-ignore
-      editProfile.style.display = "none";
-    } else {
-      // @ts-ignore
-      changePassword.style.display = "none";
-      // @ts-ignore
+    let createAddress = document.getElementById("createAddress");
+    let updateAddress = document.getElementById("updateAddress");
+    switch (box) {
+      case "password":
+        // @ts-ignore
+        if (changePassword.style.display === "none") {
+          // @ts-ignore
+          changePassword.style.display = "block"
+          // @ts-ignore
+          editProfile.style.display = "none";
+          // @ts-ignore
+          createAddress.style.display = "none";
+          // @ts-ignore
+          updateAddress.style.display = "none";
+        }
+        break;
+      case "editProfile":
+        // @ts-ignore
+        if (editProfile.style.display === "none") {
+          // @ts-ignore
+          editProfile.style.display = "block";
+          // @ts-ignore
+          changePassword.style.display = "none";
+          // @ts-ignore
+          createAddress.style.display = "none";
+          // @ts-ignore
+          updateAddress.style.display = "none";
+        }
+        break;
+      case "createAddress":
+        // @ts-ignore
+        if (createAddress.style.display === "none") {
+          // @ts-ignore
+          createAddress.style.display = "block";
+          // @ts-ignore
+          changePassword.style.display = "none";
+          // @ts-ignore
+          editProfile.style.display = "none";
+          // @ts-ignore
+          updateAddress.style.display = "none";
+        }
+        break;
+      case "updateAddress":
+        // @ts-ignore
+        if (updateAddress.style.display === "none") {
+          // @ts-ignore
+          updateAddress.style.display = "block";
+          // @ts-ignore
+          createAddress.style.display = "none";
+          // @ts-ignore
+          changePassword.style.display = "none";
+          // @ts-ignore
+          editProfile.style.display = "none";
+        }
+        break;
     }
   }
 
-  editProfileBox() {
-    let editProfile = document.getElementById("editProfile");
-    let changePassword = document.getElementById("changePassword");
-    // @ts-ignore
-    if (editProfile.style.display === "none") {
+  getAllAddressById() {
+    this.addressService.findAllByUserId(this.userId).subscribe( data => {
+      this.addresses = data;
+    })
+  }
+
+  getAddressById(id: number) {
+    this.addressService.findOneById(id).subscribe( address => {
+      this.addressId = address.id;
+      let fullAddress = address.name;
+      let addressLine = fullAddress.split(", ")[0];
+      let district = fullAddress.split(", ")[1];
+      let city = fullAddress.split(", ")[2];
       // @ts-ignore
-      editProfile.style.display = "block";
+      document.getElementById("addressUpdate").value = addressLine;
       // @ts-ignore
-      changePassword.style.display = "none";
-    } else {
+      document.getElementById("districtUpdate").value = district;
       // @ts-ignore
-      editProfile.style.display = "none";
-    }
+      document.getElementById("cityUpdate").value = city;
+    })
   }
 
   updateUser() {
@@ -87,8 +155,49 @@ export class MerchantDetailComponent implements OnInit {
     }
     // @ts-ignore
     this.user = this.userForm.value
-    this.userService.updateUser(this.userId, this.user).subscribe( () => {
-      alert("Update successfully")
+    this.userService.updateUser(this.userId, this.user).subscribe(() => {
+      window.location.reload();
+    })
+  }
+
+  createAddress() {
+    // @ts-ignore
+    let addressLine = document.getElementById("address").value
+    // @ts-ignore
+    let district = document.getElementById("district").value
+    // @ts-ignore
+    let city = document.getElementById("city").value
+    let result = addressLine.concat(", ", district, ", ", city);
+    this.addressForm.get("name")?.setValue(result);
+    // @ts-ignore
+    this.address = this.addressForm.value;
+    this.addressService.create(this.address).subscribe(() => {
+      window.location.reload();
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  updateAddress() {
+    // @ts-ignore
+    let addressUpdate = document.getElementById("addressUpdate").value
+    // @ts-ignore
+    let districtUpdate = document.getElementById("districtUpdate").value
+    // @ts-ignore
+    let cityUpdate = document.getElementById("cityUpdate").value
+    let resultUpdate = addressUpdate.concat(", ", districtUpdate, ", ", cityUpdate);
+    this.addressForm.get("name")?.setValue(resultUpdate);
+    // @ts-ignore
+    this.address = this.addressForm.value;
+    this.addressService.update(this.addressId, this.address).subscribe(() => {
+      window.location.reload();
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  deleteAddress() {
+    this.addressService.delete(this.addressId).subscribe( () => {
       window.location.reload();
     })
   }
