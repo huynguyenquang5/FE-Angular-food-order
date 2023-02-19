@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../model/user/user";
 import {UserService} from "../../service/user/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Role} from "../../model/user/role";
 import {RoleService} from "../../service/user/role.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-register',
@@ -52,10 +53,10 @@ export class RegisterComponent implements OnInit {
     })
     this.formUser = new FormGroup({
       id: new FormControl(''),
-      name: new FormControl(''),
-      username: new FormControl(''),
-      password: new FormControl(''),
-      phone: new FormControl(''),
+      name: new FormControl('',Validators.required),
+      username: new FormControl('', Validators.required),
+      password: new FormControl('',Validators.compose([Validators.required, Validators.min(6)])),
+      phone: new FormControl('', Validators.compose([Validators.required,  Validators.pattern('')])),
       email: new FormControl(''),
       confirmPassword: new FormControl(''),
       role: new FormGroup({
@@ -94,19 +95,22 @@ export class RegisterComponent implements OnInit {
         if (j == 0) {
           if (i == 0) {
             this.userService.save(this.user).subscribe()
-            alert("Success")
+            Swal.fire("Your account has been created successfully, please login ")
           } else {
-            alert('Email already exist, please re-enter!')
+            Swal.fire('Email already exist, please re-enter!')
           }
         } else {
-          alert("Phone already exist please re-enter!")
+          Swal.fire("Phone already exist please re-enter!")
         }
       } else {
-        alert("User name already exist, please re-enter!")
+        Swal.fire("User name already exist, please re-enter!")
       }
     } else {
-      alert("Re-entered password is not the same, please re-enter")
+      Swal.fire("Re-entered password is not the same, please re-enter")
     }
+  }
+  login(){
+    this.router.navigate(['accounts/login'])
   }
 
 
