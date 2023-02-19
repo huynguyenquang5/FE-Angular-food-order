@@ -24,4 +24,7 @@ export class CartService {
   changeQuantity(userId:number,productId:number):Observable<any>{
     return this.http.delete<any>(`${apiUrl}/cart/quantity/one/user/${userId}/product/${productId}`);
   }
+  paymentOrder(userId:number,storeId:number,addressId:number):Observable<any>{
+    return this.http.get<any>(`${apiUrl}/cart/payment-cart/store/${storeId}/user/${userId}/address/${addressId}`);
+  }
 }
