@@ -32,6 +32,7 @@ import {AdminProductComponent} from './admin/admin-product/admin-product.compone
 import { OrderComponent } from './cart/order/order.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { ListOrderComponent } from './user/list-order/list-order.component';
+import { PaymentDetailComponent } from './cart/payment-detail/payment-detail.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ListOrderComponent } from './user/list-order/list-order.component';
     DemoComponent,
     AdminProductComponent,
     UserDetailComponent,
-    ListOrderComponent
+    ListOrderComponent,
+    PaymentDetailComponent
 
 
   ],

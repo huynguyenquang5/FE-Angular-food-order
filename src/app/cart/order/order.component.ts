@@ -117,8 +117,10 @@ export class OrderComponent implements OnInit{
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading()
+        // @ts-ignore
         const b = Swal.getHtmlContainer().querySelector('b')
         timerInterval = setInterval(() => {
+          // @ts-ignore
           b.textContent = Swal.getTimerLeft()
         }, 100)
       },

@@ -83,12 +83,12 @@
         <div class="dropdown user clearfix">
           <a data-toggle="dropdown">
             <figure><img src="assets/img/avatar1.jpg" alt=""></figure>
-            <span style="padding-right: 5px">Nguyen Ngoc Tu </span>
+            <span style="padding-right: 5px">{{user.username}}</span>
           </a>
           <div class="dropdown-menu">
             <div class="dropdown-menu-content">
               <ul>
-                <li><a href="#0"><i class="icon_cog"></i>Dashboard</a></li>
+                <li><a href="#0" [routerLink]="['/detail/user',user.id]"><i class="icon_cog"></i>Dashboard</a></li>
                 <li><a href="#0"><i class="fa-brands fa-shopify"></i>Shop</a></li>
                 <li><a href="#0"><i class="icon_key"></i>Log out</a></li>
               </ul>

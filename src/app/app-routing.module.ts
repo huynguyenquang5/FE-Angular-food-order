@@ -16,6 +16,8 @@ import {RegisterComponent} from "./user/register/register.component";
 import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
 import {AdminProductComponent} from "./admin/admin-product/admin-product.component";
 import {OrderComponent} from "./cart/order/order.component";
+import {ListOrderComponent} from "./user/list-order/list-order.component";
+import {UserDetailComponent} from "./user/user-detail/user-detail.component";
 
 const routes: Routes = [
   {
@@ -25,6 +27,14 @@ const routes: Routes = [
   {
     path: 'order/store/:storeId',
     component: OrderComponent
+  },
+  {
+    path: 'list-order/user/:userId',
+    component: ListOrderComponent
+  },
+  {
+    path: 'detail/user/:userId',
+    component: UserDetailComponent
   },
   {
     path: 'admin/merchant',

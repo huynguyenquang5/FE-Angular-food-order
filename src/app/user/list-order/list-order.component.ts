@@ -16,8 +16,7 @@ import {formatDate} from "@angular/common";
 })
 export class ListOrderComponent implements OnInit {
   ngOnInit(): void {
-    // @ts-ignore
-    this.userId = sessionStorage.getItem("user.id");
+    this.userId = Number(this.routerActive.snapshot.paramMap.get("userId"))
     this.userDetail(this.userId);
     this.listPaymentByUser(1);
   }
@@ -45,5 +44,16 @@ export class ListOrderComponent implements OnInit {
   }
   displayDate(date:string){
     return formatDate(date, 'dd/MM/yyyy', 'en-US')
+  }
+
+  onStatusPayment(p: Payment, number: number) {
+    let status!:string;
+    switch (number){
+      case 0: status = 'cancel';break;
+      case 3: status = 'success';break;
+    }
+    this.cartService.statusPayment(p.id,status).subscribe(data=>{
+      this.listPaymentByUser(1);
+    })
   }
 }

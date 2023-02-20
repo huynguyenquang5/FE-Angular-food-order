@@ -109,11 +109,6 @@ export class DetailStoreComponent implements OnInit {
     this.cartService.save(cart).subscribe(data => {
       this.message = data;
       this.findAllCart(this.store.id,1)
-      if (this.message.message.toUpperCase() === 'SUCCESS') {
-        alert("ok")
-      }else {
-        alert("error")
-      }
     })
   }
   addMapProduct() {
