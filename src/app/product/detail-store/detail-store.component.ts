@@ -31,7 +31,7 @@ export class DetailStoreComponent implements OnInit {
         this.listImageFilter = data;
         this.classify(data);
         this.product = this.listProduct[0];
-        this.findAllCart(this.store.id,1)
+        this.findAllCart(this.store.id,this.user.id)
         this.addMapProduct()
       })
     })
@@ -100,7 +100,7 @@ export class DetailStoreComponent implements OnInit {
       quantity: 1,
       price:p.product.productMethod.price,
       user:{
-        id: 1
+        id: this.user.id
       },
       product:{
         id: p.product.id
@@ -117,14 +117,14 @@ export class DetailStoreComponent implements OnInit {
     }
   }
   onDeleteProduct(product: Product) {
-    this.cartService.deleteOne(1,product.id).subscribe(data =>{
-      this.findAllCart(this.store.id,1)
+    this.cartService.deleteOne(this.user.id,product.id).subscribe(data =>{
+      this.findAllCart(this.store.id,this.user.id)
     })
   }
 
   onActionQuantity(c: Cart) {
-    this.cartService.changeQuantity(1,c.product.id).subscribe(data =>{
-      this.findAllCart(this.store.id,1)
+    this.cartService.changeQuantity(this.user.id,c.product.id).subscribe(data =>{
+      this.findAllCart(this.store.id,this.user.id)
     })
   }
 }
