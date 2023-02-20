@@ -58,6 +58,9 @@
             <button class="btn_1 m-1" data-toggle="modal" data-target="#formUpdate">
               <i class="fa fa-fw fa-edit"></i> Edit Store
             </button>
+            <button class="btn_1 m-1" data-toggle="modal" data-target="#formUpdate" [routerLink]="['/product']">
+              <i class="fa fa-fw fa-edit" ></i> Enter Store
+            </button>
             <button class="btn_1 m-1" [routerLink]="['/product/create']">
               <i class="fa fa-fw fa-pencil"></i> Create Product
             </button>
@@ -66,8 +69,6 @@
       </div>
       <!-- /box_general-->
     </div>
-    <app-all-product></app-all-product>
-
     <!-- /.container-fluid-->
   </div>
   <!-- /.container-wrapper-->
