@@ -36,7 +36,7 @@
         <a href="/view">View all</a>
       </div>
       <div class="row add_bottom_25">
-        <div class="col-lg-4" *ngFor="let i of listImg">
+        <div class="col-lg-4" *ngFor="let i of listImg | slice:0:12">
           <div class="list_home">
             <ul>
               <li>
