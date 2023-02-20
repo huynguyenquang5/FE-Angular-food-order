@@ -4,8 +4,7 @@ import {Observable} from "rxjs";
 import {Address} from "../../model/user/address";
 import {environment} from "../../../environments/environment";
 
-const apiUrl = environment.apiUrl
-
+const apiUrl = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
@@ -31,5 +30,15 @@ export class AddressService {
 
   delete(id: number): Observable<Address> {
     return this.http.delete<Address>(`${apiUrl}/users/address/${id}`);
+  }
+
+  save(address:any):Observable<any>{
+    return this.http.post<any>(`${apiUrl}/users/address`, address);
+  }
+  findAllByUser(userId:number):Observable<any>{
+    return this.http.get<any>(`${apiUrl}/users/address/user/${userId}`);
+  }
+  deleteAddress(addressId:number):Observable<any>{
+    return this.http.delete<any>(`${apiUrl}/users/address/${addressId}`);
   }
 }

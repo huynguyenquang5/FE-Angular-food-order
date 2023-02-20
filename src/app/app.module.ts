@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {DetailStoreComponent} from './detail-store/detail-store.component';
+import { DetailStoreComponent } from './product/detail-store/detail-store.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeFooterComponent} from './home/home-footer/home-footer.component';
@@ -29,7 +29,10 @@ import {MerchantNavComponent} from './merchant/merchant-nav/merchant-nav.compone
 import {DemoComponent} from './demo/demo.component';
 import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
 import {AdminProductComponent} from './admin/admin-product/admin-product.component';
-
+import { OrderComponent } from './cart/order/order.component';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { ListOrderComponent } from './user/list-order/list-order.component';
+import { PaymentDetailComponent } from './cart/payment-detail/payment-detail.component';
 
 @NgModule({
   declarations: [
@@ -49,28 +52,33 @@ import {AdminProductComponent} from './admin/admin-product/admin-product.compone
     AdminPartnerPendingComponent,
     MerchantStoreComponent,
     HomeFilterComponent,
+    OrderComponent,
+    HomeFilterComponent,
     LoginComponent,
     RegisterComponent,
     MerchantDetailComponent,
     HomeFilterComponent,
     MerchantNavComponent,
     DemoComponent,
-    AdminProductComponent
+    AdminProductComponent,
+    UserDetailComponent,
+    ListOrderComponent,
+    PaymentDetailComponent
 
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    ReactiveFormsModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        AngularFireStorageModule,
+        AngularFireDatabaseModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        ReactiveFormsModule,
+        FormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

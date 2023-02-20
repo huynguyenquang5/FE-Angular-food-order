@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from "../../service/security/token-storage.service";
 import {Role} from "../../model/user/role";
 import {Roles} from "../../model/user/roles";
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {ImageService} from "../../service/store/image.service";
+import {Image} from "../../model/product/image";
+import {Cart} from "../../model/cart/cart";
+import {CartService} from "../../service/cart/cart.service";
+import {Product} from "../../model/product/product";
+import {UserService} from "../../service/user/user.service";
+import {User} from "../../model/user/user";
 
 @Component({
   selector: 'app-home-header',

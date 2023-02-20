@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ProductService} from "../../service/product.service";
+import {ProductService} from "../../service/store/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from "../../model/product/product";
 import {Image} from "../../model/product/image";

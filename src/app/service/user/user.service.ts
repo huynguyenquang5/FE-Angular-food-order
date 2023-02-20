@@ -6,6 +6,7 @@ import {environment} from "../../../environments/environment";
 import {Store} from "../../model/store/store";
 
 const apiUrl = environment.apiUrl
+
 @Injectable({
   providedIn: 'root'
 })
