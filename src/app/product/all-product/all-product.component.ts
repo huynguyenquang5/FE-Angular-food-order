@@ -217,16 +217,14 @@ export class AllProductComponent implements OnInit {
     }).then((result: any) => {
       if (result.isConfirmed) {
         let check: string = ""
-        this.imageService.deleteProduct(p.id).subscribe(data => {
-          check = data
-        })
+        this.imageService.deleteProduct(p.id).subscribe()
         this.findAllProduct(this.storeId);
         swalWithBootstrapButtons.fire(
           'Deleted!',
           'Your file has been deleted.',
           'success'
         )
-        this.ngOnInit()
+
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel

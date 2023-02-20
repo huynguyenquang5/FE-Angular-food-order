@@ -9,6 +9,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {Store} from "../../model/store/store";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-merchant-store',
@@ -17,7 +18,7 @@ import {finalize} from "rxjs";
 })
 export class MerchantStoreComponent implements OnInit {
   show : boolean = false;
-  @Input() userId !:number;
+  userId!:number;
   storeId!: number;
   imageFile: any;
   path!: string;
@@ -35,7 +36,7 @@ export class MerchantStoreComponent implements OnInit {
     })
   })
   ngOnInit(): void {
-    this.userId = Number(this.routerActive.snapshot.paramMap.get("userId"))
+    this.userId = this.tokenService.getUser().id
     this.storeService.findByUserId(this.userId).subscribe(data => {
       this.store = data
       this.storeId = data.id;
@@ -58,7 +59,8 @@ export class MerchantStoreComponent implements OnInit {
               private routerActive : ActivatedRoute,
               private storeService: StoreService,
               private storage: AngularFireStorage,
-              private router: Router) {
+              private router: Router,
+              private tokenService: TokenStorageService) {
 
   }
 
