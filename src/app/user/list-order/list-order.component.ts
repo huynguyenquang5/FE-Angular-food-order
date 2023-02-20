@@ -22,9 +22,7 @@ export class ListOrderComponent implements OnInit {
     this.listPaymentByUser(this.userId);
   }
 
-  constructor(private productService: ProductService,
-              private imageService: ImageService,
-              private routerActive : ActivatedRoute,
+  constructor(private routerActive : ActivatedRoute,
               private storeService: StoreService,
               private cartService: CartService,
               private router: Router,

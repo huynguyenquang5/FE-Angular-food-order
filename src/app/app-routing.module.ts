@@ -19,6 +19,7 @@ import {OrderComponent} from "./cart/order/order.component";
 import {ListOrderComponent} from "./user/list-order/list-order.component";
 import {UserDetailComponent} from "./user/user-detail/user-detail.component";
 import {PaymentDetailComponent} from "./cart/payment-detail/payment-detail.component";
+import {ListPaymentComponent} from "./merchant/list-payment/list-payment.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'user/payment-detail/payment/:paymentId',
     component: PaymentDetailComponent
+  },
+  {
+    path: 'store/payment-list/store/:storeId',
+    component: ListPaymentComponent
   },
   {
     path: 'detail/user/:userId',
