@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from "../../service/store/product.service";
 import {ImageService} from "../../service/store/image.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -16,9 +16,10 @@ import {formatDate} from "@angular/common";
 })
 export class ListOrderComponent implements OnInit {
   ngOnInit(): void {
-    this.userId = Number(this.routerActive.snapshot.paramMap.get("userId"))
+    // this.userId = Number(this.routerActive.snapshot.paramMap.get("userId"))
+    this.userId = 1;
     this.userDetail(this.userId);
-    this.listPaymentByUser(this.user.id);
+    this.listPaymentByUser(this.userId);
   }
 
   constructor(private productService: ProductService,
@@ -29,10 +30,12 @@ export class ListOrderComponent implements OnInit {
               private router: Router,
               private userService: UserService) {
   }
+  @ViewChild('ofModal') ofModal!: ElementRef;
   paymentModal!:Payment;
   userId !:number;
   user!:User;
   listPayment:Payment[]=[];
+  check:boolean=false;
   userDetail(userId:number){
     this.userService.findUserById(userId).subscribe(data=>{
       this.user = data;
@@ -55,9 +58,20 @@ export class ListOrderComponent implements OnInit {
     }
     this.cartService.statusPayment(p.id,status).subscribe(data=>{
       this.listPaymentByUser(this.user.id);
+      this.ofModal.nativeElement.click()
     })
   }
-  onModal(p:Payment){
+
+  onModal(p: Payment, action: string){
     this.paymentModal = p;
+    if ('cancel' === action){
+      // @ts-ignore
+      document.getElementById("main").innerText = "Click ok if you want to cancel this order?";
+      this.check = false;
+    }else {
+      // @ts-ignore
+      document.getElementById("main").innerText = "Click ok if you have received the order?";
+      this.check = true;
+    }
   }
 }

@@ -28,9 +28,19 @@
         <div class="row">
           <div class="col-6">
             <address>
-              <strong>Payment Method:</strong><br>
-              Wallet<br>
-              {{payment.user.email}}
+              <strong>Status order:</strong><br>
+              <div *ngIf="0 === payment.status">
+                Order has been cancelled
+              </div>
+              <div *ngIf="1 === payment.status">
+                Order pending approval
+              </div>
+              <div *ngIf="2 === payment.status">
+                Orders are being delivered
+              </div>
+              <div *ngIf="3 === payment.status">
+                Your order has been successfully delivered
+              </div>
             </address>
           </div>
           <div class="col-6 text-right">

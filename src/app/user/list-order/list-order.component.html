@@ -1,4 +1,4 @@
-<app-home-header></app-home-header>
+<!--<app-home-header></app-home-header>-->
 <div class="row" style="margin-top: 55px">
   <div style="background-color: #ee4444;color: whitesmoke;
   min-height: 500px;position: fixed;top: 73px;left: 0;width: 235px">
@@ -6,7 +6,7 @@
     <hr style="padding: 0;margin: 0">
     <div style="padding: 0;margin: 0">
       <ul style="padding: 0;list-style-type:none">
-        <li class="nav-custom-out"  [routerLink]="['/detail/user',user.id]">Personal information</li>
+<!--        <li class="nav-custom-out"  [routerLink]="['/detail/user',user.id]">Personal information</li>-->
         <li class="nav-custom">List of orders</li>
       </ul>
     </div>
@@ -50,10 +50,11 @@
           <td  style="margin: 0">
             <div *ngIf="p.status === 1">
               <div class="btn btn-danger" style="width: 80%" data-toggle="modal" data-target="#deleteAddressModal"
-                   (click)="onModal(p)">Cancel</div>
+                   (click)="onModal(p,'cancel')">Cancel</div>
             </div>
             <div *ngIf="p.status === 2">
-              <div class="btn btn-success"  style="width: 80%" (click)="onStatusPayment(p,3)">Success</div>
+              <div class="btn btn-success"  style="width: 80%" data-toggle="modal" data-target="#deleteAddressModal"
+                   (click)="onModal(p,'success')">Success</div>
             </div>
           </td>
         </tr>
@@ -66,15 +67,15 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteAddressModalLabel">Delete address ?</h5>
+        <h5 class="modal-title" id="deleteAddressModalLabel">Order</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
+          <span aria-hidden="true" #ofModal>×</span>
         </button>
       </div>
-      <div class="modal-body">Are you sure to want to delete this address ?</div>
+      <div class="modal-body" id="main"></div>
       <div class="modal-footer">
-        <a class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-        <a class="btn btn-danger" (click)="onStatusPayment(paymentModal,0)"  >Delete</a>
+        <a class="btn btn-danger" (click)="onStatusPayment(paymentModal,0)" *ngIf="!check" >Oke</a>
+        <a class="btn btn-danger" (click)="onStatusPayment(paymentModal,3)" *ngIf="check" >Oke</a>
       </div>
     </div>
   </div>
