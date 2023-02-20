@@ -14,22 +14,22 @@ export class AddressService {
   }
 
   findAllByUserId(id: number): Observable<Address[]> {
-    return this.http.get<Address[]>(`${apiUrl}/users/address/${id}`)
+    return this.http.get<Address[]>(`${apiUrl}/address/${id}`)
   }
 
   findOneById(id: number): Observable<Address> {
-    return this.http.get<Address>(`${apiUrl}/users/address/addressId=${id}`)
+    return this.http.get<Address>(`${apiUrl}/address/addressId=${id}`)
   }
 
   create(address: Address): Observable<Address> {
-    return this.http.post<Address>(`${apiUrl}/users/address`, address)
+    return this.http.post<Address>(`${apiUrl}/address`, address)
   }
 
   update(id: number, address: Address): Observable<Address> {
-    return this.http.put<Address>(`${apiUrl}/users/address/${id}`, address)
+    return this.http.put<Address>(`${apiUrl}/address/${id}`, address)
   }
 
   delete(id: number): Observable<Address> {
-    return this.http.delete<Address>(`${apiUrl}/users/address/${id}`);
+    return this.http.delete<Address>(`${apiUrl}/address/${id}`);
   }
 }
