@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-merchant-nav',
@@ -6,6 +6,7 @@ import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
   styleUrls: ['./merchant-nav.component.css'],
 })
 export class MerchantNavComponent implements OnInit {
+  @Input() userId!: number;
   constructor(private elementRef: ElementRef) {
     let s2 = document.createElement("script");
     s2.type = "text/javascript";
