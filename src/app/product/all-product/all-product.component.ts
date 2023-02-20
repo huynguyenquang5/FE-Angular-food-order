@@ -10,6 +10,10 @@ import {ImageService} from "../../service/product/image.service";
 
 // @ts-ignore
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import {TokenStorageService} from "../../service/security/token-storage.service";
+import {Store} from "../../model/store/store";
+import {StoreService} from "../../service/store/store.service";
+import {User} from "../../model/user/user";
 
 
 @Component({
@@ -22,17 +26,29 @@ export class AllProductComponent implements OnInit {
   pathName!: string
   imageFile: any
   storeId!: number;
+  store!: Store
+  idUser!: number
+  user!:User
+
 
   constructor(private productService: ProductService,
               private imageService: ImageService,
               private routerActive: ActivatedRoute,
               private storage: AngularFireStorage,
-              private router: Router) {
+              private router: Router,
+              private tokenStorageService: TokenStorageService,
+              private storeService:StoreService) {
   }
 
   ngOnInit() {
-    this.storeId = Number(this.routerActive.snapshot.paramMap.get("id"));
-    this.findAllProduct(this.storeId)
+    this.idUser= this.tokenStorageService.getUser().id
+    console.log(this.idUser)
+    this.storeService.findByUserId(this.idUser).subscribe(data=>{
+      this.store = data
+      this.storeId = this.store.id
+      this.findAllProduct(this.storeId)
+    })
+
     this.formImage = new FormGroup({
       id: new FormControl(''),
       product: new FormGroup({
@@ -40,6 +56,9 @@ export class AllProductComponent implements OnInit {
       })
     })
   }
+
+
+
 
   product !: Product;
   listProduct: Product[] = [];

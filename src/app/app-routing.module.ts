@@ -90,7 +90,7 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'users/merchant/:userId',
+    path: 'users/merchant',
     component: MerchantDetailComponent
   },
   {

@@ -1,4 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
+import {TokenStorageService} from "../../service/security/token-storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-merchant-nav',
@@ -6,7 +8,9 @@ import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
   styleUrls: ['./merchant-nav.component.css'],
 })
 export class MerchantNavComponent implements OnInit {
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef,
+              private tokenStorageService: TokenStorageService,
+              private router:Router) {
     let s2 = document.createElement("script");
     s2.type = "text/javascript";
     s2.src = "assets/admin_section/vendor/jquery/jquery.min.js";
@@ -19,6 +23,10 @@ export class MerchantNavComponent implements OnInit {
   }
   ngOnInit() {
 
+  }
+  logOut(){
+    this.tokenStorageService.signOut();
+    this.router.navigate([''])
   }
 
 }
