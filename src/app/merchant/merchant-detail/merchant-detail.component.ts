@@ -6,6 +6,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {Address} from "../../model/user/address";
 import {AddressService} from "../../service/user/address.service";
 import {TokenStorageService} from "../../service/security/token-storage.service";
+import {Store} from "../../model/store/store";
+import {StoreService} from "../../service/store/store.service";
 
 @Component({
   selector: 'app-merchant-detail',
@@ -15,6 +17,7 @@ import {TokenStorageService} from "../../service/security/token-storage.service"
 export class MerchantDetailComponent implements OnInit {
   userId!: number;
   user!: User;
+  store!: Store;
   role!: string;
   addresses!: Address[];
   address!: Address;
@@ -39,6 +42,7 @@ export class MerchantDetailComponent implements OnInit {
   })
 
   constructor(private userService: UserService,
+              private storeService: StoreService,
               private activatedRoute: ActivatedRoute,
               private addressService: AddressService,
               private tokenStorageService: TokenStorageService,
@@ -55,7 +59,7 @@ export class MerchantDetailComponent implements OnInit {
       this.getAllAddressById();
       // @ts-ignore
       this.userForm.patchValue(this.user);
-      console.log()
+      this.storeDetail(this.userId)
     })
   }
 
@@ -65,6 +69,12 @@ export class MerchantDetailComponent implements OnInit {
         this.role = this.user.roles[i].name;
       }
     }
+  }
+
+  storeDetail(userId:number){
+    this.storeService.findByUserId(userId).subscribe(data=>{
+      this.store = data;
+    })
   }
 
   boxHiddenShow(box: string) {

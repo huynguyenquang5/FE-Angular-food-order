@@ -1,27 +1,29 @@
 <div style="background-color: whitesmoke">
   <div class="container">
-    <p class="text-center pt-5"><a href="javascript:window.print()" class="btn_1 gray"><i class="fa fa-fw fa-print"></i> Print this invoice</a></p>
+    <p class="text-center pt-5"><a href="javascript:window.print()" class="btn_1 gray"><i class="fa fa-fw fa-print"></i>
+      Print this invoice</a></p>
     <div class="row">
       <div class="col-12">
         <div class="invoice-title pt-4">
-          <h3>Invoice</h3><h3 class="float-right">Order #{{payment.code}}</h3>
+          <h3>Invoice</h3>
+          <h3 class="float-right">Order #{{payment?.code}}</h3>
         </div>
         <hr>
         <div class="row">
           <div class="col-6">
             <address>
               <strong>Billed To:</strong><br>
-              {{payment.user.username}}<br>
-              {{payment.user.phone}}<br>
-              {{payment.address.name}}
+              {{payment?.user?.username}}<br>
+              {{payment?.user?.phone}}<br>
+              {{payment?.address?.name}}
             </address>
           </div>
           <div class="col-6 text-right">
             <address>
               <strong>Shipped To:</strong><br>
-              {{payment.user.username}}<br>
-              {{payment.user.phone}}<br>
-              {{payment.address.name}}
+              {{payment?.user?.username}}<br>
+              {{payment?.user?.phone}}<br>
+              {{payment?.address?.name}}
             </address>
           </div>
         </div>
@@ -29,17 +31,17 @@
           <div class="col-6">
             <address>
               <strong>Status order:</strong><br>
-              <div *ngIf="0 === payment.status">
+              <div *ngIf="0 === payment?.status">
                 Order has been cancelled
               </div>
-              <div *ngIf="1 === payment.status">
+              <div *ngIf="1 === payment?.status">
                 Order pending approval
               </div>
-              <div *ngIf="2 === payment.status">
+              <div *ngIf="2 === payment?.status">
                 Orders are being delivered
               </div>
-              <div *ngIf="3 === payment.status">
-                Your order has been successfully delivered
+              <div *ngIf="3 === payment?.status">
+                Order has been successfully delivered
               </div>
             </address>
           </div>
@@ -72,13 +74,13 @@
                 <td>{{p.product.name}}</td>
                 <td class="text-center">${{p.product.productMethod.price}}</td>
                 <td class="text-center">{{p.quantity}}</td>
-                <td class="text-right">${{p.quantity*p.product.productMethod.price}}</td>
+                <td class="text-right">${{p.quantity * p.product.productMethod.price}}</td>
               </tr>
               <tr>
                 <td class="thick-line"></td>
                 <td class="thick-line"></td>
                 <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                <td class="thick-line text-right">${{payment.price-10}}</td>
+                <td class="thick-line text-right">${{payment.price - 10}}</td>
               </tr>
               <tr>
                 <td class="no-line"></td>
@@ -91,14 +93,6 @@
                 <td class="no-line"></td>
                 <td class="no-line text-center"><strong>Total</strong></td>
                 <td class="no-line text-right">${{payment.price}}</td>
-              </tr>
-              <tr>
-                <td class="no-line"></td>
-                <td class="no-line"></td>
-                <td class="no-line text-center"></td>
-                <td class="no-line text-right" >
-                  <span class="btn btn-success" style="width: 100px" [routerLink]="['/list-order/user',user.id]">Back</span>
-                </td>
               </tr>
               </tbody>
             </table>
