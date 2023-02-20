@@ -27,8 +27,6 @@ export class OrderComponent implements OnInit{
     // @ts-ignore
     this.userId = sessionStorage.getItem("user.id");
     this.userDetail(parseInt(this.userId));
-    // @ts-ignore
-    this.user = this.us
     this.toDay = formatDate(this.date, 'dd/MM/yyyy', 'en-US');
     this.storeDetail()
     this.findAllCart(this.storeId,this.user.id)
@@ -51,12 +49,6 @@ export class OrderComponent implements OnInit{
   date =  Date.now();
   toDay!:string;
   storeId!:number;
-  us = {
-    id:1,
-    name: "Minh",
-    email: "minh@gmail.com",
-    phone: "0345674235"
-  }
 
   userDetail(userId: number){
     this.userService.findUserById(userId).subscribe(data=>{

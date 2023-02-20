@@ -6,6 +6,7 @@ import {Image} from "../../model/product/image";
 import {Cart} from "../../model/cart/cart";
 import {Payment} from "../../model/cart/payment";
 import {Message} from "../../model/message/message";
+import {Invoice} from "../../model/cart/invoice";
 
 const apiUrl = environment.apiUrl
 
@@ -43,5 +44,12 @@ export class CartService {
 
   statusPayment(paymentId: number,status:string): Observable<Message> {
     return this.http.get<Message>(`${apiUrl}/cart/payment/${paymentId}/action/${status}`);
+  }
+
+  detailPayment(paymentId : number):Observable<Payment> {
+    return this.http.get<Payment>(`${apiUrl}/cart/payment-detail/payment/${paymentId}`);
+  }
+  listInvoiceByPayment(paymentId : number):Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(`${apiUrl}/cart/payment-detail/payment/${paymentId}/list-invoice`);
   }
 }

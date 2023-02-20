@@ -18,6 +18,7 @@ import {ViewerProductComponent} from "./product/viewer-product/viewer-product.co
 import {OrderComponent} from "./cart/order/order.component";
 import {ListOrderComponent} from "./user/list-order/list-order.component";
 import {UserDetailComponent} from "./user/user-detail/user-detail.component";
+import {PaymentDetailComponent} from "./cart/payment-detail/payment-detail.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'list-order/user/:userId',
     component: ListOrderComponent
+  },
+  {
+    path: 'user/payment-detail/payment/:paymentId',
+    component: PaymentDetailComponent
   },
   {
     path: 'detail/user/:userId',
