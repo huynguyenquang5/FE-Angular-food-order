@@ -23,13 +23,11 @@ export class LoginComponent implements OnInit {
   userCheck!: User
 
 
-
   constructor(private userService: UserService,
               private router: Router,
               private routerActive: ActivatedRoute,
               private authService: AuthService,
               private tokenStorageService: TokenStorageService,
-
   ) {
 
   }
@@ -48,21 +46,24 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-  this.authService.login(this.formUser.value).subscribe(
+    this.authService.login(this.formUser.value).subscribe(
       data => {
-        this.userCheck= data
+        this.userCheck = data
         console.log(this.userCheck)
-        if (this.userCheck.status == 0){
+        if (this.userCheck.status == 0) {
           Swal.fire(
             "Your account has been locked, please contact admin to unlock it"
           )
-        }else {this.tokenStorageService.saveTokenSession(data.accessToken);
+        } else {
+          this.tokenStorageService.saveTokenSession(data.accessToken);
           this.tokenStorageService.saveUserLocal(data);
           this.authService.isLoggedIn = true;
           this.username = this.tokenStorageService.getUser().username;
           this.roles = this.tokenStorageService.getUser().roles;
           console.log(this.tokenStorageService.getUser())
-          this.formUser.reset();}
+          this.formUser.reset();
+          this.router.navigate([''])
+        }
 
       },
       err => {
@@ -71,10 +72,8 @@ export class LoginComponent implements OnInit {
         Swal.fire("Username or password is wrong, please re-enter")
         ;
       }
-    );}
-
-
-
+    );
+  }
 
 
 }

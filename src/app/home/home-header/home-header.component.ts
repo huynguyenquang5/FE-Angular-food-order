@@ -6,6 +6,8 @@ import {CartService} from "../../service/cart/cart.service";
 import {Product} from "../../model/product/product";
 import {UserService} from "../../service/user/user.service";
 import {User} from "../../model/user/user";
+import {Roles} from "../../model/user/roles";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-home-header',
@@ -22,9 +24,18 @@ export class HomeHeaderComponent implements OnInit{
   userId!: number;
   user!: User;
   checkCart: boolean = false;
+  username!: string;
+  currentUser!: string;
+  role!: string;
+  roles: Roles = new Roles();
+  isLoggedIn: boolean = false;
+  isSeller: boolean = false;
+  isBuyer: boolean = false;
+  isAdmin:boolean = false;
+  isPartner: boolean = false;
   ngOnInit(): void {
+    this.loadHeader();
     // @ts-ignore
-    this.userId = sessionStorage.getItem("user.id")
     this.imageService.findAllFilterStore(this.itemStoreId).subscribe(data => {
       this.listImageFilter = data;
       this.findAllCart(this.itemStoreId,1);
@@ -35,7 +46,8 @@ export class HomeHeaderComponent implements OnInit{
 
   constructor(private imageService: ImageService,
               private cartService: CartService,
-              private userService: UserService) {
+              private userService: UserService,
+              private tokenStorageService: TokenStorageService,) {
   }
   userDetail(userId:number){
     this.userService.findUserById(userId).subscribe(data=>{
@@ -62,6 +74,35 @@ export class HomeHeaderComponent implements OnInit{
   filterProduct() {
     for (let img of this.listImageFilter) {
       this.map.set(img.product.id,img)
+    }
+  }
+
+  loadHeader(): void {
+    if (this.tokenStorageService.getToken()) {
+      this.currentUser = this.tokenStorageService.getUser().username;
+      this.role = this.tokenStorageService.getUser().roles[0];
+      this.roles = this.tokenStorageService.getUser().roles[0];
+      this.username = this.tokenStorageService.getUser().username;
+    }
+    console.log(this.role)
+    this.isLoggedIn = (this.username != null);
+    this.isBuyer = (this.roles.authority == "BUYER")
+    this.isAdmin =(this.roles.authority == "ADMIN")
+    this.isSeller =  (this.roles.authority == "SELLER" )
+    this.isPartner = (this.roles.authority == "PARTNER")
+    this.getUsernameAccount();
+
+  }
+
+  logOut() {
+    this.tokenStorageService.signOut();
+    this.isLoggedIn = false;
+    this.ngOnInit();
+  }
+
+  getUsernameAccount(){
+    if (this.tokenStorageService.getToken()) {
+      this.userId = this.tokenStorageService.getUser().id;
     }
   }
 }

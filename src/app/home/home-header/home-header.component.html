@@ -77,26 +77,6 @@
         </div>
       </li>
     </ul>
-    <ul class="drop_user top_menu">
-      <li>
-        <div class="dropdown user clearfix">
-          <a data-toggle="dropdown">
-            <figure><img src="assets/img/avatar1.jpg" alt=""></figure>
-            <span style="padding-right: 5px">{{user.username}}</span>
-          </a>
-          <div class="dropdown-menu">
-            <div class="dropdown-menu-content">
-              <ul>
-                <li><a href="#0" [routerLink]="['/detail/user',user.id]"><i class="icon_cog"></i>Dashboard</a></li>
-                <li><a href="#0"><i class="fa-brands fa-shopify"></i>Shop</a></li>
-                <li><a href="#0"><i class="icon_key"></i>Log out</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- /dropdown -->
-      </li>
-    </ul>
     <!-- /top_menu -->
     <a href="#0" class="open_close">
       <i class="icon_menu"></i><span>Menu</span>
@@ -123,10 +103,23 @@
             <li><a href="confirm.html">Confirm Order</a></li>
           </ul>
         </li>
-        <li class="submenu">
-          <a href="#0" class="show-submenu">Other Pages</a>
+        <li class="submenu" [hidden]="!isAdmin">
+          <a href="" class="show-submenu">Manager</a>
           <ul>
-            <li><a href="admin_section/index.html" target="_blank">Admin Section</a></li>
+            <li><a href="/admin">User</a></li>
+            <li><a href="">Confirm Order</a></li>
+          </ul>
+        </li>
+        <li class="submenu" [hidden]="isLoggedIn">
+          <a href="accounts/login" class="show-submenu">Login</a>
+        </li>
+        <li class="submenu" [hidden]="!isLoggedIn">
+          <a href="#0" class="show-submenu">Welcome {{username}}</a>
+          <ul>
+            <li [hidden]="!isBuyer"><a>My Profile</a></li>
+            <li [hidden]="!isSeller"><a>My Profile1</a></li>
+            <li [hidden]="!isPartner"><a>My Profile2</a></li>
+            <li><a href="" (click)="logOut()">Logout</a></li>
           </ul>
         </li>
       </ul>
