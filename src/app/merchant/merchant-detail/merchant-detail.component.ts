@@ -61,7 +61,7 @@ export class MerchantDetailComponent implements OnInit {
 
   checkRole() {
     for (let i = 0; i < this.user.roles.length; i++) {
-      if (this.user.roles[i].name == "SELLER") {
+      if (this.user.roles[i].name == "MERCHANT") {
         this.role = this.user.roles[i].name;
       }
     }
