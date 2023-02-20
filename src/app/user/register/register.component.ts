@@ -71,6 +71,9 @@ export class RegisterComponent implements OnInit {
     let j: number = 0;
     let k: number = 0;
     this.user = this.formUser.value
+    if (this.user.username == ''|| this.user.username == null || this.user.password == ''|| this.user.password == null || this.user.email == ''|| this.user.email == null || this.user.phone == ''|| this.user.phone == null){
+      Swal.fire("Please enter enough information")
+    }else{
     for (let e of this.listEmail) {
       if (this.user.email == e) {
         i++
@@ -96,6 +99,7 @@ export class RegisterComponent implements OnInit {
           if (i == 0) {
             this.userService.save(this.user).subscribe()
             Swal.fire("Your account has been created successfully, please login ")
+            this.router.navigate(['accounts/login'])
           } else {
             Swal.fire('Email already exist, please re-enter!')
           }
@@ -107,7 +111,7 @@ export class RegisterComponent implements OnInit {
       }
     } else {
       Swal.fire("Re-entered password is not the same, please re-enter")
-    }
+    }}
   }
   login(){
     this.router.navigate(['accounts/login'])
