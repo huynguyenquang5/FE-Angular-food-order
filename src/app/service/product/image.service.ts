@@ -8,13 +8,12 @@ const apiUrl = environment.apiUrl
   providedIn: 'root'
 })
 export class ImageService {
-
   constructor(private httpClient: HttpClient) {}
   save(image: Image): Observable<any>{
-    return this.httpClient.post<Image>(`http://localhost:8080/products/create`, image)
+    return this.httpClient.post<Image>(`http://localhost:8080/images/create`, image)
   }
   create(image: Image): Observable<any>{
-    return this.httpClient.post<Image>(`http://localhost:8080/images/create`, image)
+    return this.httpClient.post<Image>(`http://localhost:8080/images/add`, image)
   }
   findAllByProduct(productId: number):Observable<Image[]>{
     return this.httpClient.get<Image[]>(`http://localhost:8080/images/product/${productId}`);

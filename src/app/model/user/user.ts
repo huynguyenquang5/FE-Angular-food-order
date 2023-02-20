@@ -10,6 +10,7 @@ export interface User {
   email: string
   wallet: number
   status: number
+  confirmPassword:string
   roles: Role[]
 
 }

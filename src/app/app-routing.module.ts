@@ -11,6 +11,10 @@ import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admi
 import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.component";
 import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-partner-pending.component";
 import {MerchantStoreComponent} from "./merchant/merchant-store/merchant-store.component";
+import {LoginComponent} from "./user/login/login.component";
+import {RegisterComponent} from "./user/register/register.component";
+import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
+import {AdminProductComponent} from "./admin/admin-product/admin-product.component";
 import {OrderComponent} from "./cart/order/order.component";
 
 const routes: Routes = [
@@ -39,7 +43,7 @@ const routes: Routes = [
     component: AdminPartnerPendingComponent
   },
   {
-    path:"", component: HomeBodyComponent
+    path: "", component: HomeBodyComponent
   },
   {
     path: 'store/:storeId',
@@ -48,16 +52,43 @@ const routes: Routes = [
   {
     path: 'store/user/:userId',
     component: MerchantStoreComponent
-  },{
-  path:'update/:id',
+  },
+  {
+    path: 'product/create',
+    component: ProductCreateComponent
+  },
+  {
+    path: 'product',
+    component: AllProductComponent
+  },
+  {
+    path: 'update/:id',
     component: UpdateProductComponent
-  },{
-  path:'products/store/:id',
+  },
+  {
+    path: 'products/store/:id',
     component: AllProductComponent
   },{
-  path:'products/create',
+    path: 'products/create/:id',
     component: ProductCreateComponent
-  }];
+  },{
+  path: 'accounts/login',
+    component: LoginComponent
+  },{
+  path: 'accounts/register',
+    component: RegisterComponent
+  }
+  ,
+  {
+    path: 'users/merchant/:userId',
+    component: MerchantDetailComponent
+  },
+  {
+    path: 'admin/products',
+    component: AdminProductComponent
+  },
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,{scrollPositionRestoration: 'enabled'})],

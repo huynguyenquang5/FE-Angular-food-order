@@ -43,7 +43,7 @@
 
     &:before {
         content: '';
-        background: url(../img/shape_element_2.svg) no-repeat 0 0;
+        background: url(src/login-css-js-img/img/shape_element_2.svg) no-repeat 0 0;
         position: absolute;
         display: block;
         width: 195px;
@@ -178,7 +178,7 @@
     position: relative;
     @include mobile {height: 560px;}
   }
-    
+
   .owl-carousel .owl-slide-animated {
      @include transform (translateX(20px));
     opacity: 0;
@@ -245,7 +245,7 @@
     position: absolute;
     right: 20px;
     bottom: 80px;
-    background: url(../img/drag_icon.svg) 0 0 no-repeat;
+    background: url(src/login-css-js-img/img/drag_icon.svg) 0 0 no-repeat;
     width: 50px;
     height: 30px;
     opacity: 0.6;
@@ -327,29 +327,29 @@
         font-weight: 500;
         @include transform (translateY(20px) translateZ(0));
         @include transition-default-cubic-bezier;
-        
+
       }
-    }   
+    }
     img {
       @include transition-default;
        @include transform (scale(1.05));
-      
-      
+
+
     }
     &:hover img {
        @include transform (scale(1));
-      
+
     }
     &:hover h2 {
       @include transform (translateY(-5px) translateZ(0));
-      
+
     }
     &:hover p {
       opacity: 0.8;
       transition-delay: 0.2s;
       @include transform (translateY(0) translateZ(0));
-      
-      
+
+
     }
   }
 }
@@ -419,7 +419,7 @@
     .shape_element {
         position: absolute;
         z-index: 9;
-        background: url(../img/shape_element_1.svg) no-repeat;
+        background: url(src/login-css-js-img/img/shape_element_1.svg) no-repeat;
 
         @include mobile {
             display: none;
@@ -470,7 +470,7 @@
 
 @media (max-width: 1024px) {
     #hero_video {
-        background: #ededed url(../img/home_section_1.jpg) center center no-repeat;
+        background: #ededed url(src/login-css-js-img/img/home_section_1.jpg) center center no-repeat;
         @include background-size(cover);
         background-position: center;
     }

@@ -13,17 +13,25 @@ import {environment} from "../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { AllProductComponent } from './product/all-product/all-product.component';
+import {AllProductComponent} from './product/all-product/all-product.component';
 import {AdminUserComponent} from "./admin/admin-user/admin-user.component";
 import {AdminMerchantComponent} from "./admin/admin-merchant/admin-merchant.component";
 import {AdminMerchantPendingComponent} from "./admin/admin-merchant-pending/admin-merchant-pending.component";
 import {AdminNavComponent} from "./admin/admin-nav/admin-nav.component";
 import {AdminPartnerComponent} from "./admin/admin-partner/admin-partner.component";
 import {AdminPartnerPendingComponent} from "./admin/admin-partner-pending/admin-partner-pending.component";
-import { HomeFilterComponent } from './home/home-filter/home-filter.component';
-import { MerchantStoreComponent } from './merchant/merchant-store/merchant-store.component';
-import { UpdateProductComponent } from './product/update-product/update-product.component';
+import {HomeFilterComponent} from './home/home-filter/home-filter.component';
+import {MerchantStoreComponent} from './merchant/merchant-store/merchant-store.component';
+import {UpdateProductComponent} from './product/update-product/update-product.component';
+import {LoginComponent} from './user/login/login.component';
+import {RegisterComponent} from "./user/register/register.component";
+import {MerchantNavComponent} from './merchant/merchant-nav/merchant-nav.component';
+import {DemoComponent} from './demo/demo.component';
+import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
+import {AdminProductComponent} from './admin/admin-product/admin-product.component';
 import { OrderComponent } from './cart/order/order.component';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { ListOrderComponent } from './user/list-order/list-order.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +51,18 @@ import { OrderComponent } from './cart/order/order.component';
     AdminPartnerPendingComponent,
     MerchantStoreComponent,
     HomeFilterComponent,
-    OrderComponent
+    OrderComponent,
+    HomeFilterComponent,
+    LoginComponent,
+    RegisterComponent,
+    MerchantDetailComponent,
+    HomeFilterComponent,
+    MerchantNavComponent,
+    DemoComponent,
+    AdminProductComponent,
+    UserDetailComponent,
+    ListOrderComponent
+
 
   ],
     imports: [

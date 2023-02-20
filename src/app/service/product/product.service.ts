@@ -18,5 +18,15 @@ export class ProductService {
   update(product: Product, id: number): Observable<any>{
     return this.httpClient.put<Product>(`http://localhost:8080/products/${id}`, product)
   }
+  findAll(){
+    return this.httpClient.get<Product[]>(`http://localhost:8080/products`)
+  }
+  findAllByCategoriesId(id : number){
+    return this.httpClient.get<Product[]>(`http://localhost:8080/admin/products/${id}`)
+  }
+  findAllByName(name: string){
+    return this.httpClient.get<Product[]>(`http://localhost:8080/products/search/${name}`)
+  }
+
 
 }

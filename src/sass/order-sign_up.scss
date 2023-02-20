@@ -74,7 +74,7 @@
     }
 
     &#paypal {
-        background: #eeeeee url(../img/paypal_2.svg) center right no-repeat;
+        background: #eeeeee url(src/login-css-js-img/img/paypal_2.svg) center right no-repeat;
     }
 }
 
@@ -158,7 +158,7 @@
 }
 
 #register_bg {
-    background: #ccc url(../img/access_bg.jpg) center center no-repeat fixed;
+    background: #ccc url(src/login-css-js-img/img/access_bg.jpg) center center no-repeat fixed;
     @include background-size(cover);
     min-height: 100vh;
     width: 100%;

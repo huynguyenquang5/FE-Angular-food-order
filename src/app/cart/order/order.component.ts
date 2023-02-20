@@ -14,6 +14,7 @@ import {Store} from "../../model/store/store";
 import {AddressService} from "../../service/user/address.service";
 // @ts-ignore
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import {UserService} from "../../service/user/user.service";
 
 @Component({
   selector: 'app-order',
@@ -24,7 +25,8 @@ export class OrderComponent implements OnInit{
   ngOnInit(): void {
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
     // @ts-ignore
-    this.user = sessionStorage.getItem("user")
+    this.userId = sessionStorage.getItem("user.id");
+    this.userDetail(parseInt(this.userId));
     // @ts-ignore
     this.user = this.us
     this.toDay = formatDate(this.date, 'dd/MM/yyyy', 'en-US');
@@ -37,12 +39,14 @@ export class OrderComponent implements OnInit{
               private routerActive : ActivatedRoute,
               private storeService: StoreService,
               private cartService: CartService,
-              private addressService: AddressService,) {
+              private addressService: AddressService,
+              private userService:UserService) {
   }
   listAddress: Address[] = [];
   listCart: Cart[] = [];
   total:number = 0;
   user!:User;
+  userId!:string;
   store!:Store;
   date =  Date.now();
   toDay!:string;
@@ -52,6 +56,12 @@ export class OrderComponent implements OnInit{
     name: "Minh",
     email: "minh@gmail.com",
     phone: "0345674235"
+  }
+
+  userDetail(userId: number){
+    this.userService.findUserById(userId).subscribe(data=>{
+      this.user = data;
+    })
   }
   findAllCart(storeId:number,userId:number){
     this.cartService.findAllByStore(storeId,userId).subscribe(data =>{

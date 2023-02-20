@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Image} from "../../model/product/image";
 import {Cart} from "../../model/cart/cart";
+import {Payment} from "../../model/cart/payment";
 const apiUrl = environment.apiUrl
 
 @Injectable({
@@ -26,5 +27,8 @@ export class CartService {
   }
   paymentOrder(userId:number,storeId:number,addressId:number):Observable<any>{
     return this.http.get<any>(`${apiUrl}/cart/payment-cart/store/${storeId}/user/${userId}/address/${addressId}`);
+  }
+  paymentsUser(userId:number):Observable<Payment[]>{
+    return this.http.get<Payment[]>(`${apiUrl}/cart/payment-order/user/${userId}`);
   }
 }

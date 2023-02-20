@@ -31,7 +31,6 @@ export class AllProductComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("id"));
     this.findAllProduct(this.storeId)
     this.formImage = new FormGroup({
@@ -40,7 +39,6 @@ export class AllProductComponent implements OnInit {
         id: new FormControl('')
       })
     })
-
   }
 
   product !: Product;
@@ -63,8 +61,8 @@ export class AllProductComponent implements OnInit {
   }
 
   findAllProduct(id: number) {
-    // this.productService.findAllByStore(id).subscribe((data) => {
-    this.productService.findAll().subscribe((data) => {
+    this.productService.findAllByStore(id).subscribe((data) => {
+    // this.productService.findAll().subscribe((data) => {
         this.listProduct = data
         this.listProducts = data
       }

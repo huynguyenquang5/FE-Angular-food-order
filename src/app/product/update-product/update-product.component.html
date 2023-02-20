@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-  <a class="navbar-brand" href="index.html"><img src="img/logo.svg" alt="" width="167" height="36"></a>
+  <a class="navbar-brand" href="index.html"><img src="../../../login-css-js-img/img/logo.svg" alt="" width="167" height="36"></a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
           data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
           aria-label="Toggle navigation">
@@ -269,7 +269,7 @@
           </div>
         </div>
         <button class="btn btn-info" type="submit">Update information</button>
-        <button class="btn btn-secondary" [routerLink]="['/products/store', product.store.id]">Back</button>
+        <button class="btn btn-secondary" [routerLink]="['/products/store', this.storeId]">Back</button>
 
       </form>
       <!-- /row-->

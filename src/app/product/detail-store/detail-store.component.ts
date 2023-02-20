@@ -11,6 +11,7 @@ import {CartService} from "../../service/cart/cart.service";
 import {Message} from "../../model/message/message";
 import {User} from "../../model/user/user";
 import {Cart} from "../../model/cart/cart";
+import { UserService } from 'src/app/service/user/user.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class DetailStoreComponent implements OnInit {
   ngOnInit(): void {
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
     // @ts-ignore
-    this.user = sessionStorage.getItem("user");
+    this.userId = sessionStorage.getItem("user.id");
+    this.userDetail(this.userId);
     this.storeService.findById(this.storeId).subscribe(data => {
       this.store = data
       this.imageService.findAllFilterStore(this.store.id).subscribe(data =>{
@@ -39,10 +41,11 @@ export class DetailStoreComponent implements OnInit {
               private routerActive : ActivatedRoute,
               private storeService: StoreService,
               private cartService: CartService,
-              private router: Router) {
+              private userService: UserService) {
   }
   show : boolean = false;
   storeId !:number;
+  userId !:number;
   user!:User;
   listProduct : Product[] = [];
   listProductMains : Image[] = [];
@@ -74,6 +77,11 @@ export class DetailStoreComponent implements OnInit {
       this.listImage.pop();
       this.product = p;
       this.show = true;
+    })
+  }
+  userDetail(userId:number){
+    this.userService.findUserById(userId).subscribe(data=>{
+      this.user = data;
     })
   }
 
