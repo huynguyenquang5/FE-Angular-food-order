@@ -16,7 +16,7 @@ export class HomeBodyComponent implements OnInit{
   stores : Store[] = [];
   listImg : Image[] = [];
   ngOnInit(): void {
-    this.findAllImg()
+    this.findAllTopFood()
     this.findAllStore()
     this.findAllStore()
   }
@@ -34,8 +34,8 @@ export class HomeBodyComponent implements OnInit{
       this.stores = data;
     })
   }
-  findAllImg(){
-    this.imageService.findAllFilter().subscribe(data =>{
+  findAllTopFood(){
+    this.imageService.findAllTopFood().subscribe(data =>{
       this.listImg = data;
     })
   }

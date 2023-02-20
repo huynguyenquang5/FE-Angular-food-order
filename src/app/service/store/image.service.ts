@@ -15,6 +15,9 @@ export class ImageService {
   findAllFilter():Observable<Image[]>{
     return this.http.get<Image[]>(`${apiUrl}/images/filters`);
   }
+  findAllTopFood():Observable<Image[]>{
+    return this.http.get<Image[]>(`${apiUrl}/images/top-food`);
+  }
   findAllFilterStore(storeId: number):Observable<Image[]>{
     return this.http.get<Image[]>(`${apiUrl}/images/filters/${storeId}`);
   }
