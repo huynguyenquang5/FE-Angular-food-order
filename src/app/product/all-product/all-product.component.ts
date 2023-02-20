@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ProductService} from "../../service/product.service";
+import {ProductService} from "../../service/store/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from "../../model/product/product";
 import {Image} from "../../model/product/image";
@@ -127,6 +127,9 @@ export class AllProductComponent implements OnInit {
     ).subscribe()
     this.showImage(this.productId)
     this.path = ""
+    Swal.fire(
+      "Success"
+    )
   }
 
   editImage(id: number) {
@@ -181,6 +184,8 @@ export class AllProductComponent implements OnInit {
       },
       buttonsStyling: false
     })
+
+    // @ts-ignore
     swalWithBootstrapButtons.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",

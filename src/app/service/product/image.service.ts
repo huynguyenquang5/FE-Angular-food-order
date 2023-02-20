@@ -27,5 +27,14 @@ export class ImageService {
   deleteProduct(id: number):Observable<any>{
     return this.httpClient.delete<any>(`${apiUrl}/images/delete/product/${id}`);
   }
+  findAllFilter():Observable<Image[]>{
+    return this.httpClient.get<Image[]>(`${apiUrl}/images/filters`);
+  }
+  findAllByCategoryId(id: number): Observable<Image[]>{
+    return this.httpClient.get<Image[]>(`${apiUrl}/images/category/${id}`)
+  }
+  findAllByProductName(name: string): Observable<Image[]>{
+    return this.httpClient.get<Image[]>(`${apiUrl}/images/product_name/${name}`)
+  }
 
 }

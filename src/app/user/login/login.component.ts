@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {AuthService} from "../../service/security/auth.service";
 import {TokenStorageService} from "../../service/security/token-storage.service";
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   username!: string
   errorMessage = '';
   status!: number;
+  userCheck!: User
 
 
 
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private routerActive: ActivatedRoute,
               private authService: AuthService,
-              private tokenStorageService: TokenStorageService
+              private tokenStorageService: TokenStorageService,
+
   ) {
 
   }
@@ -45,25 +48,33 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.formUser.value).subscribe(
+  this.authService.login(this.formUser.value).subscribe(
       data => {
+        this.userCheck= data
+        console.log(this.userCheck)
+        if (this.userCheck.status == 0){
+          Swal.fire(
+            "Your account has been locked, please contact admin to unlock it"
+          )
+        }else {this.tokenStorageService.saveTokenSession(data.accessToken);
+          this.tokenStorageService.saveUserLocal(data);
+          this.authService.isLoggedIn = true;
+          this.username = this.tokenStorageService.getUser().username;
+          this.roles = this.tokenStorageService.getUser().roles;
+          console.log(this.tokenStorageService.getUser())
+          this.formUser.reset();}
 
-        this.tokenStorageService.saveTokenSession(data.accessToken);
-        this.tokenStorageService.saveUserLocal(data);
-        this.authService.isLoggedIn = true;
-        this.username = this.tokenStorageService.getUser().username;
-        this.roles = this.tokenStorageService.getUser().roles;
-        console.log(this.tokenStorageService.getUser())
-        this.formUser.reset();
       },
       err => {
         this.errorMessage = err.error.message;
         this.authService.isLoggedIn = false;
-        alert("Wrong")
+        Swal.fire("Username or password is wrong, please re-enter")
         ;
       }
-    );
-  }
+    );}
+
+
+
 
 
 }

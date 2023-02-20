@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../../service/product.service";
-import {ImageService} from "../../service/image.service";
+import {ProductService} from "../../service/store/product.service";
+import {ImageService} from "../../service/store/image.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {StoreService} from "../../service/store.service";
+import {StoreService} from "../../service/store/store.service";
 import {Product} from "../../model/product/product";
 import {Image} from "../../model/product/image";
 import {FormControl, FormGroup} from "@angular/forms";

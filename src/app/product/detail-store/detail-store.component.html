@@ -1,5 +1,139 @@
 <body data-spy="scroll" data-target="#secondary_nav" data-offset="75">
-<app-home-header></app-home-header>
+<header class="header black_nav clearfix element_to_stick"
+        style="background-color: #ffffff;box-shadow: 0 0 1px 0 #a8a5a5">
+  <div class="container">
+    <div id="logo">
+      <a routerLink="">
+        <img src="assets/img/logo_sticky.svg" width="162" height="35" alt="">
+      </a>
+    </div>
+    <div class="layer"></div><!-- Opacity Mask Menu Mobile -->
+    <ul class="top_menu">
+      <li class="nav-item dropdown" style="border: 0">
+        <a class="nav-link dropdown-toggle mr-lg-2" href="#" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-fw fa-bell"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="alertsDropdown"
+             style="width: 300px;max-height: 500px;box-shadow: 5px 6px 6px 6px #888888;overflow: auto">
+          <h6 class="dropdown-header">New Alerts:</h6>
+          <div class="col-md-12"     >
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item alert-my-custom" href="#">
+              <div style="padding: 0;margin: -8px 0">
+                 <span class="text-success">
+                              <strong><i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                            </span>
+                <div class="small"
+                     style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
+                  oi doi oi vai ca lon luon cai dit con me may chan vai ca lon luon
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="dropdown-divider"></div>
+        </div>
+      </li>
+    </ul>
+    <ul class="top_menu">
+      <li class="nav-item dropdown" style="border: none">
+        <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <i class="fa-solid fa-cart-shopping" style="padding-right: 15px"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="alertsDropdown"
+             style="width: 310px;max-height: 700px;margin: 5px;box-shadow: 5px 8px 8px 8px #888888;">
+          <h6 class="dropdown-header">Cart :</h6>
+          <div class="dropdown-divider"></div>
+          <div style="width: 100%;max-height: 500px;min-height: 200px;overflow: auto;">
+            <div class="col-md-12">
+              <div >
+                <div  *ngFor="let i of listCart">
+                  <div class="row" style="height: 60px;">
+                    <div class="col-md-3">
+                      <img src="{{map.get(i.product.id).name}}" alt="" style="width: 60px;height: 60px">
+                    </div>
+                    <div class="col-md-7" style="display: flex;">
+                  <span style="padding: 8px;font-size: 13px;">{{i.product.name}}
+                    <p style="margin-top: 5px;font-size: 14px;font-weight: 600">{{i.quantity}} x
+                      ${{i.product.productMethod.price}}</p>
+                  </span>
+                    </div>
+                    <div class="col-md-2" (click)="onDeleteProduct(i.product)">
+                      <span style="font-size: 20px;font-weight: 400;color: red">X</span>
+                    </div>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="clearfix add_bottom_15" style="margin-top: 15px"><strong>Total</strong><span> : ${{total}}</span>
+          </div>
+          <div style="margin-right: 15px">
+            <div class="btn-cart-custom" [routerLink]="['/order/store',storeId]">View Cart</div>
+            <div class="btn-cart-custom-outline " [routerLink]="['/order/store',storeId]">Checkout</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <ul class="drop_user top_menu">
+      <li>
+        <div class="dropdown user clearfix">
+          <a data-toggle="dropdown">
+            <figure><img src="assets/img/avatar1.jpg" alt=""></figure>
+            <span style="padding-right: 5px">{{user.username}}</span>
+          </a>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-content">
+              <ul>
+                <li><a href="#0" [routerLink]="['/detail/user',user.id]"><i class="icon_cog"></i>Dashboard</a></li>
+                <li><a href="#0"><i class="fa-brands fa-shopify"></i>Shop</a></li>
+                <li><a href="#0"><i class="icon_key"></i>Log out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /dropdown -->
+      </li>
+    </ul>
+    <!-- /top_menu -->
+    <a href="#0" class="open_close">
+      <i class="icon_menu"></i><span>Menu</span>
+    </a>
+    <nav class="main-menu">
+      <div id="header_menu">
+        <a href="#0" class="open_close">
+          <i class="icon_close"></i><span>Menu</span>
+        </a>
+        <a href="index.html"><img src="assets/img/logo.svg" width="162" height="35" alt=""></a>
+      </div>
+      <ul>
+        <li class="submenu">
+          <a href="#0" class="show-submenu">Home</a>
+          <ul>
+            <li><a href="index-2.html">Search by Keyword</a></li>
+            <li><a href="header-cart-top.html">Header Cart Top</a></li>
+          </ul>
+        </li>
+        <li class="submenu">
+          <a href="#0" class="show-submenu">Listing</a>
+          <ul>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="confirm.html">Confirm Order</a></li>
+          </ul>
+        </li>
+        <li class="submenu">
+          <a href="#0" class="show-submenu">Other Pages</a>
+          <ul>
+            <li><a href="admin_section/index.html" target="_blank">Admin Section</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
 <main>
   <div >
     <div class="hero_in detail_page background-image" id="background">
@@ -72,14 +206,14 @@
                     </a>
                     <div style="padding-left: 10px">
                       <h4>{{index + 1}}. {{p.product.name}}</h4>
-                      <p>Category: <a class="btn-success">{{p.product.productMethod.category.name}}</a></p>
+                      <p>Category: <a style="color: red">{{p.product.productMethod.category.name}}</a></p>
                     </div>
                   </td>
                   <td>
                     <strong>${{p.product.productMethod.price}}</strong>
                   </td>
                   <td class="options">
-                    <a href="#"><i
+                    <a class="add-cart"  (click)="onAddCart(p)"><i
                       class="icon_plus_alt2"></i></a>
                   </td>
                 </tr>
@@ -113,15 +247,15 @@
                     </a>
                     <div class="flex-md-column" style="padding-left: 10px">
                       <h4>{{index + 1}}. {{p.product.name}}</h4>
-                      <p>Category: <a class="btn-success">{{p.product.productMethod.category.name}}</a></p>
+                      <p>Category: <a  style="color: red">{{p.product.productMethod.category.name}}</a></p>
 
                     </div>
                   </td>
                   <td>
                     <strong>${{p.product.productMethod.price}}</strong>
                   </td>
-                  <td class="options">
-                    <a href="#"><i
+                  <td class="options" >
+                    <a class="add-cart" (click)="onAddCart(p)"><i
                       class="icon_plus_alt2"></i></a>
                   </td>
                 </tr>
@@ -134,115 +268,26 @@
         <!-- /col -->
 
         <div class="col-lg-4" id="sidebar_fixed">
-          <div class="box_order mobile_fixed">
-            <div class="head">
-              <h3>Order Summary</h3>
+          <div class="box_order mobile_fixed" >
+            <div class="head" style="background-color: #f13d3d">
+              <h3 ><p style="color: whitesmoke;padding: 0;margin: 0">Order Summary</p></h3>
               <a href="#0" class="close_panel_mobile"><i class="icon_close"></i></a>
             </div>
             <!-- /head -->
             <div class="main">
-              <ul class="clearfix">
-                <li><a href="#0">1x Enchiladas</a><span>$11</span></li>
-                <li><a href="#0">2x Burrito</a><span>$14</span></li>
-                <li><a href="#0">1x Chicken</a><span>$18</span></li>
-                <li><a href="#0">2x Corona Beer</a><span>$9</span></li>
-                <li><a href="#0">2x Cheese Cake</a><span>$11</span></li>
+              <ul class="clearfix col-md-12" style="max-height: 350px;overflow: auto;overflow-x: hidden;">
+                <li *ngFor="let c of listCart" class="row"><p class="col-md-1"></p><a class="col-md-2"
+                   (click)="onActionQuantity(c)">{{c.quantity}}x </a>
+                  <a class="col-md-6" (click)="onDeleteProduct(c.product)">{{c.product.name}}</a>
+                  <span class="col-md-2" style="float: right">${{c.price}}</span></li>
               </ul>
-              <ul class="clearfix">
-                <li>Subtotal<span>$56</span></li>
+              <ul class="clearfix"><hr>
+                <li>Subtotal<span>${{total}}</span></li>
                 <li>Delivery fee<span>$10</span></li>
-                <li class="total">Total<span>$66</span></li>
+                <li class="total">Total<span>${{total+10}}</span></li>
               </ul>
-              <div class="row opt_order">
-                <div class="col-6">
-                  <label class="container_radio">Delivery
-                    <input type="radio" value="option1" name="opt_order" checked>
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <div class="col-6">
-                  <label class="container_radio">Take away
-                    <input type="radio" value="option1" name="opt_order">
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-              </div>
-              <div class="dropdown day">
-                <a href="#" data-toggle="dropdown">Day <span id="selected_day"></span></a>
-                <div class="dropdown-menu">
-                  <div class="dropdown-menu-content">
-                    <h4>Which day delivered?</h4>
-                    <div class="radio_select chose_day">
-                      <ul>
-                        <li>
-                          <input type="radio" id="day_1" name="day" value="Today">
-                          <label for="day_1">Today<em>-40%</em></label>
-                        </li>
-                        <li>
-                          <input type="radio" id="day_2" name="day" value="Tomorrow">
-                          <label for="day_2">Tomorrow<em>-40%</em></label>
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- /people_select -->
-                  </div>
-                </div>
-              </div>
-              <!-- /dropdown -->
-              <div class="dropdown time">
-                <a href="#" data-toggle="dropdown">Time <span id="selected_time"></span></a>
-                <div class="dropdown-menu">
-                  <div class="dropdown-menu-content">
-                    <h4>Lunch</h4>
-                    <div class="radio_select add_bottom_15">
-                      <ul>
-                        <li>
-                          <input type="radio" id="time_1" name="time" value="12.00am">
-                          <label for="time_1">12.00<em>-40%</em></label>
-                        </li>
-                        <li>
-                          <input type="radio" id="time_2" name="time" value="08.30pm">
-                          <label for="time_2">12.30<em>-40%</em></label>
-                        </li>
-                        <li>
-                          <input type="radio" id="time_3" name="time" value="09.00pm">
-                          <label for="time_3">1.00<em>-40%</em></label>
-                        </li>
-                        <li>
-                          <input type="radio" id="time_4" name="time" value="09.30pm">
-                          <label for="time_4">1.30<em>-40%</em></label>
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- /time_select -->
-                    <h4>Dinner</h4>
-                    <div class="radio_select">
-                      <ul>
-                        <li>
-                          <input type="radio" id="time_5" name="time" value="08.00pm">
-                          <label for="time_1">20.00<em>-40%</em></label>
-                        </li>
-                        <li>
-                          <input type="radio" id="time_6" name="time" value="08.30pm">
-                          <label for="time_2">20.30<em>-40%</em></label>
-                        </li>
-                        <li>
-                          <input type="radio" id="time_7" name="time" value="09.00pm">
-                          <label for="time_3">21.00<em>-40%</em></label>
-                        </li>
-                        <li>
-                          <input type="radio" id="time_8" name="time" value="09.30pm">
-                          <label for="time_4">21.30<em>-40%</em></label>
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- /time_select -->
-                  </div>
-                </div>
-              </div>
-              <!-- /dropdown -->
               <div class="btn_1_mobile">
-                <a href="order.html" class="btn_1 gradient full-width mb_5">Order Now</a>
+                <a [routerLink]="['/order/store',storeId]" class="btn_1 gradient full-width mb_5">Order Now</a>
                 <div class="text-center"><small>No money charged on this steps</small></div>
               </div>
             </div>
@@ -276,13 +321,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="col-lg-12">
+        <div class="row">
           <!--        <slider image food>-->
-          <div class="col-lg-7" style="float: left">
+          <div class="col-lg-7">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner" *ngIf="show">
                 <div class="carousel-item active" style="justify-content: center">
-                  <img class="d-block w-100" src="{{img}}"
+                  <img class="d-block w-100" src="{{img.name}}"
                        alt="Second slide"
                        style="width: 390px; height: 350px ; border-radius: 3%;border-style: outset">
                 </div>
@@ -303,7 +348,7 @@
               </a>
             </div>
           </div>
-          <div style="float: left;" class="col-lg-5">
+          <div class="col-lg-5">
             <table class="table table-striped">
               <tr>
                 <td><p>Price :  ${{product?.productMethod?.price}}</p></td>
@@ -318,6 +363,15 @@
                   <p>{{product?.productMethod?.description}}</p></td>
               </tr>
             </table>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-5 btn-cart-custom" style="font-size: 16px; margin-top: 35px;font-weight: 500"
+                      (click)="onAddCart(img)">
+                  Add to cart
+                </div>
+              </div>
+            </div>
           </div>
           <!--    </>slider image food>-->
         </div>
@@ -328,6 +382,5 @@
   </div>
 </div>
 <!-- /modal detail -->>
-
 </body>
 

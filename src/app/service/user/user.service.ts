@@ -6,6 +6,7 @@ import {environment} from "../../../environments/environment";
 import {Store} from "../../model/store/store";
 
 const apiUrl = environment.apiUrl
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,5 +30,9 @@ export class UserService {
 
   updateUser(id: number, user: User): Observable<User> {
     return this.httpClient.put<User>(`${apiUrl}/users/${id}`, user);
+  }
+  findUserByName(name: string): Observable<User>{
+    return this.httpClient.get<User>(`${apiUrl}/users/${name}`)
+
   }
 }
