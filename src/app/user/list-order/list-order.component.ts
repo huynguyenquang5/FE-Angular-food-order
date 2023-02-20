@@ -18,7 +18,7 @@ export class ListOrderComponent implements OnInit {
   ngOnInit(): void {
     this.userId = Number(this.routerActive.snapshot.paramMap.get("userId"))
     this.userDetail(this.userId);
-    this.listPaymentByUser(1);
+    this.listPaymentByUser(this.user.id);
   }
 
   constructor(private productService: ProductService,
@@ -29,6 +29,7 @@ export class ListOrderComponent implements OnInit {
               private router: Router,
               private userService: UserService) {
   }
+  paymentModal!:Payment;
   userId !:number;
   user!:User;
   listPayment:Payment[]=[];
@@ -53,7 +54,10 @@ export class ListOrderComponent implements OnInit {
       case 3: status = 'success';break;
     }
     this.cartService.statusPayment(p.id,status).subscribe(data=>{
-      this.listPaymentByUser(1);
+      this.listPaymentByUser(this.user.id);
     })
+  }
+  onModal(p:Payment){
+    this.paymentModal = p;
   }
 }
