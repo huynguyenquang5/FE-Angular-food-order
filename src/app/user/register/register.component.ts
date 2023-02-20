@@ -55,10 +55,10 @@ export class RegisterComponent implements OnInit {
       id: new FormControl(''),
       name: new FormControl('',Validators.required),
       username: new FormControl('', Validators.required),
-      password: new FormControl('',Validators.compose([Validators.required, Validators.min(6)])),
+      password: new FormControl('',Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(8)])),
       phone: new FormControl('', Validators.compose([Validators.required,  Validators.pattern('')])),
-      email: new FormControl(''),
-      confirmPassword: new FormControl(''),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')])),
+      confirmPassword: new FormControl('', Validators.required),
       role: new FormGroup({
         id: new FormControl('')
       })

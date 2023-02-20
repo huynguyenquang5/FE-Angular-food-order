@@ -15,14 +15,15 @@
         <div class="dropdown-menu" aria-labelledby="alertsDropdown"
              style="width: 300px;max-height: 500px;box-shadow: 5px 6px 6px 6px #888888;overflow: auto">
           <h6 class="dropdown-header">New Alerts:</h6>
-          <div class="col-md-12" *ngFor="let i of list">
+          <div class="col-md-12">
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item alert-my-custom" href="#" >
+            <a class="dropdown-item alert-my-custom" href="#">
               <div style="padding: 0;margin: -8px 0">
                  <span class="text-success">
                               <strong><i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
                             </span>
-                <div class="small" style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
+                <div class="small"
+                     style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
                   oi doi oi vai ca lon luon cai dit con me may chan vai ca lon luon
                 </div>
               </div>
@@ -72,26 +73,6 @@
         </div>
       </li>
     </ul>
-    <ul class="drop_user top_menu">
-      <li>
-        <div class="dropdown user clearfix">
-          <a data-toggle="dropdown">
-            <figure><img src="assets/img/avatar1.jpg" alt=""></figure>
-            <span style="padding-right: 5px">Nguyen Ngoc Tu </span>
-          </a>
-          <div class="dropdown-menu">
-            <div class="dropdown-menu-content">
-              <ul>
-                <li><a href="#0"><i class="icon_cog"></i>Dashboard</a></li>
-                <li><a href="#0"><i class="fa-brands fa-shopify"></i>Shop</a></li>
-                <li><a href="#0"><i class="icon_key"></i>Log out</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- /dropdown -->
-      </li>
-    </ul>
     <!-- /top_menu -->
     <a href="#0" class="open_close">
       <i class="icon_menu"></i><span>Menu</span>
@@ -118,10 +99,23 @@
             <li><a href="confirm.html">Confirm Order</a></li>
           </ul>
         </li>
-        <li class="submenu">
-          <a href="#0" class="show-submenu">Other Pages</a>
+        <li class="submenu" [hidden]="!isAdmin">
+          <a href="" class="show-submenu">Manager</a>
           <ul>
-            <li><a href="admin_section/index.html" target="_blank">Admin Section</a></li>
+            <li><a href="/admin">User</a></li>
+            <li><a href="">Confirm Order</a></li>
+          </ul>
+        </li>
+        <li class="submenu" [hidden]="isLoggedIn">
+          <a href="accounts/login" class="show-submenu">Login</a>
+        </li>
+        <li class="submenu" [hidden]="!isLoggedIn">
+          <a href="#0" class="show-submenu">{{username}}</a>
+          <ul>
+            <li [hidden]="!isBuyer"><a>My Profile</a></li>
+            <li [hidden]="!isSeller"><a>My Profile1</a></li>
+            <li [hidden]="!isPartner"><a>My Profile2</a></li>
+            <li><a href="" (click)="logOut()">Logout</a></li>
           </ul>
         </li>
       </ul>
