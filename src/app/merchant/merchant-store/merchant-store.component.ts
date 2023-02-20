@@ -40,16 +40,12 @@ export class MerchantStoreComponent implements OnInit {
     this.storeService.findByUserId(this.userId).subscribe(data => {
       this.store = data
       this.storeId = data.id;
-      console.log(this.store)
-      console.log(this.storeId)
       // @ts-ignore
       this.storeForm.patchValue(this.store);
-      console.log(this.storeForm)
       this.imageService.findAllFilterStore(this.storeId).subscribe(data =>{
         this.listImageFilter = data;
         this.classify(data);
         this.product = this.listProduct[0];
-
       })
     })
   }
@@ -61,14 +57,11 @@ export class MerchantStoreComponent implements OnInit {
               private storage: AngularFireStorage,
               private router: Router,
               private tokenService: TokenStorageService) {
-
+    console.log(this.storeId)
   }
-
-
   listProduct : Product[] = [];
   listProductMains : Image[] = [];
   listProductDrinks : Image[] = [];
-  listImage : Image[] = [];
   listImageFilter : Image[] = [];
   classify(products : Image[]){
     for (let i = 0; i < products.length; i++) {
@@ -79,32 +72,10 @@ export class MerchantStoreComponent implements OnInit {
       }
     }
   }
-  formFood !: FormGroup;
   product !: Product ;
   store !: Store ;
   img !: string;
 
-  onDetailFood(p: Product) {
-    let id :number = p.id;
-    this.imageService.findAllByProduct(id).subscribe(data => {
-      this.listImage = data;
-      this.img = this.listImage[this.listImage.length-1].name;
-      this.listImage.pop();
-      this.product = p;
-      this.show = true;
-    })
-  }
-
-  updateStore(id: number) {
-    // @ts-ignore
-    this.storeService.updateStoreByUserId(id, this.storeForm.value).subscribe(() => {
-      alert("Update Successfully")
-      window.location.reload();
-    }, error => {
-      alert("Something wrong!")
-      console.log(error);
-    })
-  }
   submitImage(event: any){
     if(event.target.files && event.target.files[0]){
       this.imageFile = event.target.files[0];
