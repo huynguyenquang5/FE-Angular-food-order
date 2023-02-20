@@ -18,7 +18,7 @@ export class AdminMerchantComponent implements OnInit {
       for (let i = 0; i < users.length; i++) {
         if (users[i].status == 0 || users[i].status == 1){
           for (let j = 0; j < users[i].roles.length; j++) {
-            if (users[i].roles[j].name == "MERCHANT") {
+            if (users[i].roles[j].name == "SELLER") {
               this.users.push(users[i]);
             }
           }
