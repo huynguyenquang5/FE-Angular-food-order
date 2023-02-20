@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from "../../service/user/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {User} from "../../model/user/user";
@@ -12,7 +12,7 @@ import {AddressService} from "../../service/user/address.service";
   styleUrls: ['./merchant-detail.component.css']
 })
 export class MerchantDetailComponent implements OnInit {
-  userId!: number;
+  @Input() userId!: number;
   user!: User;
   role!: string;
   addresses!: Address[];
@@ -58,7 +58,7 @@ export class MerchantDetailComponent implements OnInit {
 
   checkRole() {
     for (let i = 0; i < this.user.roles.length; i++) {
-      if (this.user.roles[i].name == "MERCHANT") {
+      if (this.user.roles[i].name == "SELLER") {
         this.role = this.user.roles[i].name;
       }
     }

@@ -1,7 +1,6 @@
-<app-merchant-nav></app-merchant-nav>
+<app-merchant-nav [userId]="userId"></app-merchant-nav>
 <div class="content-wrapper">
   <div class="container-fluid">
-    <!-- Breadcrumbs-->
     <div class="row" style="margin-top: 60px">
       <div class="col-md-6">
         <div class="box_general padding_bottom">
@@ -138,7 +137,7 @@
               <p class="text-danger">You are pending for becoming a partner and you cannot change profile.</p>
             </ng-template>
             <div class="mt-2" *ngIf="user?.status == 1">
-              <button data-toggle="modal" data-target="#updateUserModal" class="btn_1 medium">???</button>
+              <button data-toggle="modal" data-target="#updateUserModal" class="btn_1 medium">Save</button>
             </div>
           </form>
         </div>
