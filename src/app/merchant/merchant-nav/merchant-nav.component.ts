@@ -9,12 +9,12 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit} from '@angular/core
   styleUrls: ['./merchant-nav.component.css'],
 })
 export class MerchantNavComponent implements OnInit {
+  userId!: number;
   constructor(private elementRef: ElementRef,
               private tokenStorageService: TokenStorageService,
               private router:Router,
             ) {
-
-
+    this.userId = this.tokenStorageService.getUser().id;
     let s2 = document.createElement("script");
     s2.type = "text/javascript";
     s2.src = "assets/admin_section/vendor/jquery/jquery.min.js";

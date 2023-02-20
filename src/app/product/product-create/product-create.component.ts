@@ -110,10 +110,13 @@ export class ProductCreateComponent implements OnInit {
           this.image.name = url
           this.image.product.store.id = this.storeId
           this.imageService.save(this.image).subscribe(() => {
+            Swal.fire("Create successfully")
+            this.router.navigate(['store/merchant'])
           })
         });
       })
     ).subscribe()
-    Swal.fire("Create successfully")
+
+
   }
 }

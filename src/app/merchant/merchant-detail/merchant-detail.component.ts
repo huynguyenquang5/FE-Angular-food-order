@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../model/user/user";
@@ -13,7 +13,7 @@ import {TokenStorageService} from "../../service/security/token-storage.service"
   styleUrls: ['./merchant-detail.component.css']
 })
 export class MerchantDetailComponent implements OnInit {
-  @Input() userId!: number;
+  userId!: number;
   user!: User;
   role!: string;
   addresses!: Address[];

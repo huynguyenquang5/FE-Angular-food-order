@@ -61,11 +61,11 @@ const routes: Routes = [
     path: "", component: HomeBodyComponent
   },
   {
-    path: 'store/:storeId',
+    path: 'store',
     component: DetailStoreComponent
   },
   {
-    path: 'store/user/:userId',
+    path: 'store/merchant',
     component: MerchantStoreComponent
   },
   {
