@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from "../../service/user/user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../model/user/user";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Address} from "../../model/user/address";
 import {AddressService} from "../../service/user/address.service";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-merchant-detail',
@@ -12,7 +13,7 @@ import {AddressService} from "../../service/user/address.service";
   styleUrls: ['./merchant-detail.component.css']
 })
 export class MerchantDetailComponent implements OnInit {
-  userId!: number;
+  @Input() userId!: number;
   user!: User;
   role!: string;
   addresses!: Address[];
@@ -39,11 +40,13 @@ export class MerchantDetailComponent implements OnInit {
 
   constructor(private userService: UserService,
               private activatedRoute: ActivatedRoute,
-              private addressService: AddressService) {
+              private addressService: AddressService,
+              private tokenStorageService: TokenStorageService,
+              private router:Router) {
   }
 
   ngOnInit() {
-    this.userId = Number(this.activatedRoute.snapshot.paramMap.get("userId"))
+    this.userId = this.tokenStorageService.getUser().id
     // @ts-ignore
     this.addressForm.get("user.id")?.setValue(this.userId);
     this.userService.findById(this.userId).subscribe(data => {
@@ -58,7 +61,7 @@ export class MerchantDetailComponent implements OnInit {
 
   checkRole() {
     for (let i = 0; i < this.user.roles.length; i++) {
-      if (this.user.roles[i].name == "MERCHANT") {
+      if (this.user.roles[i].name == "SELLER") {
         this.role = this.user.roles[i].name;
       }
     }
@@ -201,4 +204,6 @@ export class MerchantDetailComponent implements OnInit {
       window.location.reload();
     })
   }
+
+
 }

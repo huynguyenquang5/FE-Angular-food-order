@@ -14,7 +14,7 @@ import {MerchantStoreComponent} from "./merchant/merchant-store/merchant-store.c
 import {LoginComponent} from "./user/login/login.component";
 import {RegisterComponent} from "./user/register/register.component";
 import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
-import {AdminProductComponent} from "./admin/admin-product/admin-product.component";
+import {ViewerProductComponent} from "./product/viewer-product/viewer-product.component";
 import {OrderComponent} from "./cart/order/order.component";
 import {ListOrderComponent} from "./user/list-order/list-order.component";
 import {UserDetailComponent} from "./user/user-detail/user-detail.component";
@@ -95,12 +95,12 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'users/merchant/:userId',
+    path: 'users/merchant',
     component: MerchantDetailComponent
   },
   {
-    path: 'admin/products',
-    component: AdminProductComponent
+    path: 'view',
+    component: ViewerProductComponent
   },
 
 ];

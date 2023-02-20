@@ -34,7 +34,7 @@
         </div>
       </li>
     </ul>
-    <ul class="top_menu" *ngIf="itemStoreId">
+    <ul class="top_menu">
       <li class="nav-item dropdown" style="border: none">
         <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
@@ -116,9 +116,9 @@
         <li class="submenu" [hidden]="!isLoggedIn">
           <a href="#0" class="show-submenu">Welcome {{username}}</a>
           <ul>
-            <li [hidden]="!isBuyer"><a>My Profile</a></li>
-            <li [hidden]="!isSeller"><a>My Profile1</a></li>
-            <li [hidden]="!isPartner"><a>My Profile2</a></li>
+            <li [hidden]="!isBuyer"><a [routerLink]="['detail/user/', userId]">My Profile</a></li>
+            <li [hidden]="!isSeller"><a [routerLink]="['users/merchant']">My Profile</a></li>
+            <li [hidden]="!isPartner"><a [routerLink]="['users/merchant/', userId]">My Profile</a></li>
             <li><a href="" (click)="logOut()">Logout</a></li>
           </ul>
         </li>

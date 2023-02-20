@@ -28,7 +28,7 @@ import {RegisterComponent} from "./user/register/register.component";
 import {MerchantNavComponent} from './merchant/merchant-nav/merchant-nav.component';
 import {DemoComponent} from './demo/demo.component';
 import {MerchantDetailComponent} from "./merchant/merchant-detail/merchant-detail.component";
-import {AdminProductComponent} from './admin/admin-product/admin-product.component';
+import {ViewerProductComponent} from './product/viewer-product/viewer-product.component';
 import { OrderComponent } from './cart/order/order.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { ListOrderComponent } from './user/list-order/list-order.component';
@@ -60,7 +60,7 @@ import { PaymentDetailComponent } from './cart/payment-detail/payment-detail.com
     HomeFilterComponent,
     MerchantNavComponent,
     DemoComponent,
-    AdminProductComponent,
+    ViewerProductComponent,
     UserDetailComponent,
     ListOrderComponent,
     PaymentDetailComponent

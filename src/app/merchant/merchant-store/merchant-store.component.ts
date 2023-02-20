@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProductService} from "../../service/store/product.service";
 import {ImageService} from "../../service/store/image.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -17,7 +17,7 @@ import {finalize} from "rxjs";
 })
 export class MerchantStoreComponent implements OnInit {
   show : boolean = false;
-  userId !:number;
+  @Input() userId !:number;
   storeId!: number;
   imageFile: any;
   path!: string;

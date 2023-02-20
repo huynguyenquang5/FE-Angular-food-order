@@ -10,10 +10,10 @@ import {databaseInstance$} from "@angular/fire/database";
 
 @Component({
   selector: 'app-admin-product',
-  templateUrl: './admin-product.component.html',
-  styleUrls: ['./admin-product.component.css']
+  templateUrl: './viewer-product.component.html',
+  styleUrls: ['./viewer-product.component.css']
 })
-export class AdminProductComponent implements OnInit{
+export class ViewerProductComponent implements OnInit{
   listProduct!: Product[]
   categories!: Category[]
   listImage!: Image[]
