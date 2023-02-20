@@ -19,6 +19,9 @@ export class StoreService {
   findByUserId(id: number): Observable<Store> {
     return this.http.get<Store>(`${apiUrl}/store/user/${id}`);
   }
+  createStore(store: Store): Observable<Store> {
+    return this.http.post<Store>(`${apiUrl}/store`, store);
+  }
   updateStoreByUserId(id: number, store: Store): Observable<Store> {
     return this.http.put<Store>(`${apiUrl}/store/user/${id}`, store);
   }

@@ -34,7 +34,6 @@ export class AdminPartnerComponent implements OnInit {
 
   activeUser() {
     this.adminService.activeBlockUser(this.id, this.status).subscribe( () => {
-      alert("Active successful");
       window.location.reload();
     }, error => {
       alert("Something wrong");

@@ -33,6 +33,7 @@ import { OrderComponent } from './cart/order/order.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { ListOrderComponent } from './user/list-order/list-order.component';
 import { PaymentDetailComponent } from './cart/payment-detail/payment-detail.component';
+import { MerchantCreateStoreComponent } from './merchant/merchant-create-store/merchant-create-store.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { PaymentDetailComponent } from './cart/payment-detail/payment-detail.com
     ViewerProductComponent,
     UserDetailComponent,
     ListOrderComponent,
-    PaymentDetailComponent
+    PaymentDetailComponent,
+    MerchantCreateStoreComponent
 
 
   ],

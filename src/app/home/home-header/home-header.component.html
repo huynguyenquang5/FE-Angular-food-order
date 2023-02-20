@@ -25,7 +25,7 @@
                             </span>
                 <div class="small"
                      style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
-                  oi doi oi vai ca lon luon cai dit con me may chan vai ca lon luon
+                  testing
                 </div>
               </div>
             </a>
@@ -114,12 +114,12 @@
           <a href="accounts/login" class="show-submenu">Login</a>
         </li>
         <li class="submenu" [hidden]="!isLoggedIn">
-          <a href="#0" class="show-submenu">Welcome {{username}}</a>
+          <a href="#0" class="show-submenu">Welcome! {{username}}</a>
           <ul>
-            <li [hidden]="!isBuyer"><a [routerLink]="['detail/user/', userId]">My Profile</a></li>
-            <li [hidden]="!isSeller"><a [routerLink]="['users/merchant']">My Profile</a></li>
+            <li [hidden]="!isBuyer"><a [routerLink]="['detail/user']">My Profile</a></li>
+            <li [hidden]="!isSeller"><a [routerLink]="['merchant']">My Profile</a></li>
             <li [hidden]="!isPartner"><a [routerLink]="['users/merchant/', userId]">My Profile</a></li>
-            <li><a href="" (click)="logOut()">Logout</a></li>
+            <li><a href="/" (click)="logOut()">Logout</a></li>
           </ul>
         </li>
       </ul>

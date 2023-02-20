@@ -38,7 +38,7 @@ export class HomeHeaderComponent implements OnInit{
     // @ts-ignore
     this.imageService.findAllFilterStore(this.itemStoreId).subscribe(data => {
       this.listImageFilter = data;
-      this.findAllCart(this.itemStoreId,1);
+      this.findAllCart(this.itemStoreId,this.userId);
       this.userDetail(this.userId)
     })
     this.list.push(10)
@@ -86,9 +86,9 @@ export class HomeHeaderComponent implements OnInit{
     }
     console.log(this.role)
     this.isLoggedIn = (this.username != null);
-    this.isBuyer = (this.roles.authority == "BUYER")
+    this.isBuyer = (this.roles.authority == "USER")
     this.isAdmin =(this.roles.authority == "ADMIN")
-    this.isSeller =  (this.roles.authority == "SELLER" )
+    this.isSeller =  (this.roles.authority == "MERCHANT")
     this.isPartner = (this.roles.authority == "PARTNER")
     this.getUsernameAccount();
 

@@ -42,7 +42,6 @@ export class AllProductComponent implements OnInit {
 
   ngOnInit() {
     this.idUser= this.tokenStorageService.getUser().id
-    console.log(this.idUser)
     this.storeService.findByUserId(this.idUser).subscribe(data=>{
       this.store = data
       this.storeId = this.store.id

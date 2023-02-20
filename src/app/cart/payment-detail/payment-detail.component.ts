@@ -9,6 +9,7 @@ import {Payment} from "../../model/cart/payment";
 import {formatDate} from "@angular/common";
 import {Invoice} from "../../model/cart/invoice";
 import {User} from "../../model/user/user";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-payment-detail',
@@ -24,7 +25,7 @@ export class PaymentDetailComponent implements OnInit{
   ngOnInit(): void {
     this.paymentId = Number(this.routerActive.snapshot.paramMap.get("paymentId"))
     // @ts-ignore
-    this.userId = sessionStorage.getItem("user.id")
+    this.userId = this.storageToken.getUser().id;
     this.detailPayment(this.paymentId);
     this.listInvoiceByPayment(this.paymentId)
     this.detailUser(this.userId)
@@ -32,6 +33,7 @@ export class PaymentDetailComponent implements OnInit{
   constructor(private routerActive : ActivatedRoute,
               private cartService: CartService,
               private userService: UserService,
+              private storageToken: TokenStorageService
              ) {
   }
   detailPayment(paymentId:number){
