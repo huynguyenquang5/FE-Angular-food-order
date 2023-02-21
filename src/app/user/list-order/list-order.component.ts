@@ -8,6 +8,7 @@ import {UserService} from "../../service/user/user.service";
 import {User} from "../../model/user/user";
 import {Payment} from "../../model/cart/payment";
 import {formatDate} from "@angular/common";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-list-order',
@@ -26,7 +27,8 @@ export class ListOrderComponent implements OnInit {
               private storeService: StoreService,
               private cartService: CartService,
               private router: Router,
-              private userService: UserService) {
+              private userService: UserService, private tokenStorageService: TokenStorageService,
+             ) {
   }
   @ViewChild('ofModal') ofModal!: ElementRef;
   paymentModal!:Payment;
@@ -71,5 +73,9 @@ export class ListOrderComponent implements OnInit {
       document.getElementById("main").innerText = "Click ok if you have received the order?";
       this.check = true;
     }
+  }
+  logOut(){
+    this.tokenStorageService.signOut();
+    this.router.navigate([''])
   }
 }

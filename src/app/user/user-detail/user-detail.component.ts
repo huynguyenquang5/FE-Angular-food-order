@@ -3,8 +3,9 @@ import {User} from "../../model/user/user";
 import {Address} from "../../model/user/address";
 import {FormControl, FormGroup} from "@angular/forms";
 import {UserService} from "../../service/user/user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AddressService} from "../../service/user/address.service";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-user-detail',
@@ -39,7 +40,9 @@ export class UserDetailComponent implements OnInit {
 
   constructor(private userService: UserService,
               private activatedRoute: ActivatedRoute,
-              private addressService: AddressService) {
+              private addressService: AddressService,
+              private tokenStorageService: TokenStorageService,
+              private router:Router,) {
   }
 
   ngOnInit() {
@@ -202,4 +205,8 @@ export class UserDetailComponent implements OnInit {
     })
   }
 
+  logOut(){
+    this.tokenStorageService.signOut();
+    this.router.navigate([''])
+  }
 }
