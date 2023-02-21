@@ -24,6 +24,7 @@ export class DetailStoreComponent implements OnInit {
   ngOnInit(): void {
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
     this.userId = this.storageToken.getUser().id;
+    this.username = this.storageToken.getUser().username;
     this.userDetail(this.userId);
     this.storeService.findById(this.storeId).subscribe(data => {
       this.store = data
@@ -54,6 +55,7 @@ export class DetailStoreComponent implements OnInit {
   listImage : Image[] = [];
   listImageFilter : Image[] = [];
   listCart : Cart[] = [];
+  username!: string
   classify(products : Image[]){
     for (let i = 0; i < products.length; i++) {
       if (products[i].product.productMethod.category.name.toUpperCase() !== "DRINK"){
