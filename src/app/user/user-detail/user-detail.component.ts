@@ -19,6 +19,7 @@ export class UserDetailComponent implements OnInit {
   addresses!: Address[];
   address!: Address;
   addressId!: number;
+
   userForm = new FormGroup({
     id: new FormControl(""),
     name: new FormControl(""),
@@ -46,7 +47,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userId = Number(this.activatedRoute.snapshot.paramMap.get("userId"))
+    this.userId = this.tokenStorageService.getUser().id
     // @ts-ignore
     this.addressForm.get("user.id")?.setValue(this.userId);
     this.userService.findById(this.userId).subscribe(data => {
@@ -54,14 +55,13 @@ export class UserDetailComponent implements OnInit {
       this.checkRole();
       this.getAllAddressById();
       // @ts-ignore
-      this.userForm.patchValue(this.user);
-      console.log()
+      this.userForm.patchValue(this.user)
     })
   }
 
   checkRole() {
     for (let i = 0; i < this.user.roles.length; i++) {
-      if (this.user.roles[i].name == "MERCHANT") {
+      if (this.user.roles[i].name == "SELLER") {
         this.role = this.user.roles[i].name;
       }
     }

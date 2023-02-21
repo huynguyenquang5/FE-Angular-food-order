@@ -39,6 +39,9 @@ const routes: Routes = [
     component: PaymentDetailComponent
   },
   {
+    path: 'detail/user',
+    component: UserDetailComponent
+  },{
     path: 'store/payment-list/store/:storeId',
     component: ListPaymentComponent
   },
@@ -66,7 +69,7 @@ const routes: Routes = [
     path: "", component: HomeBodyComponent
   },
   {
-    path: 'store',
+    path: 'store/:id',
     component: DetailStoreComponent
   },
   {

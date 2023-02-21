@@ -116,7 +116,7 @@
         <li class="submenu" [hidden]="!isLoggedIn">
           <a href="#0" class="show-submenu">Welcome {{username}}</a>
           <ul>
-            <li [hidden]="!isBuyer"><a [routerLink]="['detail/user/', userId]">My Profile</a></li>
+            <li [hidden]="!isBuyer"><a [routerLink]="['detail/user']">My Profile</a></li>
             <li [hidden]="!isSeller"><a [routerLink]="['users/merchant']">My Profile</a></li>
             <li [hidden]="!isPartner"><a [routerLink]="['users/merchant/', userId]">My Profile</a></li>
             <li><a href="" (click)="logOut()">Logout</a></li>
