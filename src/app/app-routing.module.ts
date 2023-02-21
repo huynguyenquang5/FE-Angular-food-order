@@ -20,6 +20,7 @@ import {ListOrderComponent} from "./user/list-order/list-order.component";
 import {UserDetailComponent} from "./user/user-detail/user-detail.component";
 import {PaymentDetailComponent} from "./cart/payment-detail/payment-detail.component";
 import {MerchantCreateStoreComponent} from "./merchant/merchant-create-store/merchant-create-store.component";
+import {ListPaymentComponent} from "./merchant/list-payment/list-payment.component";
 
 const routes: Routes = [
   {
@@ -40,6 +41,13 @@ const routes: Routes = [
   },
   {
     path: 'detail/user',
+    component: UserDetailComponent
+  },{
+    path: 'store/payment-list/store/:storeId',
+    component: ListPaymentComponent
+  },
+  {
+    path: 'detail/user/:userId',
     component: UserDetailComponent
   },
   {
@@ -70,7 +78,7 @@ const routes: Routes = [
     component: MerchantStoreComponent
   },
   {
-    path: 'store/create',
+    path: 'create/store',
     component: MerchantCreateStoreComponent
   },
   {

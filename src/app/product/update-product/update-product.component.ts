@@ -10,6 +10,7 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {ImageService} from "../../service/product/image.service";
 import {finalize} from "rxjs";
 import {Image} from "../../model/product/image";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-update-product',
@@ -80,9 +81,12 @@ export class UpdateProductComponent implements OnInit {
     this.product = this.formProduct.value;
     this.productService.update(this.product, this.product.id).subscribe(
       data => {this.product = data
-      this.formProduct.patchValue(data)}
+      this.formProduct.patchValue(data)
+        Swal.fire("Update success")
+        this.router.navigate(['/merchant/store'])
+      }
     )
-    this.ngOnInit()
+
 
   }
 

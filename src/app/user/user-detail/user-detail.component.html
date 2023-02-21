@@ -7,11 +7,11 @@
     <div style="padding: 0;margin: 0">
       <ul style="padding: 0;list-style-type:none">
         <li class="nav-custom">Personal information</li>
-        <li class="nav-custom-out" [routerLink]="['/list-order/user',user.id]">List of orders</li>
+        <li class="nav-custom-out" [routerLink]="['/list-order/user',userId]">List of orders</li>
       </ul>
     </div>
   </div>
-  <div class="col-lg-2" style="position: relative;">
+  <div class="col-lg-2">
   </div>
   <div class="col-lg-10">
     <div class="container-fluid">
@@ -143,7 +143,7 @@
                 </div>
               </div>
               <div class="form-group mt-2" *ngIf="user?.status == 1; else other_message">
-                <label class="container_check">I want to be a partner
+                <label class="container_check">I want to be a merchant
                   <input type="checkbox" id="checkboxStatus">
                   <span class="checkmark"></span>
                 </label>
@@ -152,7 +152,7 @@
                 <p class="text-danger">You are pending for becoming a partner and you cannot change profile.</p>
               </ng-template>
               <div class="mt-2" *ngIf="user?.status == 1">
-                <button data-toggle="modal" data-target="#updateUserModal" class="btn_1 medium">???</button>
+                <button data-toggle="modal" data-target="#updateUserModal" class="btn_1 medium">Save</button>
               </div>
             </form>
           </div>

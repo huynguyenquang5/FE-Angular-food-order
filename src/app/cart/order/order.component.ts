@@ -23,13 +23,15 @@ import {TokenStorageService} from "../../service/security/token-storage.service"
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit{
+  username!: string;
   ngOnInit(): void {
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
     this.userId = this.storageToken.getUser().id;
+    this.username = this.storageToken.getUser().username;
     this.userDetail(this.userId);
     this.toDay = formatDate(this.date, 'dd/MM/yyyy', 'en-US');
     this.storeDetail()
-    this.findAllCart(this.storeId,this.user.id)
+    this.findAllCart(this.storeId,this.userId)
     this.findALlAddress()
   }
   constructor(private productService: ProductService,
@@ -133,7 +135,7 @@ export class OrderComponent implements OnInit{
     })
   }
   findALlAddress(){
-    this.addressService.findAllByUser(this.user.id).subscribe(data=>{
+    this.addressService.findAllByUser(this.userId).subscribe(data=>{
       console.log(data);
       this.listAddress = data;
     })

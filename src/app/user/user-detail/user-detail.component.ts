@@ -3,8 +3,9 @@ import {User} from "../../model/user/user";
 import {Address} from "../../model/user/address";
 import {FormControl, FormGroup} from "@angular/forms";
 import {UserService} from "../../service/user/user.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AddressService} from "../../service/user/address.service";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-user-detail',
@@ -18,6 +19,7 @@ export class UserDetailComponent implements OnInit {
   addresses!: Address[];
   address!: Address;
   addressId!: number;
+
   userForm = new FormGroup({
     id: new FormControl(""),
     name: new FormControl(""),
@@ -39,11 +41,13 @@ export class UserDetailComponent implements OnInit {
 
   constructor(private userService: UserService,
               private activatedRoute: ActivatedRoute,
-              private addressService: AddressService) {
+              private addressService: AddressService,
+              private route: Router,
+              private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit() {
-    this.userId = Number(this.activatedRoute.snapshot.paramMap.get("userId"))
+    this.userId = this.tokenStorageService.getUser().id
     // @ts-ignore
     this.addressForm.get("user.id")?.setValue(this.userId);
     this.userService.findById(this.userId).subscribe(data => {
@@ -51,14 +55,13 @@ export class UserDetailComponent implements OnInit {
       this.checkRole();
       this.getAllAddressById();
       // @ts-ignore
-      this.userForm.patchValue(this.user);
-      console.log()
+      this.userForm.patchValue(this.user)
     })
   }
 
   checkRole() {
     for (let i = 0; i < this.user.roles.length; i++) {
-      if (this.user.roles[i].name == "MERCHANT") {
+      if (this.user.roles[i].name == "USER") {
         this.role = this.user.roles[i].name;
       }
     }
@@ -151,7 +154,7 @@ export class UserDetailComponent implements OnInit {
     // @ts-ignore
     if (document.getElementById("checkboxStatus").checked == true) {
       // @ts-ignore
-      this.userForm.get("status")?.setValue(3);
+      this.userForm.get("status")?.setValue(2);
     }
     // @ts-ignore
     this.user = this.userForm.value

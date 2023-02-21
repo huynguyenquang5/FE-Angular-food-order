@@ -8,6 +8,7 @@ import {UserService} from "../../service/user/user.service";
 import {User} from "../../model/user/user";
 import {Payment} from "../../model/cart/payment";
 import {formatDate} from "@angular/common";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-list-order',
@@ -17,18 +18,17 @@ import {formatDate} from "@angular/common";
 export class ListOrderComponent implements OnInit {
   ngOnInit(): void {
     // this.userId = Number(this.routerActive.snapshot.paramMap.get("userId"))
-    this.userId = 1;
+    this.userId = this.storageToken.getUser().id;
     this.userDetail(this.userId);
     this.listPaymentByUser(this.userId);
   }
 
-  constructor(private productService: ProductService,
-              private imageService: ImageService,
-              private routerActive : ActivatedRoute,
+  constructor(private routerActive : ActivatedRoute,
               private storeService: StoreService,
               private cartService: CartService,
               private router: Router,
-              private userService: UserService) {
+              private userService: UserService,
+              private storageToken: TokenStorageService) {
   }
   @ViewChild('ofModal') ofModal!: ElementRef;
   paymentModal!:Payment;

@@ -73,7 +73,7 @@ export class MerchantCreateStoreComponent implements OnInit {
           this.store.wallet = 0;
           this.store.logo = url;
           this.storeService.createStore(this.store).subscribe(() => {
-            this.router.navigate(['/store/merchant'])
+            this.router.navigate(['/merchant/store'])
           }, e => {
             alert("Something Wrong")
             console.log(e);

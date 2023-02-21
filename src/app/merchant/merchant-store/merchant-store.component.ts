@@ -103,7 +103,6 @@ export class MerchantStoreComponent implements OnInit {
           this.store = this.storeForm.value;
           this.store.logo = url;
           this.storeService.updateStoreByUserId(this.userId, this.store).subscribe(() => {
-            alert("Update Successfully");
             window.location.reload();
           }, e => {
             alert("Something Wrong")

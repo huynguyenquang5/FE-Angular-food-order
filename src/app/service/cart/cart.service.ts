@@ -52,4 +52,7 @@ export class CartService {
   listInvoiceByPayment(paymentId : number):Observable<Invoice[]> {
     return this.http.get<Invoice[]>(`${apiUrl}/cart/payment-detail/payment/${paymentId}/list-invoice`);
   }
+  listPaymentByStore(storeId : number):Observable<Payment[]> {
+    return this.http.get<Payment[]>(`${apiUrl}/cart/payment-list/store/${storeId}`);
+  }
 }

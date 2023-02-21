@@ -33,6 +33,7 @@ import { OrderComponent } from './cart/order/order.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { ListOrderComponent } from './user/list-order/list-order.component';
 import { PaymentDetailComponent } from './cart/payment-detail/payment-detail.component';
+import { ListPaymentComponent } from './merchant/list-payment/list-payment.component';
 import { MerchantCreateStoreComponent } from './merchant/merchant-create-store/merchant-create-store.component';
 
 @NgModule({
@@ -64,6 +65,8 @@ import { MerchantCreateStoreComponent } from './merchant/merchant-create-store/m
     ViewerProductComponent,
     UserDetailComponent,
     ListOrderComponent,
+    PaymentDetailComponent,
+    ListPaymentComponent,
     PaymentDetailComponent,
     MerchantCreateStoreComponent
 

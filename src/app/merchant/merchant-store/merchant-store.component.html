@@ -1,6 +1,6 @@
 <app-merchant-nav></app-merchant-nav>
 <div class="content-wrapper" [hidden]="storeId !== undefined" style="margin-top: 60px" >
-<a class="btn_1 m-1" [routerLink]="['/store/create']" >
+<a class="btn_1 m-1" [routerLink]="['/create/store']" >
   <i class="fa fa-fw fa-pencil-square-o"></i> Create Store
 </a>
 </div>
@@ -61,6 +61,9 @@
             <button class="btn_1 m-1" data-toggle="modal" data-target="#formUpdate">
               <i class="fa fa-fw fa-edit"></i> Edit Store
             </button>
+            <button class="btn_1 m-1" data-toggle="modal" data-target="#formUpdate" [routerLink]="['/product']">
+              <i class="fa fa-fw fa-edit" ></i> Enter Store
+            </button>
             <button class="btn_1 m-1" [routerLink]="['/product/create']">
               <i class="fa fa-fw fa-pencil"></i> Create Product
             </button>
@@ -73,9 +76,9 @@
       <!-- /box_general-->
     </div>
     <app-all-product></app-all-product>
-
     <!-- /.container-fluid-->
   </div>
+
   <!-- /.container-wrapper-->
 
 
