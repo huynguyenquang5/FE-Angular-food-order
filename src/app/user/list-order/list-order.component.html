@@ -55,7 +55,7 @@
           <td class="code" [routerLink]="['/user/payment-detail/payment',p.id]"><i class="fa-solid fa-eye"></i> {{p.code}}</td>
           <td>{{displayDate(p.date)}}</td>
           <td>{{p.store.nameStore}}</td>
-          <td>{{p.price}}</td>
+          <td>${{p.price}}</td>
           <td>{{p.address.name}}</td>
           <td style="margin: 0">
             <div *ngIf="p.status === 0">

@@ -83,13 +83,13 @@ export class OrderComponent implements OnInit{
 
   @ViewChild("valueSelectAddress") valueSelectAddress !: ElementRef;
   onSubmitOrder() {
-    this.cartService.paymentOrder(this.user.id,this.storeId,this.valueSelectAddress.nativeElement.value).subscribe(data=>{
+    // this.cartService.paymentOrder(this.user.id,this.storeId,this.valueSelectAddress.nativeElement.value).subscribe(data=>{
       Swal.fire({
         icon: 'success',
         title: 'Oops...',
         text: 'Something went wrong!',
-      })
-      this.findAllCart(this.storeId,this.user.id)
+      // })
+      // this.findAllCart(this.storeId,this.user.id)
     })
   }
   @ViewChild("newAddress") newAddress !: ElementRef;

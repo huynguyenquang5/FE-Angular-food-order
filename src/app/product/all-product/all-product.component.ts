@@ -42,7 +42,6 @@ export class AllProductComponent implements OnInit {
 
   ngOnInit() {
     this.idUser= this.tokenStorageService.getUser().id
-    console.log(this.idUser)
     this.storeService.findByUserId(this.idUser).subscribe(data=>{
       this.store = data
       this.storeId = this.store.id
@@ -203,7 +202,6 @@ export class AllProductComponent implements OnInit {
       },
       buttonsStyling: false
     })
-
     // @ts-ignore
     swalWithBootstrapButtons.fire({
       title: 'Are you sure?',
@@ -224,7 +222,6 @@ export class AllProductComponent implements OnInit {
           'Your file has been deleted.',
           'success'
         )
-
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
