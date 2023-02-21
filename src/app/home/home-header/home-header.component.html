@@ -6,114 +6,85 @@
         <img src="assets/img/logo_sticky.svg" width="162" height="35" alt="">
       </a>
     </div>
-    <div class="layer"></div><!-- Opacity Mask Menu Mobile -->
-    <ul class="top_menu">
-      <li class="nav-item dropdown" style="border: 0">
-        <a class="nav-link dropdown-toggle mr-lg-2" href="#" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-fw fa-bell"></i>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="alertsDropdown"
-             style="width: 300px;max-height: 500px;box-shadow: 5px 6px 6px 6px #888888;overflow: auto">
-          <h6 class="dropdown-header">New Alerts:</h6>
-          <div class="col-md-12" *ngFor="let i of list">
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item alert-my-custom" href="#">
-              <div style="padding: 0;margin: -8px 0">
-                 <span class="text-success">
-                              <strong><i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
-                            </span>
-                <div class="small"
-                     style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
-                  testing
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="dropdown-divider"></div>
-        </div>
-      </li>
-    </ul>
-    <ul class="top_menu">
-      <li class="nav-item dropdown" style="border: none">
-        <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">
-          <i class="fa-solid fa-cart-shopping" style="padding-right: 15px"></i>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="alertsDropdown"
-             style="width: 310px;max-height: 700px;margin: 5px;box-shadow: 5px 8px 8px 8px #888888;">
-          <h6 class="dropdown-header">Cart :</h6>
-          <div class="dropdown-divider"></div>
-          <div style="width: 100%;max-height: 500px;min-height: 200px;overflow: auto;">
-            <div class="col-md-12">
-              <div *ngIf="checkCart">
-                <div  *ngFor="let i of listCart">
-                  <div class="row" style="height: 60px;">
-                    <div class="col-md-3">
-                      <img src="{{map.get(i.product.id).name}}" alt="" style="width: 60px;height: 60px">
-                    </div>
-                    <div class="col-md-7" style="display: flex;">
-                  <span style="padding: 8px;font-size: 13px;">{{i.product.name}}
-                    <p style="margin-top: 5px;font-size: 14px;font-weight: 600">{{i.quantity}} x
-                      ${{i.product.productMethod.price}}</p>
-                  </span>
-                    </div>
-                    <div class="col-md-2">
-                      <span style="font-size: 20px;font-weight: 400;color: red">X</span>
-                    </div>
-                  </div>
-                  <div class="dropdown-divider"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="dropdown-divider"></div>
-          <div class="clearfix add_bottom_15" style="margin-top: 15px"><strong>Total</strong><span> : ${{total}}</span>
-          </div>
-          <div style="margin-right: 15px">
-            <div class="btn-cart-custom">View Cart</div>
-            <div class="btn-cart-custom-outline ">Checkout</div>
-          </div>
-        </div>
-      </li>
-    </ul>
     <!-- /top_menu -->
-    <a href="#0" class="open_close">
-      <i class="icon_menu"></i><span>Menu</span>
-    </a>
     <nav class="main-menu">
       <div id="header_menu">
-        <a href="#0" class="open_close">
-          <i class="icon_close"></i><span>Menu</span>
-        </a>
         <a href="index.html"><img src="assets/img/logo.svg" width="162" height="35" alt=""></a>
       </div>
       <ul>
         <li class="submenu">
-          <a href="#0" class="show-submenu">Home</a>
+          <a class="nav-link dropdown-toggle mr-lg-2 show-submenu">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
           <ul>
-            <li><a href="index-2.html">Search by Keyword</a></li>
-            <li><a href="header-cart-top.html">Header Cart Top</a></li>
+            <div style="width: 310px;max-height: 700px;margin: 15px">
+              <h6 class="dropdown-header">Cart :</h6>
+              <div class="dropdown-divider"></div>
+              <div style="width: 100%;max-height: 500px;min-height: 200px;overflow: auto;">
+                <div class="col-md-12">
+                  <div *ngIf="checkCart">
+                    <div  *ngFor="let i of listCart">
+                      <div class="row" style="height: 60px;">
+                        <div class="col-md-3">
+                          <img src="{{map.get(i.product.id).name}}" alt="" style="width: 60px;height: 60px">
+                        </div>
+                        <div class="col-md-7" style="display: flex;">
+                  <span style="padding: 8px;font-size: 13px;">{{i.product.name}}
+                    <p style="margin-top: 5px;font-size: 14px;font-weight: 600">{{i.quantity}} x
+                      ${{i.product.productMethod.price}}</p>
+                  </span>
+                        </div>
+                        <div class="col-md-2">
+                          <span style="font-size: 20px;font-weight: 400;color: red">X</span>
+                        </div>
+                      </div>
+                      <div class="dropdown-divider"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="clearfix add_bottom_15" style="margin-top: 15px"><strong>Total</strong><span> : ${{total}}</span>
+              </div>
+              <div style="margin-right: 15px">
+                <div class="btn-cart-custom">View Cart</div>
+                <div class="btn-cart-custom-outline ">Checkout</div>
+              </div>
+            </div>
           </ul>
         </li>
         <li class="submenu">
-          <a href="#0" class="show-submenu">Listing</a>
+          <a class="nav-link dropdown-toggle mr-lg-2 show-submenu">
+            <i class="fa fa-fw fa-bell"></i>
+          </a>
           <ul>
-            <li><a href="order.html">Order</a></li>
-            <li><a href="confirm.html">Confirm Order</a></li>
+            <div style="width: 280px;max-height: 500px ;overflow: auto; margin: 15px">
+              <h6 class="dropdown-header">New Alerts:</h6>
+              <div class="col-md-12" *ngFor="let i of list">
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item alert-my-custom" href="#">
+                  <div style="padding: 0;margin: -8px 0">
+                 <span class="text-success">
+                              <strong><i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                            </span>
+                    <div class="small"
+                         style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
+                      testing
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-divider"></div>
+            </div>
           </ul>
         </li>
         <li class="submenu" [hidden]="!isAdmin">
-          <a href="" class="show-submenu">Manager</a>
-          <ul>
-            <li><a href="/admin">User</a></li>
-            <li><a href="">Confirm Order</a></li>
-          </ul>
+          <a [routerLink]="['/admin']">Manager</a>
         </li>
         <li class="submenu" [hidden]="isLoggedIn">
           <a href="accounts/login" class="show-submenu">Login</a>
         </li>
-        <li class="submenu" [hidden]="!isLoggedIn">
+        <li class="submenu" [hidden]="!isLoggedIn" >
           <a href="#0" class="show-submenu">Welcome! {{username}}</a>
           <ul>
             <li [hidden]="!isBuyer"><a [routerLink]="['detail/user']">My Profile</a></li>
