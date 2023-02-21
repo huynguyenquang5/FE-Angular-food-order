@@ -75,7 +75,7 @@ export class ListOrderComponent implements OnInit {
     }
   }
   logOut(){
-    this.tokenStorageService.signOut();
+    this.storageToken.signOut();
     this.router.navigate([''])
   }
 }
