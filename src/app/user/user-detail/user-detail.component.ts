@@ -42,8 +42,8 @@ export class UserDetailComponent implements OnInit {
   constructor(private userService: UserService,
               private activatedRoute: ActivatedRoute,
               private addressService: AddressService,
-              private route: Router,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService,
+              private router:Router,) {
   }
 
   ngOnInit() {
@@ -205,4 +205,8 @@ export class UserDetailComponent implements OnInit {
     })
   }
 
+  logOut(){
+    this.tokenStorageService.signOut();
+    this.router.navigate([''])
+  }
 }

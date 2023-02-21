@@ -1,21 +1,10 @@
-.nav-custom{
-  padding: 15px;
-  background-color: whitesmoke;
-  color: #ea2727;
-  width: 234px;
-  margin:  0;
-  text-align: center;
-  font-weight: 600;
-  font-size: 16px;
-}
-.nav-custom-out{
-  padding: 15px;
-  width: 234px;
-  margin:  0;
-  text-align: center;
-  font-weight: 600;
-  font-size: 16px;
-}
+
 .code:hover{
   color: #e02d2d;
+}
+.nav-custom{
+  width: 88%;margin-top: 15px;background-color: white;color: #c20505;
+}
+.nav-custom-out{
+  width: 88%;margin-top: 15px;background-color:  #e33e3e;color: white;
 }

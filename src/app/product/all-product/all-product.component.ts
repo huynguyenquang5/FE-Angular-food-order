@@ -202,7 +202,6 @@ export class AllProductComponent implements OnInit {
       },
       buttonsStyling: false
     })
-
     // @ts-ignore
     swalWithBootstrapButtons.fire({
       title: 'Are you sure?',
@@ -223,7 +222,6 @@ export class AllProductComponent implements OnInit {
           'Your file has been deleted.',
           'success'
         )
-
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel

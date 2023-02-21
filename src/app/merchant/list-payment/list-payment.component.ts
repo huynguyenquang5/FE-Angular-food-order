@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Payment} from "../../model/cart/payment";
 import {formatDate} from "@angular/common";
 import {ProductService} from "../../service/store/product.service";
@@ -17,10 +17,13 @@ import {TokenStorageService} from "../../service/security/token-storage.service"
   styleUrls: ['./list-payment.component.css']
 })
 export class ListPaymentComponent implements OnInit {
+  @ViewChild('ofModal') ofModal!: ElementRef;
   userId!: number;
   storeId!: number;
   store!: Store;
+  payment!: Payment;
   ListPayment: Payment[] = [];
+  check: boolean = false;
 
   ngOnInit(): void {
     this.userId = this.storageToken.getUser().id;
@@ -57,6 +60,20 @@ export class ListPaymentComponent implements OnInit {
   changeStatusPayment(p: Payment, status: string) {
     this.cartService.statusPayment(p.id,status).subscribe(data => {
       this.listPaymentByStore(this.storeId)
+      this.ofModal.nativeElement.click()
     })
+  }
+
+  onModal(p: Payment, text: string) {
+    this.payment = p;
+    if ("cancel" === text){
+      this.check = true;
+      // @ts-ignore
+      document.getElementById("main").innerText = "Click ok if you want to cancel this order?";
+    }else {
+      this.check = false;
+      // @ts-ignore
+      document.getElementById("main").innerText = "Click ok if you accept to approve this order!";
+    }
   }
 }

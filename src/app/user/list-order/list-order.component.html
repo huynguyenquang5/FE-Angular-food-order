@@ -1,19 +1,43 @@
 <app-home-header></app-home-header>
-<div class="row" style="margin-top: 55px">
-  <div style="background-color: #ee4444;color: whitesmoke;
-  min-height: 500px;position: fixed;top: 73px;left: 0;width: 235px">
-    <div class="col-md-12" style="text-align: center;font-weight: 600;font-size: 16px;padding:20px">Profile details</div>
-    <hr style="padding: 0;margin: 0">
-    <div style="padding: 0;margin: 0">
-      <ul style="padding: 0;list-style-type:none">
-        <li class="nav-custom-out"  [routerLink]="['/detail/user',user.id]">Personal information</li>
-        <li class="nav-custom">List of orders</li>
-      </ul>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #1c7a30;position: relative">
+  <a class="navbar-brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="167" height="36"></a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive" style="margin-top: 20px">
+    <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="width: 220px;background-color: #e33e3e">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Profile" [routerLink]="['/detail/user',user.id]"  >
+        <a class="nav-link nav-custom-out"  style="color: white">
+          <i class="fa fa-fw fa-user"></i>
+          <span class="nav-link-text " >Personal information</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Store">
+        <a class="nav-link nav-custom"  style="color: #e31616">
+          <i class="fa fa-fw fa-store"></i>
+          <span class="nav-link-text " >List of orders</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav sidenav-toggler" style="width: 220px;background-color: #e33e3e;color: white;border: 0">
+      <li class="nav-item">
+        <a class="nav-link text-center" id="sidenavToggler">
+          <i class="fa fa-fw"></i>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#logoutModal" (click)="logOut()"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+      </li>
+    </ul>
   </div>
+</nav>
+
+<div class="row" style="">
   <div class="col-lg-2" style="position: relative;">
   </div>
-  <div class="col-lg-10" style="min-height: 600px;padding-top: 18px">
+  <div class="col-lg-10" style="min-height: 700px;padding-top: 18px">
     <div class="container-fluid">
       <table class="table table-hover" style="box-shadow: 5px 5px 5px 5px #8c8484;max-height: 800px;overflow: auto" >
         <tr>
@@ -31,7 +55,7 @@
           <td class="code" [routerLink]="['/user/payment-detail/payment',p.id]"><i class="fa-solid fa-eye"></i> {{p.code}}</td>
           <td>{{displayDate(p.date)}}</td>
           <td>{{p.store.nameStore}}</td>
-          <td>{{p.price}}</td>
+          <td>${{p.price}}</td>
           <td>{{p.address.name}}</td>
           <td style="margin: 0">
             <div *ngIf="p.status === 0">

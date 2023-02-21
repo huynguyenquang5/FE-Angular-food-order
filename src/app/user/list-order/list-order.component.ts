@@ -74,4 +74,8 @@ export class ListOrderComponent implements OnInit {
       this.check = true;
     }
   }
+  logOut(){
+    this.tokenStorageService.signOut();
+    this.router.navigate([''])
+  }
 }
