@@ -54,7 +54,6 @@ export class PaymentDetailComponent implements OnInit {
       this.listInvoice = data;
     })
   }
-
   displayDate(date: string) {
     return formatDate(date, 'dd/MM/yyyy', 'en-US')
   }

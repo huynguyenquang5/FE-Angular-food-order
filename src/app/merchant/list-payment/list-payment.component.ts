@@ -9,6 +9,9 @@ import {CartService} from "../../service/cart/cart.service";
 import {UserService} from "../../service/user/user.service";
 import {Store} from "../../model/store/store";
 import {TokenStorageService} from "../../service/security/token-storage.service";
+import {User} from "../../model/user/user";
+import {Product} from "../../model/product/product";
+import {Invoice} from "../../model/cart/invoice";
 
 
 @Component({
@@ -32,6 +35,9 @@ export class ListPaymentComponent implements OnInit {
   payment!: Payment;
   listPayment: Payment[] = [];
   check: boolean = false;
+  userCheck!: User;
+  listProduct: Product[] = [];
+
   checkFilter: boolean = false;
   valueDate: any;
   valueStatus: any;
@@ -48,6 +54,9 @@ export class ListPaymentComponent implements OnInit {
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
     this.detailStore(this.storeId);
     this.listPaymentByStore(this.storeId)
+    this.findAllProductByStoreId(this.storeId)
+
+
   }
 
   constructor(private productService: ProductService,
@@ -264,11 +273,38 @@ export class ListPaymentComponent implements OnInit {
   }
 
   onFilterMenu() {
-    this.checkFilter = !this.checkFilter;
     this.checkCode = false;
     this.checkDate = false;
     this.checkPrice = false;
     this.checkBuyer = false;
     this.checkPhone = false;
+  }
+
+  findAllProductByStoreId(id: number) {
+    this.productService.findAllByStore(id).subscribe(data => {
+      this.listProduct = data
+
+    })
+  }
+
+  findAllInvoiceByProduct(id: number) {
+    this.cartService.findAllInvoiceByProductId(id).subscribe(data => {
+      let listPayments: Payment[] = []
+      for (let i = 0; i < data.length; i++) {
+        listPayments.push(data[i].payment)
+      }
+      this.listPayment = listPayments
+    })
+  }
+
+  filterByProductId(event: Event) {
+    let id = parseInt((event.target as HTMLSelectElement).value);
+    if (id == 0|| id == null){
+      this.listPaymentByStore(this.storeId)
+
+    }else{
+      this.findAllInvoiceByProduct(id)
+    }
+
   }
 }
