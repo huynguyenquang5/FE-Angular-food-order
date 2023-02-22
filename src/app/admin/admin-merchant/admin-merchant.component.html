@@ -10,10 +10,8 @@
             <thead>
             <tr>
               <th>#</th>
-              <th>Name</th>
               <th>Username</th>
               <th>Email</th>
-              <th>Phone</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -21,19 +19,18 @@
             <tbody>
             <tr *ngFor="let user of users; index as i">
               <td>{{i + 1}}</td>
-              <td><a href="#0" data-toggle="modal" data-target="#merchantDetail">{{user.name}}</a></td>
-              <td>{{user.username}}</td>
-              <td>{{user.email}}</td>
-              <td>{{user.phone}}</td>
-              <td><i *ngIf="user.status == 1; else status_change" class="approved">Active</i>
+              <td><a href="#0" data-toggle="modal" data-target="#merchantDetail"
+                     (click)="getOneUser(user.id)">{{user?.username}}</a></td>
+              <td>{{user?.email}}</td>
+              <td><i *ngIf="user?.status == 1; else status_change" class="approved">Active</i>
                 <ng-template #status_change>
-                  <i *ngIf="user.status == 0" class="cancel">Blocked</i>
+                  <i *ngIf="user?.status == 0" class="cancel">Blocked</i>
                 </ng-template>
               </td>
-              <td><a *ngIf="user.status == 1; else active_change" href="#" (click)="getIdAndStatus(user.id, 0)"
+              <td><a *ngIf="user?.status == 1; else active_change" href="#0" (click)="getIdAndStatus(user.id, 0)"
                      data-toggle="modal" data-target="#blockModal"><strong>Block</strong></a>
                 <ng-template #active_change>
-                  <a *ngIf="user.status == 0" href="#" (click)="getIdAndStatus(user.id,1)"
+                  <a *ngIf="user?.status == 0" href="#0" (click)="getIdAndStatus(user.id,1)"
                      data-toggle="modal" data-target="#activeModal"><strong>Active</strong></a>
                 </ng-template>
               </td>
@@ -96,23 +93,22 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="merchantDetailLabel">Block merchant</h5>
+        <h5 class="modal-title" id="merchantDetailLabel">Merchant Detail</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">
-        <h4>Da Alfredo <i class="pending">Pending</i></h4>
+        <h4>{{user?.name}}</h4>
         <ul class="booking_list">
-          <li><strong>Client</strong> Mark Twain</li>
-          <li><strong>Date and time</strong> 5 November 2020 08.30pm</li>
-          <li><strong>Address</strong> Barda Bonilla 24 apt. 10, 2414 London</li>
-          <li><strong>Client Contacts</strong> <a href="#0">98432983242</a> - <a href="#0">mark@hotmail.com</a></li>
-          <li><strong>Payment</strong> Paied via Paypal</li>
-          <li><strong>Withdrawal</strong> Delivery</li>
+          <li><strong>Username</strong>{{user?.username}}</li>
+          <li><strong>Phone</strong>{{user?.phone}}</li>
+          <li><strong>Email</strong>{{user?.email}}</li>
+          <li *ngFor="let a of addresses; index as i"><strong>Address {{i+1}}</strong>{{a?.name}}</li>
+          <li><strong>Store</strong>{{store?.nameStore}}</li>
         </ul>
-        <p><a href="#0" class="btn_1" data-toggle="modal" data-target="#client_detail_modal"><i
-          class="fa fa-fw fa-pencil"></i> Edit order detail</a></p>
+        <p><a [routerLink]="['/store',store?.id]" class="btn_1" data-dismiss="modal"><i class="fa fa-fw fa-eye"></i>View Store</a></p>
       </div>
     </div>
   </div>
+</div>
