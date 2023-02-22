@@ -19,3 +19,6 @@
 .code:hover{
   color: #e02d2d;
 }
+.status{
+  width: 90%;font-size: 16px;font-weight: 600;
+}
