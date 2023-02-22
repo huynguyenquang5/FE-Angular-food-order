@@ -23,11 +23,11 @@ import {Payment} from "../../model/cart/payment";
 })
 export class DetailStoreComponent implements OnInit {
   ngOnInit(): void {
-    // this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
-    // this.userId = this.storageToken.getUser().id;
+    this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
+    this.userId = this.storageToken.getUser().id;
     this.userId = 1;
-    // this.username = this.storageToken.getUser().username;
-    // this.userDetail(this.userId);
+    this.username = this.storageToken.getUser().username;
+    this.userDetail(this.userId);
     this.findAllPayment(this.userId)
     this.storeService.findById(this.storeId).subscribe(data => {
       this.store = data
