@@ -71,18 +71,46 @@
           by information</a></h4>
         <div class="collapse" id="filter_11">
           <div class="row" style="padding: 10px;margin-top: 10px; border: 1px solid #625e5e">
-            <div class="col-lg-2">
-              <select style="height: 30px;width: 100%" (change)="onChangeSelect()" #selectSearch>
-                <option value="all">Select filter type</option>
-                <option value="code">Code</option>
-                <option value="date">Date</option>
-                <option value="price">Price</option>
-                <option value="name">Name Buyer</option>
-                <option value="phone">Phone</option>
-              </select>
+            <div class="col-lg-3">
+              <div class="col-md-12">
+                <select style="height: 30px;width: 100%" (change)="onChangeSelect()" #selectSearch>
+                  <option value="all">Select filter type</option>
+                  <option value="code">Code</option>
+                  <option value="date">Date</option>
+                  <option value="price">Price</option>
+                  <option value="name">Name Buyer</option>
+                  <option value="phone">Phone</option>
+                </select>
+              </div>
+              <div class="col-md-12" style="margin-top: 10px">
+                <div class="row">
+                  <div class="col-md-9">
+                    Total
+                  </div>
+                  <div class="col-md-3">
+                    ${{total}}
+                  </div>
+                </div>
+                <div class="row" style="margin-top: 3px">
+                  <div class="col-md-9">
+                    Discount
+                  </div>
+                  <div class="col-md-3">
+                    ${{total * 20 / 100}}
+                  </div>
+                </div>
+                <div class="row" style="margin-top: 3px">
+                  <div class="col-md-9">
+                    Total after discount
+                  </div>
+                  <div class="col-md-3">
+                    ${{total * 80 / 100}}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-lg-5" style="color: black">
-              <div style="width: 80%;padding-bottom: 10px;font-size: 16px;text-align: center">
+            <div class="col-lg-4" style="color: black">
+              <div style="width: 100%;padding-bottom: 10px;font-size: 16px;">
                 <p style="padding: 0;margin: 0">Please choose one field you want to filter !!</p>
               </div>
               <div id="code-menu" *ngIf="checkCode">
@@ -192,9 +220,10 @@
               </div>
             </div>
             <div class="col-lg-2">
-              <div>
+              <div class="col-md-12">
                 <div class="btn btn-success" style="width: 80%" (click)="onSubmitFilter()">Filter</div>
               </div>
+
             </div>
           </div>
         </div>
