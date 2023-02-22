@@ -92,7 +92,7 @@ export class OrderComponent implements OnInit{
       Swal.fire({
         icon: 'success',
         title: 'Oops...',
-        text: 'Something went wrong!',
+        text: 'Your order has been placed successfully!',
       })
       // this.findAllCart(this.storeId,this.user.id)
     })
@@ -108,7 +108,7 @@ export class OrderComponent implements OnInit{
     }
     let timerInterval:any;
     Swal.fire({
-      title: 'Auto close alert!',
+      title: 'Loading .. . . .',
       html: 'I will close in <b></b> milliseconds.',
       timer: 2000,
       timerProgressBar: true,

@@ -205,7 +205,7 @@ export class AllProductComponent implements OnInit {
     // @ts-ignore
     swalWithBootstrapButtons.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: "Are you sure you want to delete?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
