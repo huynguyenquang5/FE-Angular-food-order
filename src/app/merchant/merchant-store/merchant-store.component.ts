@@ -43,8 +43,12 @@ export class MerchantStoreComponent implements OnInit {
       // @ts-ignore
       this.storeForm.patchValue(this.store);
       this.imageService.findAllFilterStore(this.storeId).subscribe(data =>{
-        this.listImageFilter = data;
-        this.classify(data);
+        for (let i =0; i<data.length; i++){
+          if (data[i].product.status !=0 ){
+            this.listImageFilter.push(data[i])
+          }
+        }
+        this.classify(this.listImageFilter);
         this.product = this.listProduct[0];
       })
     })
@@ -57,7 +61,6 @@ export class MerchantStoreComponent implements OnInit {
               private storage: AngularFireStorage,
               private router: Router,
               private tokenService: TokenStorageService) {
-    console.log(this.storeId)
   }
   listProduct : Product[] = [];
   listProductMains : Image[] = [];
@@ -65,6 +68,7 @@ export class MerchantStoreComponent implements OnInit {
   listImageFilter : Image[] = [];
   classify(products : Image[]){
     for (let i = 0; i < products.length; i++) {
+
       if (products[i].product.productMethod.category.name.toUpperCase() !== "DRINK"){
         this.listProductMains.push(products[i]);
       }else {

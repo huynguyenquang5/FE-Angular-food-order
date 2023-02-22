@@ -28,7 +28,7 @@ export class AllProductComponent implements OnInit {
   storeId!: number;
   store!: Store
   idUser!: number
-  user!:User
+  user!: User
 
 
   constructor(private productService: ProductService,
@@ -37,12 +37,12 @@ export class AllProductComponent implements OnInit {
               private storage: AngularFireStorage,
               private router: Router,
               private tokenStorageService: TokenStorageService,
-              private storeService:StoreService) {
+              private storeService: StoreService) {
   }
 
   ngOnInit() {
-    this.idUser= this.tokenStorageService.getUser().id
-    this.storeService.findByUserId(this.idUser).subscribe(data=>{
+    this.idUser = this.tokenStorageService.getUser().id
+    this.storeService.findByUserId(this.idUser).subscribe(data => {
       this.store = data
       this.storeId = this.store.id
       this.findAllProduct(this.storeId)
@@ -55,8 +55,6 @@ export class AllProductComponent implements OnInit {
       })
     })
   }
-
-
 
 
   product !: Product;
@@ -80,9 +78,16 @@ export class AllProductComponent implements OnInit {
 
   findAllProduct(id: number) {
     this.productService.findAllByStore(id).subscribe((data) => {
-    // this.productService.findAll().subscribe((data) => {
-        this.listProduct = data
-        this.listProducts = data
+        let listProduct1: Product[] = []
+        let listProduct2: Product[] = []
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].status != 0) {
+            listProduct1.push(data[i])
+            listProduct2.push(data[i])
+          }
+        }
+        this.listProduct = listProduct1
+        this.listProducts = listProduct2
       }
     )
   }
@@ -174,11 +179,10 @@ export class AllProductComponent implements OnInit {
     this.imageService.findAllByProduct(this.productId).subscribe((data) => {
       this.listImage = data
     })
-    this.ngOnInit()
-
   }
 
   @ViewChild('valueSearch') valueSearch: ElementRef | undefined;
+
   searchByKeyWord() {
     let value = this.valueSearch?.nativeElement.value
     if (value === "" || value === undefined || value === null) {
@@ -215,8 +219,11 @@ export class AllProductComponent implements OnInit {
     }).then((result: any) => {
       if (result.isConfirmed) {
         let check: string = ""
-        this.imageService.deleteProduct(p.id).subscribe()
-        this.findAllProduct(this.storeId);
+        this.imageService.deleteProduct(p.id).subscribe(data=>{
+          this.findAllProduct(this.storeId);
+        })
+
+
         swalWithBootstrapButtons.fire(
           'Deleted!',
           'Your file has been deleted.',
