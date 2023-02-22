@@ -51,12 +51,7 @@ export class ListPaymentComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.storageToken.getUser().id;
-    this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
-    this.detailStore(this.storeId);
-    this.listPaymentByStore(this.storeId)
-    this.findAllProductByStoreId(this.storeId)
-
-
+    this.detailStore(this.userId);
   }
 
   constructor(private productService: ProductService,
@@ -73,9 +68,12 @@ export class ListPaymentComponent implements OnInit {
     return formatDate(date, 'dd/MM/yyyy', 'en-US')
   }
 
-  detailStore(storeId: number) {
-    this.storeService.findByUserId(storeId).subscribe(data => {
+  detailStore(id: number) {
+    this.storeService.findByUserId(id).subscribe(data => {
       this.store = data;
+      this.listPaymentByStore(data.id)
+      this.findAllProductByStoreId(data.id)
+      this.storeId = data.id
     })
   }
 

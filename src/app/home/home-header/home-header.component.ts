@@ -35,13 +35,6 @@ export class HomeHeaderComponent implements OnInit{
   isPartner: boolean = false;
   ngOnInit(): void {
     this.loadHeader();
-    // @ts-ignore
-    this.imageService.findAllFilterStore(this.itemStoreId).subscribe(data => {
-      this.listImageFilter = data;
-      this.findAllCart(this.itemStoreId,this.userId);
-      this.userDetail(this.userId)
-    })
-    this.list.push(10)
   }
 
   constructor(private imageService: ImageService,
@@ -84,7 +77,6 @@ export class HomeHeaderComponent implements OnInit{
       this.roles = this.tokenStorageService.getUser().roles[0];
       this.username = this.tokenStorageService.getUser().username;
     }
-    console.log(this.role)
     this.isLoggedIn = (this.username != null);
     this.isBuyer = (this.roles.authority == "USER")
     this.isAdmin =(this.roles.authority == "ADMIN")
