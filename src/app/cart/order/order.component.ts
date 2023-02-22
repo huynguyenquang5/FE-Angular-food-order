@@ -71,6 +71,7 @@ export class OrderComponent implements OnInit{
   storeDetail(){
     this.storeService.findById(this.storeId).subscribe(data=>{
       this.store = data;
+
     })
   }
   onDeleteProduct(product: Product) {
@@ -87,12 +88,12 @@ export class OrderComponent implements OnInit{
 
   @ViewChild("valueSelectAddress") valueSelectAddress !: ElementRef;
   onSubmitOrder() {
-    // this.cartService.paymentOrder(this.user.id,this.storeId,this.valueSelectAddress.nativeElement.value).subscribe(data=>{
+    this.cartService.paymentOrder(this.userId,this.storeId,this.valueSelectAddress.nativeElement.value).subscribe(data=>{
       Swal.fire({
         icon: 'success',
         title: 'Oops...',
         text: 'Something went wrong!',
-      // })
+      })
       // this.findAllCart(this.storeId,this.user.id)
     })
   }

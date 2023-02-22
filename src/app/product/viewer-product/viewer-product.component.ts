@@ -35,7 +35,8 @@ export class ViewerProductComponent implements OnInit{
       this.listImage = data
     })
   }
-  filter(id: number){
+  filter(event: Event){
+    let id =  parseInt((event.target as HTMLSelectElement).value)
     if (id == 0 || id == null){
       this.imageService.findAllFilter().subscribe((data)=>{
         this.listImage = data
@@ -44,6 +45,7 @@ export class ViewerProductComponent implements OnInit{
     this.imageService.findAllByCategoryId(id).subscribe((data)=>{
       this.listImage = data;
     })
+    console.log(id)
   }
   search(event: Event){
     let name = (<HTMLSelectElement> (event.target)).value
