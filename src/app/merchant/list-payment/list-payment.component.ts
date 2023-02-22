@@ -290,11 +290,11 @@ export class ListPaymentComponent implements OnInit {
 
   findAllInvoiceByProduct(id: number) {
     this.cartService.findAllInvoiceByProductId(id).subscribe(data => {
-      let listPayment: Payment[] = []
+      let listPayments: Payment[] = []
       for (let i = 0; i < data.length; i++) {
-        listPayment.push(data[i].payment)
+        listPayments.push(data[i].payment)
       }
-      this.ListPayment = listPayment
+      this.listPayment = listPayments
     })
   }
 
