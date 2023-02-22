@@ -17,7 +17,6 @@ import {TokenStorageService} from "../../service/security/token-storage.service"
 })
 export class ListOrderComponent implements OnInit {
   ngOnInit(): void {
-    // this.userId = Number(this.routerActive.snapshot.paramMap.get("userId"))
     this.userId = this.storageToken.getUser().id;
     this.userDetail(this.userId);
     this.listPaymentByUser(this.userId);

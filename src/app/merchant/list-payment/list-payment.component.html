@@ -23,7 +23,7 @@
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Store">
         <a class="nav-link" [routerLink]="['/store/payment-list/store', this.store?.id]">
           <i class="fa fa-fw fa-store"></i>
-          <span class="nav-link-text">List payment</span>
+          <span class="nav-link-text">List Payment</span>
         </a>
       </li>
     </ul>
@@ -44,6 +44,129 @@
 </nav>
 <div class="content-wrapper" style="height: 100px;margin-top: 77px">
   <div>
+    <div class="col-lg-12">
+      <div class="btn btn-secondary" (click)="onFilterMenu()">Filter payment</div>
+    </div>
+    <div  class="row" style="padding: 10px;margin-top: 10px; border: 1px solid #625e5e"  *ngIf="checkFilter">
+      <div class="col-lg-2">
+        <select style="height: 30px;width: 100%" (change)="onChangeSelect()" #selectSearch>
+          <option value="all">Select filter type</option>
+          <option value="code">Code</option>
+          <option value="date">Date</option>
+          <option value="price">Price</option>
+          <option value="name">Name Buyer</option>
+          <option value="phone">Phone</option>
+        </select>
+      </div>
+      <div class="col-lg-5" style="color: black">
+        <div style="width: 80%;padding-bottom: 10px;font-size: 16px;text-align: center" >
+          <p style="padding: 0;margin: 0">Please choose one field you want to filter !!</p>
+        </div>
+        <div id="code-menu" *ngIf="checkCode">
+          <label for="search-code" style="font-size: 14px;color: black"><span style="color: red;font-size: 14px">*</span> Code  </label><br>
+          <input type="text" id="search-code" style="width: 80%;height: 30px" placeholder="Code . . . . . . ." #valueSearchCode>
+        </div>
+        <div id="date-menu" class="row" style="padding: 0;margin:0" *ngIf="checkDate">
+          <div class="col-md-12"><span style="color: red;font-size: 14px">*</span> Select the type of date you want to search!!</div>
+          <div class="col-md-4" name="date" id="date">
+            <div class="row" style="margin-top: 10px;padding-left: 40px">
+              <input type="radio" name="date" style="width: 15px;height: 20px" value="day"
+                     [(ngModel)]="valueDate" (ngModelChange)="onSelectTypeDate()" ><span style="padding-left: 3px">Day</span>
+            </div>
+            <div class="row" style="margin-top: 10px;padding-left: 40px">
+              <input type="radio" name="date" style="width: 15px;height: 20px" value="month"
+                     [(ngModel)]="valueDate" (ngModelChange)="onSelectTypeDate()" ><span style="padding-left: 3px">Month</span>
+            </div>
+          </div>
+          <div class="col-md-8" style="padding-top: 5px">
+            <div id="day" *ngIf="checkDay">
+              <label for="search-day" style="font-size: 14px;color: black"><span style="color: red;font-size: 14px">*</span> Day  </label><br>
+              <input type="date" id="search-day" lang="en" style="width: 80%;height: 30px"  #valueSearchDay>
+            </div>
+            <div id="month" *ngIf="checkMonth">
+              <label for="search-month" style="font-size: 14px;color: black"><span style="color: red;font-size: 14px">*</span> Month  </label><br>
+              <input type="month" id="search-month" lang="en" style="width: 80%;height: 30px"  #valueSearchMonth>
+            </div>
+          </div>
+        </div>
+        <div id="price-menu" *ngIf="checkPrice">
+          <label ><span style="color: red;font-size: 14px">*</span> Price</label><br>
+          <select name="price" id="price" style="width: 60%; height: 35px"  #valueSearchPrice>
+            <option value="all">Select a price range filter</option>
+            <option value="0,100">$0 --> 100$</option>
+            <option value="100,200">$100 --> 200$</option>
+            <option value="200,500">$200 --> 500$</option>
+            <option value="500,1500">$500 --> $1500</option>
+            <option value="1500,99999999">$1500 --> $....</option>
+          </select>
+        </div>
+        <div id="name-menu" *ngIf="checkBuyer">
+          <label for="name"><span style="color: red;font-size: 14px">*</span> Buyer</label><br>
+          <input type="text" id="name" placeholder="name buyer ... ..." style="width: 80%;height: 35px" #valueSearchName>
+        </div>
+        <div id="phone-menu" *ngIf="checkPhone">
+          <label for="phone"><span style="color: red;font-size: 14px">*</span> Phone</label><br>
+          <input type="text" id="phone" placeholder="phone ... ..." style="width: 80%;height: 35px" #valueSearchPhone>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="col-md-12" style="width: 80%;padding-bottom: 10px;font-size: 16px;text-align: center;color: #0b0b0b" >
+          Status Payment
+        </div>
+        <div class="row">
+          <div class="col-md-2" style="padding-top: 0;float: right">
+            <input type="radio" value="3" style="height: 20px;width: 80%;float: right"
+                   [(ngModel)]="valueStatus" (ngModelChange)="onChangeStatus()" >
+          </div>
+          <div class="col-md-9">
+            <div class="status" style="color: #0a8a26;">Success</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2" style="padding-top: 0;float: right">
+            <input type="radio" value="2" style="height: 20px;width: 80%;float: right"
+                   [(ngModel)]="valueStatus" (ngModelChange)="onChangeStatus()" >
+          </div>
+          <div class="col-md-9">
+            <div class="status" style="color: #0a8a26 ">Shipping</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2" style="padding-top: 0;float: right">
+            <input type="radio" value="1" style="height: 20px;width: 80%;float: right"
+                   [(ngModel)]="valueStatus" (ngModelChange)="onChangeStatus()" >
+          </div>
+          <div class="col-md-9">
+            <div class="status" style="color: #e38e1e">Pending</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2" style="padding-top: 0;float: right">
+            <input type="radio" value="0" style="height: 20px;width: 80%;float: right"
+                   [(ngModel)]="valueStatus" (ngModelChange)="onChangeStatus()" >
+          </div>
+          <div class="col-md-9">
+            <div class="status" style="color: #e72d2d">Canceled</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2" style="padding-top: 0;float: right">
+            <input type="radio" value="99" style="height: 20px;width: 80%;float: right"
+                   [(ngModel)]="valueStatus" (ngModelChange)="onChangeStatus()" >
+          </div>
+          <div class="col-md-9">
+            <div class="status" style="color: black">All</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div>
+          <div class="btn btn-success" style="width: 80%" (click)="onSubmitFilter()">Filter</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 5px">
     <div class="filter_type">
       <div class="inner_bt clearfix">Filters</div>
       <div class="filter_type" style="width: 200px">
@@ -70,15 +193,17 @@
         <th>Code</th>
         <th>Date</th>
         <th>Price</th>
-        <th>Address</th>
+        <th>Buyer</th>
+        <th>Phone</th>
         <th>Status</th>
       </tr>
-      <tr *ngFor="let p of ListPayment,index as index">
+      <tr *ngFor="let p of listPayment,index as index">
         <td>{{index+1}}</td>
         <td class="code" [routerLink]="['/user/payment-detail/payment',p.id]" ><i class="fa-solid fa-eye"></i> {{p.code}}</td>
         <td>{{displayDate(p.date)}}</td>
         <td>${{p.price}}</td>
-        <td>{{p.address.name}}</td>
+        <td>{{p.user.name}}</td>
+        <td>{{p.user.phone}}</td>
         <td>
           <div *ngIf="0 === p.status">
             <div class="btn btn-warning" style="width: 80%">Canceled</div>
@@ -90,7 +215,7 @@
                  (click)="onModal(p,'cancel')">Cancel</div>
           </div>
           <div *ngIf="2 === p.status">
-            <div class="btn btn-success" style="width: 80%">Pending</div>
+            <div class="btn btn-success" style="width: 80%">Shipping</div>
           </div>
           <div *ngIf="3 === p.status">
             <div class="btn btn-success" style="width: 80%">Success</div>
