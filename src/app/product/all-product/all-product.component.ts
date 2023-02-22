@@ -80,9 +80,12 @@ export class AllProductComponent implements OnInit {
 
   findAllProduct(id: number) {
     this.productService.findAllByStore(id).subscribe((data) => {
-    // this.productService.findAll().subscribe((data) => {
-        this.listProduct = data
-        this.listProducts = data
+        for (let i = 0; i<data.length; i++){
+          if (data[i].status!=0){
+            this.listProduct.push(data[i])
+            this.listProducts.push(data[i])
+          }
+        }
       }
     )
   }

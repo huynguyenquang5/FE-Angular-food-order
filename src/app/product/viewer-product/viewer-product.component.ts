@@ -14,9 +14,9 @@ import {databaseInstance$} from "@angular/fire/database";
   styleUrls: ['./viewer-product.component.css']
 })
 export class ViewerProductComponent implements OnInit{
-  listProduct!: Product[]
+  listProduct: Product[]=[]
   categories!: Category[]
-  listImage!: Image[]
+  listImage: Image[]=[]
   categoryId: number =0
   path!: string
   constructor(private productService: ProductService,
@@ -26,35 +26,67 @@ export class ViewerProductComponent implements OnInit{
   }
   ngOnInit()  {
     this.productService.findAll().subscribe((data)=>{
-      this.listProduct = data;
+      for (let i =0; i<data.length; i++){
+        if (data[i].status!=0){
+          this.listProduct.push(data[i])
+        }
+      }
     })
     this.categoryService.findAll().subscribe((data)=>{
       this.categories = data
     })
     this.imageService.findAllFilter().subscribe((data)=>{
-      this.listImage = data
+      for (let i =0; i<data.length; i++){
+        if (data[i].product.status!=0){
+          this.listImage.push(data[i])
+        }
+      }
     })
   }
   filter(event: Event){
     let id =  parseInt((event.target as HTMLSelectElement).value)
     if (id == 0 || id == null){
       this.imageService.findAllFilter().subscribe((data)=>{
-        this.listImage = data
+         let listImages: Image[]=[]
+        for (let i =0; i<data.length; i++){
+          if (data[i].product.status!=0){
+           listImages.push(data[i])
+          }
+        }
+        this.listImage = listImages
       })
     }
     this.imageService.findAllByCategoryId(id).subscribe((data)=>{
-      this.listImage = data;
+      let listImages: Image[]=[]
+      for (let i =0; i<data.length; i++){
+        if (data[i].product.status!=0){
+          listImages.push(data[i])
+        }
+      }
+      this.listImage = listImages
     })
-    console.log(id)
   }
   search(event: Event){
     let name = (<HTMLSelectElement> (event.target)).value
     if(name == "" || name == null){
       this.imageService.findAllFilter().subscribe(data =>{
-        this.listImage = data
+
+        let listImages: Image[]=[]
+        for (let i =0; i<data.length; i++){
+          if (data[i].product.status!=0){
+            listImages.push(data[i])
+          }
+        }
+        this.listImage = listImages
       })
     }else{this.imageService.findAllByProductName(name).subscribe((data)=>{
-      this.listImage = data
+      let listImages: Image[]=[]
+      for (let i =0; i<data.length; i++){
+        if (data[i].product.status!=0){
+          listImages.push(data[i])
+        }
+      }
+      this.listImage = listImages
     })}
   }
 
