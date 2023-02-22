@@ -8,6 +8,7 @@ import {UserService} from "../../service/user/user.service";
 import {User} from "../../model/user/user";
 import {Roles} from "../../model/user/roles";
 import {TokenStorageService} from "../../service/security/token-storage.service";
+import {Payment} from "../../model/cart/payment";
 
 @Component({
   selector: 'app-home-header',
@@ -18,8 +19,8 @@ export class HomeHeaderComponent implements OnInit{
   @Input() itemStoreId!: number;
   listImageFilter: Image[] = [];
   listCart: Cart[] = [];
+  listPayment: Payment[] = [];
   map = new Map();
-  list: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   total!: number;
   userId!: number;
   user!: User;
@@ -35,6 +36,14 @@ export class HomeHeaderComponent implements OnInit{
   isPartner: boolean = false;
   ngOnInit(): void {
     this.loadHeader();
+    this.userId = this.tokenStorageService.getUser().id;
+    this.findAllPayment(this.userId)
+    // @ts-ignore
+    this.imageService.findAllFilterStore(this.itemStoreId).subscribe(data => {
+      this.listImageFilter = data;
+      this.findAllCart(this.itemStoreId,this.userId);
+      this.userDetail(this.userId)
+    })
   }
 
   constructor(private imageService: ImageService,
@@ -77,6 +86,7 @@ export class HomeHeaderComponent implements OnInit{
       this.roles = this.tokenStorageService.getUser().roles[0];
       this.username = this.tokenStorageService.getUser().username;
     }
+    console.log(this.role)
     this.isLoggedIn = (this.username != null);
     this.isBuyer = (this.roles.authority == "USER")
     this.isAdmin =(this.roles.authority == "ADMIN")
@@ -96,6 +106,11 @@ export class HomeHeaderComponent implements OnInit{
     if (this.tokenStorageService.getToken()) {
       this.userId = this.tokenStorageService.getUser().id;
     }
+  }
+  findAllPayment(userId:number){
+    this.cartService.paymentsUser(userId).subscribe(data =>{
+      this.listPayment = data;
+    })
   }
 }
 

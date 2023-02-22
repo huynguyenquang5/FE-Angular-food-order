@@ -19,13 +19,44 @@
           <h6 class="dropdown-header">New Alerts:</h6>
           <div class="col-md-12"     >
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item alert-my-custom" href="#">
+            <a class="dropdown-item alert-my-custom" href="#" style="margin-bottom: 10px" *ngFor="let p of listPayment"
+            [routerLink]="['/list-order/user',userId]">
               <div style="padding: 0;margin: -8px 0">
-                 <span class="text-success">
-                              <strong><i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                <div  *ngIf="p.status === 0">
+                   <span class="text-success">
+                              <strong style="color: red" ><i class="fa fa-long-arrow-down fa-fw"></i>Order</strong>
                             </span>
-                <div class="small"
-                     style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
+                  <div class="small"
+                       style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
+                    Your order with code #{{p.code}} has been canceled !!
+                  </div>
+                </div>
+                <div  *ngIf="p.status === 1">
+                   <span class="text-success">
+                              <strong><i class="fa fa-long-arrow-up fa-fw"></i>Order</strong>
+                            </span>
+                  <div class="small"
+                       style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
+                    Your order with code #{{p.code}} is waiting for the seller to approve !!
+                  </div>
+                </div>
+                <div  *ngIf="p.status === 2">
+                   <span class="text-success">
+                              <strong><i class="fa fa-long-arrow-up fa-fw"></i>Order</strong>
+                            </span>
+                  <div class="small"
+                       style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
+                    Your order with code #{{p.code}} is being shipped !!
+                  </div>
+                </div>
+                <div  *ngIf="p.status === 3">
+                   <span class="text-success">
+                              <strong><i class="fa fa-long-arrow-up fa-fw"></i>Order</strong>
+                            </span>
+                  <div class="small"
+                       style="font-weight: 500;margin: 0 ;overflow: hidden;text-overflow: ellipsis;width: 200px">
+                    Your order with code #{{p.code}} is being delivered successfully !!
+                  </div>
                 </div>
               </div>
             </a>
