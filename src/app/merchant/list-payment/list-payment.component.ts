@@ -273,7 +273,6 @@ export class ListPaymentComponent implements OnInit {
   }
 
   onFilterMenu() {
-    this.checkFilter = !this.checkFilter;
     this.checkCode = false;
     this.checkDate = false;
     this.checkPrice = false;
