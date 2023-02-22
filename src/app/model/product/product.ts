@@ -6,6 +6,7 @@ export interface Product {
   id: number;
   name: string;
   productMethod: ProductMethod;
+  status: number;
   store: Store;
 
 }
