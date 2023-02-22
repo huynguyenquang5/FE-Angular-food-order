@@ -13,6 +13,7 @@ import {User} from "../../model/user/user";
 import {Cart} from "../../model/cart/cart";
 import { UserService } from 'src/app/service/user/user.service';
 import {TokenStorageService} from "../../service/security/token-storage.service";
+import {Payment} from "../../model/cart/payment";
 
 
 @Component({
@@ -22,10 +23,12 @@ import {TokenStorageService} from "../../service/security/token-storage.service"
 })
 export class DetailStoreComponent implements OnInit {
   ngOnInit(): void {
-    this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
-    this.userId = this.storageToken.getUser().id;
-    this.username = this.storageToken.getUser().username;
-    this.userDetail(this.userId);
+    // this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
+    // this.userId = this.storageToken.getUser().id;
+    this.userId = 1;
+    // this.username = this.storageToken.getUser().username;
+    // this.userDetail(this.userId);
+    this.findAllPayment(this.userId)
     this.storeService.findById(this.storeId).subscribe(data => {
       this.store = data
       this.imageService.findAllFilterStore(this.store.id).subscribe(data =>{
@@ -55,6 +58,7 @@ export class DetailStoreComponent implements OnInit {
   listImage : Image[] = [];
   listImageFilter : Image[] = [];
   listCart : Cart[] = [];
+  listPayment : Payment[] = [];
   username!: string
   classify(products : Image[]){
     for (let i = 0; i < products.length; i++) {
@@ -128,6 +132,11 @@ export class DetailStoreComponent implements OnInit {
   onActionQuantity(c: Cart) {
     this.cartService.changeQuantity(this.user.id,c.product.id).subscribe(data =>{
       this.findAllCart(this.store.id,this.user.id)
+    })
+  }
+  findAllPayment(userId:number){
+    this.cartService.paymentsUser(userId).subscribe(data =>{
+      this.listPayment = data;
     })
   }
 }
