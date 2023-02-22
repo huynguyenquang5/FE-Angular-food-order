@@ -32,8 +32,12 @@ export class DetailStoreComponent implements OnInit {
     this.storeService.findById(this.storeId).subscribe(data => {
       this.store = data
       this.imageService.findAllFilterStore(this.store.id).subscribe(data =>{
-        this.listImageFilter = data;
-        this.classify(data);
+        for (let i =0; i<data.length; i++){
+          if (data[i].product.status !=0 ){
+            this.listImageFilter.push(data[i])
+          }
+        }
+        this.classify(this.listImageFilter);
         this.product = this.listProduct[0];
         this.findAllCart(this.store.id,this.user.id)
         this.addMapProduct()
