@@ -9,6 +9,9 @@ import {CartService} from "../../service/cart/cart.service";
 import {UserService} from "../../service/user/user.service";
 import {Store} from "../../model/store/store";
 import {TokenStorageService} from "../../service/security/token-storage.service";
+import {User} from "../../model/user/user";
+import {Product} from "../../model/product/product";
+import {Invoice} from "../../model/cart/invoice";
 
 
 @Component({
@@ -24,12 +27,18 @@ export class ListPaymentComponent implements OnInit {
   payment!: Payment;
   ListPayment: Payment[] = [];
   check: boolean = false;
+  userCheck!: User;
+  listProduct: Product[] = [];
+
 
   ngOnInit(): void {
     this.userId = this.storageToken.getUser().id;
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
     this.detailStore(this.storeId);
     this.listPaymentByStore(this.storeId)
+    this.findAllProductByStoreId(this.storeId)
+
+
   }
 
   constructor(private productService: ProductService,
@@ -51,6 +60,7 @@ export class ListPaymentComponent implements OnInit {
       this.store = data;
     })
   }
+
   listPaymentByStore(storeId: number) {
     this.cartService.listPaymentByStore(storeId).subscribe(data => {
       this.ListPayment = data;
@@ -58,7 +68,7 @@ export class ListPaymentComponent implements OnInit {
   }
 
   changeStatusPayment(p: Payment, status: string) {
-    this.cartService.statusPayment(p.id,status).subscribe(data => {
+    this.cartService.statusPayment(p.id, status).subscribe(data => {
       this.listPaymentByStore(this.storeId)
       this.ofModal.nativeElement.click()
     })
@@ -66,14 +76,42 @@ export class ListPaymentComponent implements OnInit {
 
   onModal(p: Payment, text: string) {
     this.payment = p;
-    if ("cancel" === text){
+    if ("cancel" === text) {
       this.check = true;
       // @ts-ignore
       document.getElementById("main").innerText = "Click ok if you want to cancel this order?";
-    }else {
+    } else {
       this.check = false;
       // @ts-ignore
       document.getElementById("main").innerText = "Click ok if you accept to approve this order!";
     }
+  }
+
+  findAllProductByStoreId(id: number) {
+    this.productService.findAllByStore(id).subscribe(data => {
+      this.listProduct = data
+
+    })
+  }
+
+  findAllInvoiceByProduct(id: number) {
+    this.cartService.findAllInvoiceByProductId(id).subscribe(data => {
+      let listPayment: Payment[] = []
+      for (let i = 0; i < data.length; i++) {
+        listPayment.push(data[i].payment)
+      }
+      this.ListPayment = listPayment
+    })
+  }
+
+  filterByProductId(event: Event) {
+    let id = parseInt((event.target as HTMLSelectElement).value);
+    if (id == 0|| id == null){
+      this.listPaymentByStore(this.storeId)
+
+    }else{
+      this.findAllInvoiceByProduct(id)
+    }
+
   }
 }

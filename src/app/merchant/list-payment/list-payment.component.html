@@ -44,6 +44,26 @@
 </nav>
 <div class="content-wrapper" style="height: 100px;margin-top: 77px">
   <div>
+    <div class="filter_type">
+      <div class="inner_bt clearfix">Filters</div>
+      <div class="filter_type" style="width: 200px">
+        <h4><a href="#filter_1" data-toggle="collapse" class="opened">Filter by product</a></h4>
+        <div class="collapse show" id="filter_1">
+          <ul>
+            <li (change)="filterByProductId($event)">
+              <label class="container_radio">All
+                <input type="radio" name="filter_sort" value="0">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container_radio" *ngFor="let p of listProduct">{{p.name}}
+                <input type="radio" name="filter_sort" value="{{p.id}}">
+                <span class="checkmark"></span>
+              </label>
+            </li>
+
+          </ul>
+        </div>
+      </div>
     <table class="table table-hover">
       <tr>
         <th>STT</th>
@@ -97,4 +117,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
