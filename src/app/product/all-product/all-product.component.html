@@ -1,11 +1,10 @@
-<app-home-header></app-home-header>
-<app-merchant-nav></app-merchant-nav>
+
 <div class="container-fluid">
 
     <!-- Example DataTables Card-->
     <div class="card mb-3">
       <div class="card-header">
-        <i class="fa fa-table"></i> Orders Table Example
+        <i class="fa fa-table"></i> Product List
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -83,7 +82,7 @@
             </div>
             <!-- Modal body with image -->
             <div class="modal-body" *ngFor="let img of listImage">
-              <div style="text-align: center"><img src="{{img.name}}"/><br></div>
+              <div style="text-align: center"><img src="{{img.name}}" width="360" height="300"/><br></div>
 
               <div style="text-align: center">
                 <div class="btn-group">

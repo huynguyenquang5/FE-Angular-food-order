@@ -13,7 +13,7 @@
         </a>
       </li>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Store">
-        <a class="nav-link nav-custom-out" [routerLink]="['/list-order/user',user.id]"  style="color: white">
+        <a class="nav-link nav-custom-out" [routerLink]="['/list-order/user',userId]"  style="color: white">
           <i class="fa fa-fw fa-store"></i>
           <span class="nav-link-text " >List of orders</span>
         </a>w
@@ -167,7 +167,7 @@
                 </div>
               </div>
               <div class="form-group mt-2" *ngIf="user?.status == 1; else other_message">
-                <label class="container_check">I want to be a partner
+                <label class="container_check">I want to be a merchant
                   <input type="checkbox" id="checkboxStatus">
                   <span class="checkmark"></span>
                 </label>
@@ -176,7 +176,7 @@
                 <p class="text-danger">You are pending for becoming a partner and you cannot change profile.</p>
               </ng-template>
               <div class="mt-2" *ngIf="user?.status == 1">
-                <button data-toggle="modal" data-target="#updateUserModal" class="btn_1 medium">???</button>
+                <button data-toggle="modal" data-target="#updateUserModal" class="btn_1 medium">Save</button>
               </div>
             </form>
           </div>

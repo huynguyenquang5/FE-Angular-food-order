@@ -18,7 +18,7 @@ export class AdminMerchantComponent implements OnInit {
       for (let i = 0; i < users.length; i++) {
         if (users[i].status == 0 || users[i].status == 1){
           for (let j = 0; j < users[i].roles.length; j++) {
-            if (users[i].roles[j].name == "SELLER") {
+            if (users[i].roles[j].name == "MERCHANT") {
               this.users.push(users[i]);
             }
           }
@@ -32,10 +32,8 @@ export class AdminMerchantComponent implements OnInit {
   }
   activeUser() {
     this.adminService.activeBlockUser(this.id, this.status).subscribe( () => {
-      alert("Active successful");
       window.location.reload();
     }, error => {
-      alert("Something wrong");
       console.log(error);
     })
   }

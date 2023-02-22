@@ -1,0 +1,67 @@
+<app-merchant-nav xmlns="http://www.w3.org/1999/html"></app-merchant-nav>
+<div class="content-wrapper" style="margin-top: 70px">
+  <form [formGroup]="storeForm" (ngSubmit)="onSubmit()">
+    <!-- Breadcrumbs-->
+    <div class="box_general padding_bottom">
+      <div class="header_box version_2">
+        <h2><i class="fa fa-user"></i>Create Store</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Store logo</label>
+            <img src="{{path}}" alt="image" width="360" height="300"/>
+          </div>
+        </div>
+        <div class="col-md-8 add_top_30">
+          <input type="number" formControlName="id" hidden="">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" formControlName="nameStore">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" class="form-control" placeholder="Phone" formControlName="phoneStore">
+              </div>
+            </div>
+          </div>
+          <!-- /row-->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Store Address</label>
+                <input type="text" class="form-control" placeholder="Address" formControlName="addressStore">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Image</label>
+                <input type="file" class="form-inline" (change)="submitImage($event)">
+              </div>
+            </div>
+          </div>
+          <!-- /row-->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Description</label>
+                <textarea style="height:100px;" class="form-control" placeholder="Description" formControlName="description"></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- /row-->
+        </div>
+      </div>
+    </div>
+    <!-- /row-->
+    <p>
+      <button type="submit" class="btn_1 medium">Create</button>
+    </p>
+  </form>
+</div>
+<!-- /.container-fluid-->
+<!-- /.container-wrapper-->

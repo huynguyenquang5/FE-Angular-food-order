@@ -1,7 +1,10 @@
-<app-home-header></app-home-header>
 <app-merchant-nav></app-merchant-nav>
-
-<main>
+<div class="content-wrapper" [hidden]="storeId !== undefined" style="margin-top: 60px" >
+<a class="btn_1 m-1" [routerLink]="['/create/store']" >
+  <i class="fa fa-fw fa-pencil-square-o"></i> Create Store
+</a>
+</div>
+<main [hidden]="storeId == undefined">
   <div class="content-wrapper">
     <div class="container-fluid">
       <div class="box_general padding_bottom" style="margin-top: 60px">
@@ -58,19 +61,21 @@
             <button class="btn_1 m-1" data-toggle="modal" data-target="#formUpdate">
               <i class="fa fa-fw fa-edit"></i> Edit Store
             </button>
-            <button class="btn_1 m-1" data-toggle="modal" data-target="#formUpdate" [routerLink]="['/product']">
-              <i class="fa fa-fw fa-edit" ></i> Enter Store
-            </button>
             <button class="btn_1 m-1" [routerLink]="['/product/create']">
               <i class="fa fa-fw fa-pencil"></i> Create Product
+            </button>
+            <button class="btn_1 m-1" [routerLink]="['/store', this.storeId]">
+              <i class="fa fa-fw fa-eye"></i> View Store
             </button>
           </div>
         </div>
       </div>
       <!-- /box_general-->
     </div>
+    <app-all-product></app-all-product>
     <!-- /.container-fluid-->
   </div>
+
   <!-- /.container-wrapper-->
 
 
@@ -87,20 +92,20 @@
       <div class="modal-body">
         <form class="form-group" [formGroup]="storeForm" (ngSubmit)="onSubmit()">
           <input type="text" formControlName="id" hidden>
-          <label for="nameStore">Name:</label>
-          <input type="text" class="form-control" name="nameStore" id="nameStore" formControlName="nameStore">
+          <label for="nameStoreCreate">Name:</label>
+          <input type="text" class="form-control" name="nameStore" id="nameStoreCreate" formControlName="nameStore">
           <br>
-          <label for="phoneStore">Phone:</label>
-          <input type="text" class="form-control" name="phoneStore" id="phoneStore" formControlName="phoneStore">
+          <label for="phoneStoreCreate">Phone:</label>
+          <input type="text" class="form-control" name="phoneStore" id="phoneStoreCreate" formControlName="phoneStore">
           <br>
-          <label for="addressStore">Address:</label>
-          <input type="text" class="form-control" name="addressStore" id="addressStore" formControlName="addressStore">
+          <label for="addressStoreCreate">Address:</label>
+          <input type="text" class="form-control" name="addressStore" id="addressStoreCreate" formControlName="addressStore">
           <br>
-          <label for="description">Description:</label>
-          <input type="text" class="form-control" name="description" id="description" formControlName="description">
+          <label for="descriptionCreate">Description:</label>
+          <input type="text" class="form-control" name="description" id="descriptionCreate" formControlName="description">
           <br>
-          <label for="logo" class="form-label">Logo:</label>
-          <input type="file" class="form-control" id="logo" (change)="submitImage($event)">
+          <label for="logoCreate" class="form-label">Logo:</label>
+          <input type="file" class="form-control" id="logoCreate" (change)="submitImage($event)">
           <br>
           <img src="{{path}}" alt="Image" style="width: 450px; height: 234px">
           <br>
@@ -110,7 +115,6 @@
           </div>
         </form>
       </div>
-
     </div>
   </div>
 </div>

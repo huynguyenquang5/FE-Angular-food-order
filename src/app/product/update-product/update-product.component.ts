@@ -83,7 +83,7 @@ export class UpdateProductComponent implements OnInit {
       data => {this.product = data
       this.formProduct.patchValue(data)
         Swal.fire("Update success")
-        this.router.navigate(['/product'])
+        this.router.navigate(['/merchant/store'])
       }
     )
 

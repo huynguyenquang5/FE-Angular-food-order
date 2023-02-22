@@ -15,6 +15,7 @@ import {AddressService} from "../../service/user/address.service";
 // @ts-ignore
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {UserService} from "../../service/user/user.service";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-order',
@@ -22,14 +23,15 @@ import {UserService} from "../../service/user/user.service";
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit{
+  username!: string;
   ngOnInit(): void {
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
-    // @ts-ignore
-    this.userId = sessionStorage.getItem("user.id");
-    this.userDetail(parseInt(this.userId));
+    this.userId = this.storageToken.getUser().id;
+    this.username = this.storageToken.getUser().username;
+    this.userDetail(this.userId);
     this.toDay = formatDate(this.date, 'dd/MM/yyyy', 'en-US');
     this.storeDetail()
-    this.findAllCart(this.storeId,this.user.id)
+    this.findAllCart(this.storeId,this.userId)
     this.findALlAddress()
   }
   constructor(private productService: ProductService,
@@ -38,13 +40,15 @@ export class OrderComponent implements OnInit{
               private storeService: StoreService,
               private cartService: CartService,
               private addressService: AddressService,
-              private userService:UserService) {
+              private userService:UserService,
+              private storageToken: TokenStorageService) {
+
   }
   listAddress: Address[] = [];
   listCart: Cart[] = [];
   total:number = 0;
   user!:User;
-  userId!:string;
+  userId!: number;
   store!:Store;
   date =  Date.now();
   toDay!:string;
@@ -67,6 +71,7 @@ export class OrderComponent implements OnInit{
   storeDetail(){
     this.storeService.findById(this.storeId).subscribe(data=>{
       this.store = data;
+
     })
   }
   onDeleteProduct(product: Product) {
@@ -83,12 +88,12 @@ export class OrderComponent implements OnInit{
 
   @ViewChild("valueSelectAddress") valueSelectAddress !: ElementRef;
   onSubmitOrder() {
-    // this.cartService.paymentOrder(this.user.id,this.storeId,this.valueSelectAddress.nativeElement.value).subscribe(data=>{
+    this.cartService.paymentOrder(this.userId,this.storeId,this.valueSelectAddress.nativeElement.value).subscribe(data=>{
       Swal.fire({
         icon: 'success',
         title: 'Oops...',
         text: 'Something went wrong!',
-      // })
+      })
       // this.findAllCart(this.storeId,this.user.id)
     })
   }
@@ -131,7 +136,8 @@ export class OrderComponent implements OnInit{
     })
   }
   findALlAddress(){
-    this.addressService.findAllByUser(this.user.id).subscribe(data=>{
+    this.addressService.findAllByUser(this.userId).subscribe(data=>{
+      console.log(data);
       this.listAddress = data;
     })
   }

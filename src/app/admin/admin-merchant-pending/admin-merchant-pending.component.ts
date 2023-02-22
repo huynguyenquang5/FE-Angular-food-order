@@ -26,9 +26,7 @@ export class AdminMerchantPendingComponent implements OnInit {
   }
   acceptMerchant() {
     this.adminService.addRoleMerchant(this.id).subscribe( () => {
-      alert("Accept successful");
       this.adminService.activeBlockUser(this.id, 1).subscribe(() => {
-        alert("Status successfully");
         window.location.reload();
       }, error => {
         console.log(error);
@@ -41,7 +39,6 @@ export class AdminMerchantPendingComponent implements OnInit {
 
   denyMerchant() {
     this.adminService.activeBlockUser(this.id, 1).subscribe( () => {
-      alert("Active successful");
       window.location.reload();
     }, error => {
       alert("Something wrong");

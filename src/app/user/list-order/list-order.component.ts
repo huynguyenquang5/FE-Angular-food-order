@@ -17,8 +17,7 @@ import {TokenStorageService} from "../../service/security/token-storage.service"
 })
 export class ListOrderComponent implements OnInit {
   ngOnInit(): void {
-    // this.userId = this.tokenStorageService.getUser().id
-    this.userId = 1;
+    this.userId = this.storageToken.getUser().id;
     this.userDetail(this.userId);
     this.listPaymentByUser(this.userId);
   }
@@ -27,8 +26,8 @@ export class ListOrderComponent implements OnInit {
               private storeService: StoreService,
               private cartService: CartService,
               private router: Router,
-              private userService: UserService, private tokenStorageService: TokenStorageService,
-             ) {
+              private userService: UserService,
+              private storageToken: TokenStorageService) {
   }
   @ViewChild('ofModal') ofModal!: ElementRef;
   paymentModal!:Payment;
@@ -75,7 +74,7 @@ export class ListOrderComponent implements OnInit {
     }
   }
   logOut(){
-    this.tokenStorageService.signOut();
+    this.storageToken.signOut();
     this.router.navigate([''])
   }
 }

@@ -8,6 +8,7 @@ import {StoreService} from "../../service/store/store.service";
 import {CartService} from "../../service/cart/cart.service";
 import {UserService} from "../../service/user/user.service";
 import {Store} from "../../model/store/store";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 
 @Component({
@@ -43,8 +44,7 @@ export class ListPaymentComponent implements OnInit {
   checkMonth: boolean = false;
 
   ngOnInit(): void {
-    // @ts-ignore
-    this.userId = sessionStorage.getItem('user.id')
+    this.userId = this.storageToken.getUser().id;
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
     this.detailStore(this.storeId);
     this.listPaymentByStore(this.storeId)
@@ -56,7 +56,8 @@ export class ListPaymentComponent implements OnInit {
               private storeService: StoreService,
               private cartService: CartService,
               private router: Router,
-              private userService: UserService) {
+              private userService: UserService,
+              private storageToken: TokenStorageService) {
   }
 
   displayDate(date: string) {

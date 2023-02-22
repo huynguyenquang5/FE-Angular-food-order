@@ -49,20 +49,31 @@
             <button  type="submit" ><i class="icon_search"></i></button>
           </div>
 
+
           <!-- /filter_type -->
           <div class="filter_type">
-            <h4><a href="#filter_2" data-toggle="collapse" class="closed">Categories</a></h4>
-            <div class="collapse" id="filter_2">
-              <ul>
-                <li>
-                    <select [(ngModel)]="categoryId">
-                      <option value="0">------</option>
-                      <option *ngFor="let c of categories" value="{{c.id}}">{{c.name}}</option>
-                    </select>
-                </li>
-              </ul>
-              <p><button href="#0" class="btn_1 outline full-width" (click)="filter(categoryId)">Filter</button></p>
+            <div class="inner_bt clearfix">Filters<a href="#" class="open_filters"><i
+              class="icon_close"></i></a></div>
+            <div class="filter_type">
+              <h4><a href="#filter_1" data-toggle="collapse" class="opened">Categories</a></h4>
+              <div class="collapse show" id="filter_1">
+                <ul>
+                  <li (change)="filter($event)">
+                    <label class="container_radio">All
+                      <input type="radio" name="filter_sort" value="0">
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_radio"  *ngFor="let c of categories">{{c.name}}
+                      <input type="radio" name="filter_sort" checked="" value="{{c.id}}" >
+                      <span class="checkmark"></span>
+                    </label>
+
+                  </li>
+<!--                  <p><button href="#0" class="btn_1 outline full-width" (click)="filter(categoryId)">Filter</button></p>-->
+                </ul>
+              </div>
             </div>
+
 
           </div>
         </div>

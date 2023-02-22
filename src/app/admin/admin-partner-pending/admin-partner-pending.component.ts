@@ -26,9 +26,7 @@ export class AdminPartnerPendingComponent implements OnInit {
   }
   acceptPartner() {
     this.adminService.addRoleMerchantPartner(this.id).subscribe(() => {
-      alert("Accept successful");
       this.adminService.activeBlockUser(this.id, 1).subscribe(() => {
-        alert("Status successfully");
         window.location.reload();
       }, error => {
         console.log(error);

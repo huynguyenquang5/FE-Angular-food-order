@@ -18,8 +18,6 @@ export class MerchantNavComponent implements OnInit {
               private router:Router,
               private storeService: StoreService,
             ) {
-
-    this.userId = this.tokenStorageService.getUser().id;
     let s2 = document.createElement("script");
     s2.type = "text/javascript";
     s2.src = "assets/admin_section/vendor/jquery/jquery.min.js";

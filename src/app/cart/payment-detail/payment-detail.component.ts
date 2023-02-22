@@ -8,6 +8,7 @@ import {Invoice} from "../../model/cart/invoice";
 import {User} from "../../model/user/user";
 import {StoreService} from 'src/app/service/store/store.service';
 import {Store} from "../../model/store/store";
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 @Component({
   selector: 'app-payment-detail',
@@ -23,9 +24,7 @@ export class PaymentDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.paymentId = Number(this.routerActive.snapshot.paramMap.get("paymentId"))
-    // @ts-ignore
-    this.userId = sessionStorage.getItem("user.id")
-    this.userId = 1;
+    this.userId = this.storageToken.getUser().id;
     this.detailPayment(this.paymentId);
     this.listInvoiceByPayment(this.paymentId)
     this.detailUser(this.userId)
@@ -34,7 +33,8 @@ export class PaymentDetailComponent implements OnInit {
   constructor(private routerActive: ActivatedRoute,
               private cartService: CartService,
               private userService: UserService,
-              private storeService: StoreService) {
+              private storeService: StoreService,
+              private storageToken: TokenStorageService) {
   }
 
   detailPayment(paymentId: number) {

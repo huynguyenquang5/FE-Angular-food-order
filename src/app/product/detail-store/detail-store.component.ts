@@ -12,6 +12,7 @@ import {Message} from "../../model/message/message";
 import {User} from "../../model/user/user";
 import {Cart} from "../../model/cart/cart";
 import { UserService } from 'src/app/service/user/user.service';
+import {TokenStorageService} from "../../service/security/token-storage.service";
 
 
 @Component({
@@ -22,8 +23,8 @@ import { UserService } from 'src/app/service/user/user.service';
 export class DetailStoreComponent implements OnInit {
   ngOnInit(): void {
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
-    // @ts-ignore
-    this.userId = sessionStorage.getItem("user.id");
+    this.userId = this.storageToken.getUser().id;
+    this.username = this.storageToken.getUser().username;
     this.userDetail(this.userId);
     this.storeService.findById(this.storeId).subscribe(data => {
       this.store = data
@@ -41,7 +42,8 @@ export class DetailStoreComponent implements OnInit {
               private routerActive : ActivatedRoute,
               private storeService: StoreService,
               private cartService: CartService,
-              private userService: UserService) {
+              private userService: UserService,
+              private storageToken: TokenStorageService) {
   }
   show : boolean = false;
   storeId !:number;
@@ -53,6 +55,7 @@ export class DetailStoreComponent implements OnInit {
   listImage : Image[] = [];
   listImageFilter : Image[] = [];
   listCart : Cart[] = [];
+  username!: string
   classify(products : Image[]){
     for (let i = 0; i < products.length; i++) {
       if (products[i].product.productMethod.category.name.toUpperCase() !== "DRINK"){
@@ -108,7 +111,7 @@ export class DetailStoreComponent implements OnInit {
     }
     this.cartService.save(cart).subscribe(data => {
       this.message = data;
-      this.findAllCart(this.store.id,1)
+      this.findAllCart(this.store.id,this.user.id)
     })
   }
   addMapProduct() {
