@@ -10,10 +10,8 @@
             <thead>
             <tr>
               <th>#</th>
-              <th>Name</th>
               <th>Username</th>
               <th>Email</th>
-              <th>Phone</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -21,21 +19,12 @@
             <tbody>
             <tr *ngFor="let user of users; index as i">
               <td>{{i + 1}}</td>
-              <td>{{user.name}}</td>
-              <td>{{user.username}}</td>
-              <td>{{user.email}}</td>
-              <td>{{user.phone}}</td>
-              <td><i *ngIf="user.status == 1; else status_change" class="approved">Active</i>
-                <ng-template #status_change>
-                  <i *ngIf="user.status == 0" class="cancel">Blocked</i>
-                </ng-template>
+              <td><a href="#0" data-toggle="modal" data-target="#partnerDetail"
+                     (click)="getOneUser(user.id)">{{user?.username}}</a></td>
+              <td>{{user?.email}}</td>
+              <td><i class="approved">Active</i>
               </td>
-              <td><a *ngIf="user.status == 1; else active_change" href="#" (click)="getIdAndStatus(user.id, 0)"
-                     data-toggle="modal" data-target="#blockModal"><strong>Block</strong></a>
-                <ng-template #active_change>
-                  <a *ngIf="user.status == 0" href="#" (click)="getIdAndStatus(user.id,1)"
-                     data-toggle="modal" data-target="#activeModal"><strong>Active</strong></a>
-                </ng-template>
+              <td><a href="#0" data-toggle="modal" data-target="#deleteModal"><strong>Delete</strong></a>
               </td>
             </tr>
             </tbody>
@@ -49,44 +38,50 @@
 </div>
 <!-- /container-wrapper-->
 
-<!--Block Modal-->
-<div class="modal fade" id="blockModal" tabindex="-1" role="dialog" aria-labelledby="blockModalLabel"
+<!--Delete Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
      aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="blockModalLabel">Block partner</h5>
+        <h5 class="modal-title" id="deleteModalLabel">Delete partner</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body">Are you sure to want to block this partner ?</div>
-      <div class="modal-body text-danger">**This will delete partner's store and all products</div>
+      <div class="modal-body">Are you sure to want to delete this partner ?</div>
+      <div class="modal-body text-danger">**This partner will return to merchant role</div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="#" (click)="activeUser()">Block</a>
+        <a class="btn btn-primary" href="#" (click)="activeUser()">Delete</a>
       </div>
     </div>
   </div>
 </div>
 
-<!--Active Modal-->
-<div class="modal fade" id="activeModal" tabindex="-1" role="dialog" aria-labelledby="activeModalLabel" aria-hidden="true">
+<!--Partner Detail-->
+<div class="modal fade" id="partnerDetail" tabindex="-1" role="dialog" aria-labelledby="partnerDetailLabel"
+     aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="activeModalLabel">Active partner</h5>
+        <h5 class="modal-title" id="partnerDetailLabel">Partner Detail</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body">Are you sure to want to active this partner ?</div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="#" (click)="activeUser()">Active</a>
+      <div class="modal-body">
+        <h4>{{user?.name}}</h4>
+        <ul class="booking_list">
+          <li><strong>Username</strong>{{user?.username}}</li>
+          <li><strong>Phone</strong>{{user?.phone}}</li>
+          <li><strong>Email</strong>{{user?.email}}</li>
+          <li *ngFor="let a of addresses; index as i"><strong>Address {{i+1}}</strong>{{a?.name}}</li>
+          <li><strong>Store</strong>{{store?.nameStore}}</li>
+        </ul>
+        <p><a [routerLink]="['/store',store?.id]" class="btn_1" data-dismiss="modal"><i class="fa fa-fw fa-eye"></i>View Store</a></p>
       </div>
     </div>
   </div>
 </div>
-
 

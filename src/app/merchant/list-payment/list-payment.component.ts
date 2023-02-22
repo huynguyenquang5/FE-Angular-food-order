@@ -30,6 +30,7 @@ export class ListPaymentComponent implements OnInit {
   @ViewChild('valueSearchPhone') valueSearchPhone!: ElementRef;
   userId!: number;
   storeId!: number;
+  total!: number;
   status!: number | undefined;
   store!: Store;
   payment!: Payment;
@@ -50,6 +51,7 @@ export class ListPaymentComponent implements OnInit {
   checkMonth: boolean = false;
 
   ngOnInit(): void {
+    this.listPaymentByStore(1)
     this.userId = this.storageToken.getUser().id;
     this.detailStore(this.userId);
   }
@@ -80,6 +82,10 @@ export class ListPaymentComponent implements OnInit {
   listPaymentByStore(storeId: number) {
     this.cartService.listPaymentByStore(storeId).subscribe(data => {
       this.listPayment = data;
+      this.total = 0;
+      for (let payment of data){
+        this.total += payment.price;
+      }
     })
   }
 
@@ -267,6 +273,10 @@ export class ListPaymentComponent implements OnInit {
     }
     this.cartService.listPaymentByStoreAndFilter(1, filter, typeSearch).subscribe(data => {
       this.listPayment = data;
+      this.total = 0;
+      for (let payment of data){
+        this.total += payment.price;
+      }
     })
   }
 
