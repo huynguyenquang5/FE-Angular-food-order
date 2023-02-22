@@ -26,7 +26,7 @@ export class ViewerProductComponent implements OnInit{
   }
   ngOnInit()  {
     this.productService.findAll().subscribe((data)=>{
-      this.listProduct = data
+      this.listProduct = data;
     })
     this.categoryService.findAll().subscribe((data)=>{
       this.categories = data

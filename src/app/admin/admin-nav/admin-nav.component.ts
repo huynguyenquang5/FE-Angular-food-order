@@ -16,9 +16,8 @@ export class AdminNavComponent implements OnInit{
 
   ngOnInit(): void {
   }
-  logout(){
-    window.localStorage.clear();
-    window.sessionStorage.clear();
+  logOut(){
+    this.storageToken.signOut();
     this.router.navigate([''])
   }
 

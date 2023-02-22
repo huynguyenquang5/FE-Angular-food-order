@@ -7,6 +7,7 @@ export interface Store {
   addressStore: string;
   logo: string;
   description: string;
+  status: number;
   wallet: number;
   user: User;
 }
