@@ -7,20 +7,6 @@
           <div class="col-xl-7 col-lg-8">
             <h1>Delivery or Takeaway Food</h1>
             <p>The best restaurants at the best price</p>
-            <form method="post">
-              <div class="row no-gutters custom-search-input">
-                <div class="col-lg-10">
-                  <div class="form-group">
-                    <input class="form-control no_border_r" type="text" id="autocomplete"
-                           placeholder="Address, neighborhood...">
-                  </div>
-                </div>
-                <div class="col-lg-2">
-                  <button class="btn_1 gradient" type="submit">Search</button>
-                </div>
-              </div>
-              <!-- /row -->
-            </form>
           </div>
         </div>
         <!-- /row -->
@@ -29,13 +15,13 @@
     <div class="wave hero"></div>
   </div>
   <div class="bg_gray">
-    <div class="container margin_60_40">
+    <div class="container margin_60_0">
       <div class="main_title">
         <span><em></em></span>
         <h2>Top food</h2>
-        <a href="/view">View All &rarr;</a>
+        <a [routerLink]="['/view']">View All &rarr;</a>
       </div>
-      <div class="row add_bottom_25">
+      <div class="row">
         <div class="col-lg-4" *ngFor="let i of listImg | slice:0:12">
           <div class="list_home">
             <ul>
@@ -44,12 +30,11 @@
                   <figure>
                     <img src="{{i.name}}" alt="" class="lazy" width="350" height="233">
                   </figure>
-                  <div class="score"><strong>9.5</strong></div>
-                  <em>Viet Nam</em>
+                  <em>{{i.product.store.nameStore}}</em>
                   <h3>{{i.product.name}}</h3>
-                  <small>{{i.product.store.addressStore}}</small>
+                  <small>Price ${{i.product.productMethod.price}}</small>
                   <ul>
-                    <li>Price ${{i.product.productMethod.price}}</li>
+                    <li>Sold: {{i.product.productMethod.quantity}}</li>
                   </ul>
                 </a>
               </li>
@@ -65,7 +50,6 @@
         <div class="main_title">
           <span><em></em></span>
           <h2>Top store</h2>
-          <a href="">View All &rarr;</a>
         </div>
         <div class="row add_bottom_25">
           <div class="col-lg-6" *ngFor="let s of stores| slice:0:6">
@@ -76,7 +60,6 @@
                     <figure>
                       <img src="../../../assets/img/location_list_6.jpg" alt="" class="lazy" width="350" height="233">
                     </figure>
-                    <div class="score"><strong>9.5</strong></div>
                     <em>Viet Nam</em>
                     <h3>{{s.nameStore}}</h3>
                     <small>{{s.addressStore}}</small>
@@ -88,12 +71,13 @@
         </div>
         <!-- /row -->
         <div class="banner lazy" id="background-baner">
-          <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.3)" >
+          <div class="wrapper d-flex align-items-center opacity-mask" >
             <div>
               <small>FooYes Delivery</small>
               <h3>We Deliver to your Office</h3>
               <p>Enjoy a tasty food in minutes!</p>
-              <a href="grid-listing-filterscol.html" class="btn_1 gradient">Start Now!</a>
+              <br>
+              <a [routerLink]="['/view']"  class="btn_1 gradient">Start Now!</a>
             </div>
           </div>
           <!-- /wrapper -->
@@ -110,24 +94,21 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="box_how">
-                  <figure><img src="/assets/img/how_1.svg" alt="" width="150" height="167"
+                  <figure><img src="/assets/SVG_File/how_1.svg" alt="" width="150" height="167"
                                class="lazy"></figure>
                   <h3>Easly Order</h3>
-                  <p>Faucibus ante, in porttitor tellus blandit et. Phasellus tincidunt metus lectus sollicitudin.</p>
                 </div>
                 <div class="box_how">
-                  <figure><img src="/assets/img/how_2.svg" alt="" width="130" height="145"
+                  <figure><img src="/assets/SVG_File/how_2.svg" alt="" width="130" height="145"
                                class="lazy"></figure>
                   <h3>Quick Delivery</h3>
-                  <p>Maecenas pulvinar, risus in facilisis dignissim, quam nisi hendrerit nulla, id vestibulum.</p>
                 </div>
               </div>
               <div class="col-lg-6 align-self-center">
                 <div class="box_how">
-                  <figure><img src="/assets/img/how_3.svg"  width="150" height="132"
+                  <figure><img src="/assets/SVG_File/how_3.svg"  width="150" height="132"
                                class="lazy"></figure>
                   <h3>Enjoy Food</h3>
-                  <p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros.</p>
                 </div>
               </div>
             </div>
@@ -140,10 +121,6 @@
                 <span><em></em></span>
                 <h2>Start Ordering Now</h2>
               </div>
-              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero id nisi
-                euismod, sed porta est consectetur deserunt.</p>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur.</p>
 <!--              <p><a href="#0" class="btn_1 medium gradient pulse_bt mt-2">Register</a></p>-->
             </div>
           </div>
@@ -155,51 +132,5 @@
 </main>
 <!-- /main -->
 
-<!-- Sign In Modal -->
-<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-  <div class="modal_header">
-    <h3>Sign In</h3>
-  </div>
-  <form>
-    <div class="sign-in-wrapper">
-      <a href="#0" class="social_bt facebook">Login with Facebook</a>
-      <a href="#0" class="social_bt google">Login with Google</a>
-      <div class="divider"><span>Or</span></div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" class="form-control" name="email" id="email">
-        <i class="icon_mail_alt"></i>
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" class="form-control" name="password" id="password" value="">
-        <i class="icon_lock_alt"></i>
-      </div>
-      <div class="clearfix add_bottom_15">
-        <div class="checkboxes float-left">
-          <label class="container_check">Remember me
-            <input type="checkbox">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-        <div class="float-right"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
-      </div>
-      <div class="text-center">
-        <input type="submit" value="Log In" class="btn_1 full-width mb_5">
-        Don’t have an account? <a href="register.html">Sign up</a>
-      </div>
-      <div id="forgot_pw">
-        <div class="form-group">
-          <label>Please confirm login email below</label>
-          <input type="email" class="form-control" name="email_forgot" id="email_forgot">
-          <i class="icon_mail_alt"></i>
-        </div>
-        <p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p>
-        <div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
-      </div>
-    </div>
-  </form>
-  <!--form -->
-</div>
 <app-home-footer></app-home-footer>
 <!-- /Sign In Modal -->

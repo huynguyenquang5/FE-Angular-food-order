@@ -9,6 +9,7 @@ import {User} from "../../model/user/user";
 import {Roles} from "../../model/user/roles";
 import {TokenStorageService} from "../../service/security/token-storage.service";
 import {Payment} from "../../model/cart/payment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-header',
@@ -43,7 +44,8 @@ export class HomeHeaderComponent implements OnInit{
   constructor(private imageService: ImageService,
               private cartService: CartService,
               private userService: UserService,
-              private tokenStorageService: TokenStorageService,) {
+              private tokenStorageService: TokenStorageService,
+              private router: Router) {
   }
   userDetail(userId:number){
     this.userService.findUserById(userId).subscribe(data=>{
@@ -92,6 +94,7 @@ export class HomeHeaderComponent implements OnInit{
   logOut() {
     this.tokenStorageService.signOut();
     this.isLoggedIn = false;
+    this.router.navigate([""]);
   }
 
   getUsernameAccount(){
