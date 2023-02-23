@@ -313,6 +313,22 @@ export class ListPaymentComponent implements OnInit {
     }else{
       this.findAllInvoiceByProduct(id)
     }
+  }
+  search(event: Event){
+    let name = (<HTMLSelectElement> (event.target)).value
+    if (name == "" || name ==null){
+      this.listPaymentByStore(this.storeId)
+    }else{
+      this.cartService.findAllInvoiceByProductName(name, this.storeId).subscribe(data=>{
+        let listPayments: Payment[] = []
+        for (let i = 0; i < data.length; i++) {
+          listPayments.push(data[i].payment)
+        }
+        this.listPayment = listPayments
+      })
+    }
+
 
   }
+
 }

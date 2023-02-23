@@ -61,4 +61,7 @@ export class CartService {
   findAllInvoiceByProductId(id: number):Observable<Invoice[]>{
     return this.http.get<Invoice[]>(`${apiUrl}/cart/invoice-list/product/${id}`)
   }
+  findAllInvoiceByProductName(name: string, id:number):Observable<Invoice[]>{
+    return this.http.get<Invoice[]>(`${apiUrl}/cart/invoice-list/product/name/${name}/${id}`)
+  }
 }

@@ -52,18 +52,12 @@
       <div class="filter_type">
         <h4 style="width: 200px"><a href="#filter_10" data-toggle="collapse" class="closed">Filter by product</a></h4>
         <div class="collapse" id="filter_10">
-          <ul>
-            <li (change)="filterByProductId($event)">
-              <label class="container_radio">All
-                <input type="radio" name="filter_sort" value="0">
-                <span class="checkmark"></span>
-              </label>
-              <label class="container_radio" *ngFor="let p of listProduct">{{p.name}}
-                <input type="radio" name="filter_sort" value="{{p.id}}">
-                <span class="checkmark"></span>
-              </label>
-            </li>
-          </ul>
+          <div class="col-xl-2 col-lg-2 col-md-2">
+            <div class="search_bar_list">
+              <input type="text" class="form-control" placeholder="Name of product" (change)="search($event)">
+              <button  type="submit" ><i class="icon_search"></i></button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="filter_type" style="width: auto">
