@@ -86,8 +86,9 @@ export class UpdateProductComponent implements OnInit {
         this.router.navigate(['/merchant/store'])
       }
     )
-
-
+  }
+  back(){
+    this.router.navigate(['/merchant/store'])
   }
 
 }

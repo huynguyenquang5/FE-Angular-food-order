@@ -135,10 +135,10 @@
         <li class="submenu" [hidden]="!isLoggedIn">
           <a href="#0" class="show-submenu">Welcome! {{username}}</a>
           <ul>
-            <li [hidden]="!isBuyer"><a [routerLink]="['detail/user']">My Profile</a></li>
-            <li [hidden]="!isSeller"><a [routerLink]="['merchant']">My Profile</a></li>
-            <li [hidden]="!isPartner"><a [routerLink]="['users/merchant/', userId]">My Profile</a></li>
-            <li><a href="#0" (click)="logOut()">Logout</a></li>
+            <li [hidden]="!isBuyer"><a (click)="userProfile()">My Profile</a></li>
+            <li [hidden]="!isSeller"><a (click)="merchantProfile()">My Profile</a></li>
+            <li [hidden]="!isPartner"><a (click)="partnerProfile()">My Profile</a></li>
+            <li><a  (click)="logOut()">Logout</a></li>
           </ul>
         </li>
       </ul>

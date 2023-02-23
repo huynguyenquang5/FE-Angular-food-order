@@ -1,3 +1,4 @@
+<body data-spy="scroll" data-target="#secondary_nav" data-offset="75">
 <header class="header black_nav clearfix element_to_stick"
         style="background-color: #ffffff;box-shadow: 0 0 1px 0 #a8a5a5; height: 66px">
   <div class="container">
@@ -107,7 +108,29 @@
         </div>
       </li>
     </ul>
+    <ul class="drop_user top_menu">
+      <li>
+        <div class="dropdown user clearfix">
+          <a data-toggle="dropdown">
+            <span style="padding-right: 5px"> Welcome {{username}}</span>
+          </a>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-content">
+              <ul>
+                <li><a href="#0" [routerLink]="['/detail/user',userId]"><i class="icon_cog"></i>Dashboard</a></li>
+                <li><a href="#0"><i class="fa-brands fa-shopify"></i>Shop</a></li>
+                <li><a href="#0"><i class="icon_key"></i>Log out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /dropdown -->
+      </li>
+    </ul>
     <!-- /top_menu -->
+    <a href="#0" class="open_close">
+      <i class="icon_menu"></i><span>Menu</span>
+    </a>
     <nav class="main-menu">
       <div id="header_menu">
         <a href="#0" class="open_close">
@@ -120,11 +143,7 @@
           <a [routerLink]="['']" class="show-submenu">Home</a>
         </li>
         <li class="submenu" [hidden]="!isAdmin">
-          <a href="" class="show-submenu">Manager</a>
-          <ul>
-            <li><a href="/admin">User</a></li>
-            <li><a href="">Confirm Order</a></li>
-          </ul>
+          <a [routerLink]="['/admin']" class="show-submenu">Manager</a>
         </li>
         <li class="submenu" [hidden]="isLoggedIn">
           <a href="accounts/login" class="show-submenu">Login</a>
@@ -159,6 +178,9 @@
                 target="blank" style="color:#000;">Get Map</a>
               </div>
               <div class="col-xl-8 col-lg-7 col-md-6">
+                <div class="buttons clearfix">
+                  <a href="#0" class="btn_hero wishlist"><i class="icon_heart"></i>Wishlist</a>
+                </div>
               </div>
             </div>
             <!-- /row -->
@@ -173,8 +195,8 @@
   <nav class="secondary_nav sticky_horizontal">
     <div class="container">
       <ul id="secondary_nav">
-        <li><a class="list-group-item list-group-item-action" routerLink="store/{{storeId}}/#section-1">Main Courses</a></li>
-        <li><a class="list-group-item list-group-item-action" routerLink="store/{{storeId}}/#section-4">Drinks</a></li>
+        <li><a class="list-group-item list-group-item-action" href="store/{{storeId}}/#section-1">Main Courses</a></li>
+        <li><a class="list-group-item list-group-item-action" href="store/{{storeId}}/#section-4">Drinks</a></li>
       </ul>
     </div>
     <span></span>
@@ -387,4 +409,5 @@
   </div>
 </div>
 <!-- /modal detail -->>
+</body>
 
