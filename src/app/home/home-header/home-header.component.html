@@ -1,5 +1,5 @@
 <header class="header black_nav clearfix element_to_stick"
-        style="background-color: #ffffff;box-shadow: 0 0 1px 0 #a8a5a5">
+        style="background-color: #ffffff;box-shadow: 0 0 1px 0 #a8a5a5; height: 66px">
   <div class="container">
     <div id="logo">
       <a routerLink="">
@@ -11,7 +11,7 @@
       <li class="nav-item dropdown" style="border: 0">
         <a class="nav-link dropdown-toggle mr-lg-2" href="#" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-fw fa-bell"></i>
+          <i class="fa fa-fw fa-bell" style="padding-right: 10px"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="alertsDropdown"
              style="width: 300px;max-height: 500px;box-shadow: 5px 6px 6px 6px #888888;overflow: auto">
@@ -68,7 +68,7 @@
       <li class="nav-item dropdown" style="border: none">
         <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-          <i class="fa-solid fa-cart-shopping" style="padding-right: 15px"></i>
+          <i class="fa-solid fa-cart-shopping" style="padding-right: 10px"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="alertsDropdown"
              style="width: 310px;max-height: 700px;margin: 5px;box-shadow: 5px 8px 8px 8px #888888;">
@@ -120,18 +120,7 @@
       </div>
       <ul>
         <li class="submenu">
-          <a href="#0" class="show-submenu">Home</a>
-          <ul>
-            <li><a href="index-2.html">Search by Keyword</a></li>
-            <li><a href="header-cart-top.html">Header Cart Top</a></li>
-          </ul>
-        </li>
-        <li class="submenu">
-          <a href="#0" class="show-submenu">Listing</a>
-          <ul>
-            <li><a href="order.html">Order</a></li>
-            <li><a href="confirm.html">Confirm Order</a></li>
-          </ul>
+          <a [routerLink]="['']" class="show-submenu">Home</a>
         </li>
         <li class="submenu" [hidden]="!isAdmin">
           <a href="" class="show-submenu">Manager</a>
@@ -149,7 +138,7 @@
             <li [hidden]="!isBuyer"><a [routerLink]="['detail/user']">My Profile</a></li>
             <li [hidden]="!isSeller"><a [routerLink]="['merchant']">My Profile</a></li>
             <li [hidden]="!isPartner"><a [routerLink]="['users/merchant/', userId]">My Profile</a></li>
-            <li><a href="" (click)="logOut()">Logout</a></li>
+            <li><a href="#0" (click)="logOut()">Logout</a></li>
           </ul>
         </li>
       </ul>

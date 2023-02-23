@@ -1688,7 +1688,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #222;
+  color: #000000;
   font-weight: 500;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -2434,11 +2434,11 @@ ul#top_menu li a.login:before {
 }
 .hero_single.version_1 {
   height: 620px;
-  background: #faf3cc url(../img/hero_5.svg) center top no-repeat;
+  background: #faf3cc url(../../assets/SVG_File/hero_5.svg) center top no-repeat;
 }
 @media (max-width: 991px) {
   .hero_single.version_1 {
-    background: #faf3cc url(../img/hero_5_mobile.svg) center top no-repeat;
+    background: #faf3cc url(../../assets/img/hero_5_mobile.svg) center top no-repeat;
   }
 }
 @media (max-width: 991px) {
@@ -2455,7 +2455,7 @@ ul#top_menu li a.login:before {
 }
 .hero_single.version_2 {
   height: 620px;
-  background: #faf3cc url(../img/home_section_2.jpg) center center no-repeat;
+  background: #faf3cc url(assets/img/home_section_2.jpg) center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

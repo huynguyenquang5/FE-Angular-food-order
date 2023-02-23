@@ -9,6 +9,7 @@ import {User} from "../../model/user/user";
 import {Roles} from "../../model/user/roles";
 import {TokenStorageService} from "../../service/security/token-storage.service";
 import {Payment} from "../../model/cart/payment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-header',
@@ -36,14 +37,15 @@ export class HomeHeaderComponent implements OnInit{
   isPartner: boolean = false;
   ngOnInit(): void {
     this.loadHeader();
-    this.userId = this.tokenStorageService.getUser().id;
-    this.findAllPayment(this.userId)
+
+
   }
 
   constructor(private imageService: ImageService,
               private cartService: CartService,
               private userService: UserService,
-              private tokenStorageService: TokenStorageService,) {
+              private tokenStorageService: TokenStorageService,
+              private router: Router) {
   }
   userDetail(userId:number){
     this.userService.findUserById(userId).subscribe(data=>{
@@ -79,6 +81,8 @@ export class HomeHeaderComponent implements OnInit{
       this.role = this.tokenStorageService.getUser().roles[0];
       this.roles = this.tokenStorageService.getUser().roles[0];
       this.username = this.tokenStorageService.getUser().username;
+      this.userId = this.tokenStorageService.getUser().id;
+      this.findAllPayment(this.userId)
     }
     this.isLoggedIn = (this.username != null);
     this.isBuyer = (this.roles.authority == "USER")
@@ -87,12 +91,13 @@ export class HomeHeaderComponent implements OnInit{
     this.isPartner = (this.roles.authority == "PARTNER")
     this.getUsernameAccount();
 
+
   }
 
   logOut() {
     this.tokenStorageService.signOut();
     this.isLoggedIn = false;
-    this.ngOnInit();
+    this.router.navigate([""]);
   }
 
   getUsernameAccount(){

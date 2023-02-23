@@ -16,7 +16,7 @@
               <th style="text-align: center">Price</th>
               <th style="text-align: center">Category</th>
               <th style="text-align: center">Description</th>
-              <th style="text-align: center">Image</th>
+              <th style="text-align: center"  colspan="2">Image</th>
               <th colspan="2" style="text-align: center">Action</th>
             </tr>
             </thead>
@@ -27,12 +27,12 @@
               <td style="text-align: center">{{p.productMethod.price}}</td>
               <td style="text-align: center">{{p.productMethod.category.name}}</td>
               <td style="text-align: center">{{p.productMethod.description}}</td>
-              <td style="text-align: center">
+              <td style=" text-align: center">
                 <button (click)="showImage(p.id)" type="button" class="btn btn-light" data-toggle="modal"
                         data-target="#exampleModal"><i class="fa-solid fa-eye">
                 </i></button>
-
               </td>
+              <td style=" text-align: center" ><button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal1"><i class="fa-solid fa-plus"></i></button></td>
               <td style="text-align: center">
                 <button class="btn btn-info" [routerLink]="['/update', p.id]"><i class="fa-solid fa-pen-to-square"></i>
                 </button>
@@ -54,43 +54,18 @@
            aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content" style="margin-top: 100px">
-            <!-- Modal heading -->
-            <div class="modal-header" style="text-align: center">
-              <div>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false">
-                    Add image
-                  </button>
-                  <div class="dropdown-menu">
-                    <div style="text-align: center"><input type="file" class="drop-zone"
-                                                           (change)="submitImage($event)"></div>
-                    <div style="text-align: center"><img src="{{path}}"></div>
-                    <div class="dropdown-divider"></div>
-                    <div style="text-align: center">
-                      <button class="btn btn-info" (click)="onSubmit()">Save</button>
-                      <button type="button" class="btn btn-secondary"
-                              data-dismiss="modal">Close
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal">Close
-                </button>
-              </div>
-            </div>
+
             <!-- Modal body with image -->
             <div class="modal-body" *ngFor="let img of listImage">
               <div style="text-align: center"><img src="{{img.name}}" width="360" height="300"/><br></div>
 
-              <div style="text-align: center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
+              <div class="filter_col" style="text-align: center">
+                <div class="filter_type">
+                  <button type="button" href="#filter_13" class="btn btn-warning dropdown-toggle" data-toggle="collapse"
                           aria-haspopup="true" aria-expanded="false">
                     Edit
-                  </button>
-                  <div class="dropdown-menu">
+                  </button><button class="btn btn-danger" (click)="deleteImage(img.id)">Delete</button>
+                  <div class="collapse" id="filter_13">
                     <div style="text-align: center"><input type="file" class="drop-zone"
                                                            (change)="submitImageEdit($event)"></div>
                     <div style="text-align: center"><img src="{{pathEdit}}"></div>
@@ -104,12 +79,43 @@
                     </div>
                   </div>
                 </div>
-                <button class="btn btn-danger" (click)="deleteImage(img.id)">Delete</button>
+
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="modal fade" id="exampleModal1" tabindex="-1"
+           role="dialog" aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" style="margin-top: 100px">
+            <!-- Modal heading -->
+            <div class="modal-header" style="text-align: center">
+              <div>
+                <div class="btn-group">
+
+                  <div >
+                    <div style="text-align: center"><input type="file" class="drop-zone"
+                                                           (change)="submitImage($event)"></div>
+                    <div style="text-align: center"><img src="{{path}}"></div>
+                    <div class="dropdown-divider"></div>
+                    <div style="text-align: center">
+                      <button class="btn btn-info" (click)="onSubmit()">Save</button>
+                      <button type="button" class="btn btn-secondary"
+                              data-dismiss="modal">Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!-- Modal body with image -->
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
