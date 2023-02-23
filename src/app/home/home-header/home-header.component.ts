@@ -37,8 +37,8 @@ export class HomeHeaderComponent implements OnInit{
   isPartner: boolean = false;
   ngOnInit(): void {
     this.loadHeader();
-    this.userId = this.tokenStorageService.getUser().id;
-    this.findAllPayment(this.userId)
+
+
   }
 
   constructor(private imageService: ImageService,
@@ -81,6 +81,8 @@ export class HomeHeaderComponent implements OnInit{
       this.role = this.tokenStorageService.getUser().roles[0];
       this.roles = this.tokenStorageService.getUser().roles[0];
       this.username = this.tokenStorageService.getUser().username;
+      this.userId = this.tokenStorageService.getUser().id;
+      this.findAllPayment(this.userId)
     }
     this.isLoggedIn = (this.username != null);
     this.isBuyer = (this.roles.authority == "USER")
@@ -88,6 +90,7 @@ export class HomeHeaderComponent implements OnInit{
     this.isSeller =  (this.roles.authority == "MERCHANT")
     this.isPartner = (this.roles.authority == "PARTNER")
     this.getUsernameAccount();
+
 
   }
 
