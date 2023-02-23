@@ -110,5 +110,14 @@ export class HomeHeaderComponent implements OnInit{
       this.listPayment = data;
     })
   }
+  userProfile(){
+    this.router.navigate(['detail/user'])
+  }
+  merchantProfile(){
+    this.router.navigate(['merchant'])
+  }
+  partnerProfile(){
+    this.router.navigate(['users/merchant/',this.userId])
+  }
 }
 
