@@ -92,7 +92,6 @@ export class HomeHeaderComponent implements OnInit{
   logOut() {
     this.tokenStorageService.signOut();
     this.isLoggedIn = false;
-    this.ngOnInit();
   }
 
   getUsernameAccount(){
