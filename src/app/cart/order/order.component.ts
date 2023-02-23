@@ -16,6 +16,7 @@ import {AddressService} from "../../service/user/address.service";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import {UserService} from "../../service/user/user.service";
 import {TokenStorageService} from "../../service/security/token-storage.service";
+import {Message} from "../../model/message/message";
 
 @Component({
   selector: 'app-order',
@@ -53,6 +54,7 @@ export class OrderComponent implements OnInit{
   date =  Date.now();
   toDay!:string;
   storeId!:number;
+  message!:Message;
 
   userDetail(userId: number){
     this.userService.findUserById(userId).subscribe(data=>{
@@ -89,12 +91,21 @@ export class OrderComponent implements OnInit{
   @ViewChild("valueSelectAddress") valueSelectAddress !: ElementRef;
   onSubmitOrder() {
     this.cartService.paymentOrder(this.userId,this.storeId,this.valueSelectAddress.nativeElement.value).subscribe(data=>{
-      Swal.fire({
-        icon: 'success',
-        title: 'Oops...',
-        text: 'Your order has been placed successfully!',
-      })
-      // this.findAllCart(this.storeId,this.user.id)
+      this.message = data;
+      if (this.message.message.toUpperCase() === 'SUCCESS'){
+        Swal.fire({
+          icon: 'success',
+          title: 'Loading...',
+          text: 'Your order has been placed successfully!',
+        })
+      }else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Loading...',
+          text: 'Your order has been placed unsuccessfully!',
+        })
+      }
+      this.ngOnInit()
     })
   }
   @ViewChild("newAddress") newAddress !: ElementRef;

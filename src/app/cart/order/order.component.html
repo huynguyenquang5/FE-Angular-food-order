@@ -40,30 +40,12 @@
                 </div>
               </div>
               <div id="paypal">
-                <div class="payment_select">
-                  <label class="container_radio" style="color: black">Payment by Wallet
-                    <input type="radio" value="Wallet" name="payment_method">
-                    <span class="checkmark"></span>
+                <div class="payment_select row" >
+                  <label class="container_radio col-md-8" style="color: black; float: left;padding-left: 5px">Payment by Wallet
+                  </label>
+                  <label class="col-md-4" style="color: black">${{user?.wallet}}
                   </label>
                 </div>
-                <div class="payment_select">
-                  <label class="container_radio" style="color: black">Pay with Cash
-                    <input type="radio" value="Cash" name="payment_method">
-                    <span class="checkmark"></span>
-                  </label>
-                </div>
-                <!--                <div class="col-md-6">-->
-                <!--                  <div class="form-group">-->
-                <!--                    <label>City</label>-->
-                <!--                    <input class="form-control" placeholder="City">-->
-                <!--                  </div>-->
-                <!--                </div>-->
-                <!--                <div class="col-md-3">-->
-                <!--                  <div class="form-group">-->
-                <!--                    <label>Postal Code</label>-->
-                <!--                    <input class="form-control" placeholder="0123">-->
-                <!--                  </div>-->
-                <!--                </div>-->
               </div>
             </form>
           </div>
