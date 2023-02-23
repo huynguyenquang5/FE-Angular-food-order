@@ -14,6 +14,7 @@ import {Cart} from "../../model/cart/cart";
 import { UserService } from 'src/app/service/user/user.service';
 import {TokenStorageService} from "../../service/security/token-storage.service";
 import {Payment} from "../../model/cart/payment";
+import {Roles} from "../../model/user/roles";
 
 
 @Component({
@@ -23,10 +24,8 @@ import {Payment} from "../../model/cart/payment";
 })
 export class DetailStoreComponent implements OnInit {
   ngOnInit(): void {
+    this.loadHeader();
     this.storeId = Number(this.routerActive.snapshot.paramMap.get("storeId"))
-    this.userId = this.storageToken.getUser().id;
-    this.userId = 1;
-    this.username = this.storageToken.getUser().username;
     this.userDetail(this.userId);
     this.findAllPayment(this.userId)
     this.storeService.findById(this.storeId).subscribe(data => {
@@ -50,7 +49,8 @@ export class DetailStoreComponent implements OnInit {
               private storeService: StoreService,
               private cartService: CartService,
               private userService: UserService,
-              private storageToken: TokenStorageService) {
+              private storageToken: TokenStorageService,
+              private router: Router) {
   }
   show : boolean = false;
   storeId !:number;
@@ -64,6 +64,14 @@ export class DetailStoreComponent implements OnInit {
   listCart : Cart[] = [];
   listPayment : Payment[] = [];
   username!: string
+  isLoggedIn: boolean = false;
+  isSeller: boolean = false;
+  isBuyer: boolean = false;
+  isAdmin:boolean = false;
+  isPartner: boolean = false;
+  currentUser!: string;
+  role!: string;
+  roles: Roles = new Roles();
   classify(products : Image[]){
     for (let i = 0; i < products.length; i++) {
       if (products[i].product.productMethod.category.name.toUpperCase() !== "DRINK"){
@@ -142,5 +150,29 @@ export class DetailStoreComponent implements OnInit {
     this.cartService.paymentsUser(userId).subscribe(data =>{
       this.listPayment = data;
     })
+  }
+  logOut() {
+    this.storageToken.signOut();
+    this.isLoggedIn = false;
+    this.router.navigate([""]);
+  }
+  loadHeader(): void {
+    if (this.storageToken.getToken()) {
+      this.currentUser = this.storageToken.getUser().username;
+      this.role = this.storageToken.getUser().roles[0];
+      this.roles = this.storageToken.getUser().roles[0];
+      this.username = this.storageToken.getUser().username;
+    }
+    this.isLoggedIn = (this.username != null);
+    this.isBuyer = (this.roles.authority == "USER")
+    this.isAdmin =(this.roles.authority == "ADMIN")
+    this.isSeller =  (this.roles.authority == "MERCHANT")
+    this.isPartner = (this.roles.authority == "PARTNER")
+    this.getUsernameAccount();
+  }
+  getUsernameAccount(){
+    if (this.storageToken.getToken()) {
+      this.userId = this.storageToken.getUser().id;
+    }
   }
 }

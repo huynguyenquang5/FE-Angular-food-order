@@ -1,6 +1,5 @@
-<body data-spy="scroll" data-target="#secondary_nav" data-offset="75">
 <header class="header black_nav clearfix element_to_stick"
-        style="background-color: #ffffff;box-shadow: 0 0 1px 0 #a8a5a5">
+        style="background-color: #ffffff;box-shadow: 0 0 1px 0 #a8a5a5; height: 66px">
   <div class="container">
     <div id="logo">
       <a routerLink="">
@@ -12,7 +11,7 @@
       <li class="nav-item dropdown" style="border: 0">
         <a class="nav-link dropdown-toggle mr-lg-2" href="#" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-fw fa-bell"></i>
+          <i class="fa fa-fw fa-bell" style="padding-right: 10px"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="alertsDropdown"
              style="width: 300px;max-height: 500px;box-shadow: 5px 6px 6px 6px #888888;overflow: auto">
@@ -69,7 +68,7 @@
       <li class="nav-item dropdown" style="border: none">
         <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-          <i class="fa-solid fa-cart-shopping" style="padding-right: 15px"></i>
+          <i class="fa-solid fa-cart-shopping" style="padding-right: 10px"></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="alertsDropdown"
              style="width: 310px;max-height: 700px;margin: 5px;box-shadow: 5px 8px 8px 8px #888888;">
@@ -108,29 +107,7 @@
         </div>
       </li>
     </ul>
-    <ul class="drop_user top_menu">
-      <li>
-        <div class="dropdown user clearfix">
-          <a data-toggle="dropdown">
-            <span style="padding-right: 5px"> Welcome {{username}}</span>
-          </a>
-          <div class="dropdown-menu">
-            <div class="dropdown-menu-content">
-              <ul>
-                <li><a href="#0" [routerLink]="['/detail/user',userId]"><i class="icon_cog"></i>Dashboard</a></li>
-                <li><a href="#0"><i class="fa-brands fa-shopify"></i>Shop</a></li>
-                <li><a href="#0"><i class="icon_key"></i>Log out</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- /dropdown -->
-      </li>
-    </ul>
     <!-- /top_menu -->
-    <a href="#0" class="open_close">
-      <i class="icon_menu"></i><span>Menu</span>
-    </a>
     <nav class="main-menu">
       <div id="header_menu">
         <a href="#0" class="open_close">
@@ -140,17 +117,25 @@
       </div>
       <ul>
         <li class="submenu">
-          <a href="#0" class="show-submenu">Home</a>
+          <a [routerLink]="['']" class="show-submenu">Home</a>
+        </li>
+        <li class="submenu" [hidden]="!isAdmin">
+          <a href="" class="show-submenu">Manager</a>
           <ul>
-            <li><a href="index-2.html">Search by Keyword</a></li>
-            <li><a href="header-cart-top.html">Header Cart Top</a></li>
+            <li><a href="/admin">User</a></li>
+            <li><a href="">Confirm Order</a></li>
           </ul>
         </li>
-        <li class="submenu">
-          <a href="#0" class="show-submenu">Listing</a>
+        <li class="submenu" [hidden]="isLoggedIn">
+          <a href="accounts/login" class="show-submenu">Login</a>
+        </li>
+        <li class="submenu" [hidden]="!isLoggedIn">
+          <a href="#0" class="show-submenu">Welcome! {{username}}</a>
           <ul>
-            <li><a href="order.html">Order</a></li>
-            <li><a href="confirm.html">Confirm Order</a></li>
+            <li [hidden]="!isBuyer"><a [routerLink]="['/detail/user']">My Profile</a></li>
+            <li [hidden]="!isSeller"><a [routerLink]="['/merchant']">My Profile</a></li>
+            <li [hidden]="!isPartner"><a [routerLink]="['/users/merchant/', userId]">My Profile</a></li>
+            <li><a href="#0" (click)="logOut()">Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -174,9 +159,6 @@
                 target="blank" style="color:#000;">Get Map</a>
               </div>
               <div class="col-xl-8 col-lg-7 col-md-6">
-                <div class="buttons clearfix">
-                  <a href="#0" class="btn_hero wishlist"><i class="icon_heart"></i>Wishlist</a>
-                </div>
               </div>
             </div>
             <!-- /row -->
@@ -191,8 +173,8 @@
   <nav class="secondary_nav sticky_horizontal">
     <div class="container">
       <ul id="secondary_nav">
-        <li><a class="list-group-item list-group-item-action" href="store/{{storeId}}/#section-1">Main Courses</a></li>
-        <li><a class="list-group-item list-group-item-action" href="store/{{storeId}}/#section-4">Drinks</a></li>
+        <li><a class="list-group-item list-group-item-action" routerLink="store/{{storeId}}/#section-1">Main Courses</a></li>
+        <li><a class="list-group-item list-group-item-action" routerLink="store/{{storeId}}/#section-4">Drinks</a></li>
       </ul>
     </div>
     <span></span>
@@ -203,7 +185,7 @@
     <div class="container margin_detail">
       <div class="row">
         <div class="col-lg-8 list_menu">
-          <section id="section-1">
+          <section id="section-1" style="padding-top: 0">
             <h4>Main Courses</h4>
             <div class="table_wrapper">
               <table class="table cart-list menu-gallery">
@@ -290,7 +272,7 @@
         </div>
         <!-- /col -->
 
-        <div class="col-lg-4" id="sidebar_fixed">
+        <div class="col-lg-4" id="sidebar_fixed" style="padding-top: 37px;">
           <div class="box_order mobile_fixed" >
             <div class="head" style="background-color: #f13d3d">
               <h3 ><p style="color: whitesmoke;padding: 0;margin: 0">Order Summary</p></h3>
@@ -405,5 +387,4 @@
   </div>
 </div>
 <!-- /modal detail -->>
-</body>
 
