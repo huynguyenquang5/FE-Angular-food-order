@@ -69,8 +69,6 @@ import { MerchantCreateStoreComponent } from './merchant/merchant-create-store/m
     ListPaymentComponent,
     PaymentDetailComponent,
     MerchantCreateStoreComponent
-
-
   ],
     imports: [
         BrowserModule,
