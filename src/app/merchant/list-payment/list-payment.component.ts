@@ -49,6 +49,8 @@ export class ListPaymentComponent implements OnInit {
   checkPhone: boolean = false;
   checkDay: boolean = false;
   checkMonth: boolean = false;
+  checkMenuFilterAll: boolean = false;
+  checkMenuFilterFood: boolean = false;
 
   ngOnInit(): void {
     this.listPaymentByStore(1)
@@ -281,6 +283,7 @@ export class ListPaymentComponent implements OnInit {
   }
 
   onFilterMenu() {
+    this.checkMenuFilterAll = ! this.checkMenuFilterAll;
     this.checkCode = false;
     this.checkDate = false;
     this.checkPrice = false;
@@ -331,4 +334,7 @@ export class ListPaymentComponent implements OnInit {
 
   }
 
+  onMenuFilterFood() {
+    this.checkMenuFilterFood = !this.checkMenuFilterFood;
+  }
 }

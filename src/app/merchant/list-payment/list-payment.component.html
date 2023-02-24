@@ -7,8 +7,8 @@
     <div class="filter_col">
       Filters
       <div class="filter_type" style="margin-top: 25px">
-        <h4 style="width: 200px"><a href="#filter_10" data-toggle="collapse" class="closed">Filter by product</a></h4>
-        <div class="collapse" id="filter_10">
+        <h4 style="width: 200px"><a href="#filter_10" data-toggle="collapse" class="closed" (click)="onMenuFilterFood()">Filter by product</a></h4>
+        <div class="collapse" id="filter_10" *ngIf="checkMenuFilterFood">
           <div class="col-xl-2 col-lg-2 col-md-2">
             <div class="search_bar_list">
               <input type="text" class="form-control" placeholder="Name of product" (change)="search($event)">
@@ -20,7 +20,7 @@
       <div class="filter_type" style="width: auto">
         <h4 style="width: 200px"><a href="#filter_11" data-toggle="collapse" class="closed" (click)="onFilterMenu()">Filter
           by information</a></h4>
-        <div class="collapse" id="filter_11">
+        <div class="collapse" id="filter_11" *ngIf="checkMenuFilterAll">
           <div class="row" style="padding: 10px;margin-top: 10px; border: 1px solid #625e5e">
             <div class="col-lg-3">
               <div class="col-md-12">
