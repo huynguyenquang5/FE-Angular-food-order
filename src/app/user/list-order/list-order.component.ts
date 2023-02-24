@@ -20,6 +20,7 @@ export class ListOrderComponent implements OnInit {
     this.userId = this.storageToken.getUser().id;
     this.userDetail(this.userId);
     this.listPaymentByUser(this.userId);
+    this.checkStoreByUserId();
   }
 
   constructor(private routerActive : ActivatedRoute,
@@ -35,6 +36,12 @@ export class ListOrderComponent implements OnInit {
   user!:User;
   listPayment:Payment[]=[];
   check:boolean=false;
+  storeId!: number;
+  checkStoreByUserId() {
+    this.storeService.findByUserId(this.userId).subscribe(data => {
+      this.storeId = data.id;
+    })
+  }
   userDetail(userId:number){
     this.userService.findUserById(userId).subscribe(data=>{
       this.user = data;

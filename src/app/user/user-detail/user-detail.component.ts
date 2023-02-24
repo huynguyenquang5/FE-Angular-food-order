@@ -6,6 +6,7 @@ import {UserService} from "../../service/user/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AddressService} from "../../service/user/address.service";
 import {TokenStorageService} from "../../service/security/token-storage.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-user-detail',
@@ -26,6 +27,7 @@ export class UserDetailComponent implements OnInit {
     email: new FormControl(""),
     username: new FormControl(""),
     password: new FormControl(""),
+    confirmPassword: new FormControl(""),
     phone: new FormControl(""),
     wallet: new FormControl(""),
     status: new FormControl(""),
@@ -162,7 +164,42 @@ export class UserDetailComponent implements OnInit {
       window.location.reload();
     })
   }
-
+  changePassword() {
+    // @ts-ignore
+    let oldPassword = document.getElementById("oldPassword").value
+    // @ts-ignore
+    let newPassword = document.getElementById("newPassword").value
+    // @ts-ignore
+    let confirmNewPassword = document.getElementById("confirmNewPassword").value
+    if (oldPassword != "" && newPassword != "" && confirmNewPassword != "") {
+      if (oldPassword == this.user.confirmPassword) {
+        if (newPassword != oldPassword) {
+          if (newPassword == confirmNewPassword) {
+            this.userForm.get("password")?.setValue(newPassword);
+            this.userForm.get("confirmPassword")?.setValue(newPassword);
+            // @ts-ignore
+            this.user = this.userForm.value
+            this.userService.changePassword(this.userId, this.user).subscribe(() => {
+              Swal.fire("Change password successfully. Please login again!")
+              this.tokenStorageService.signOut();
+              this.router.navigate(['/accounts/login'])
+            }, error => {
+              alert("Something wrong!")
+              console.log(this.user);
+            })
+          } else {
+            Swal.fire("Wrong confirm password!")
+          }
+        } else {
+          Swal.fire("New password is the same as old password. Please choose another new password!")
+        }
+      } else {
+        Swal.fire("Wrong old password!")
+      }
+    } else {
+      Swal.fire("Please enter password!")
+    }
+  }
   createAddress() {
     // @ts-ignore
     let addressLine = document.getElementById("address").value

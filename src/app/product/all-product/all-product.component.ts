@@ -55,7 +55,7 @@ export class AllProductComponent implements OnInit {
       })
     })
   }
-
+  @ViewChild('ofModal') ofModal!: ElementRef;
 
   product !: Product;
   listProduct: Product[] = [];
@@ -144,7 +144,8 @@ export class AllProductComponent implements OnInit {
           this.image = this.formImage.value
           this.image.name = url
           this.image.product.id = this.productId
-          this.imageService.create(this.image).subscribe()
+          this.imageService.create(this.image).subscribe(()=>{
+          })
         });
       })
     ).subscribe()
@@ -166,6 +167,9 @@ export class AllProductComponent implements OnInit {
           this.image.name = url
           this.image.product.id = this.productId
           this.imageService.update(this.image, id).subscribe(() => {
+            this.imageService.findAllByProduct(this.productId).subscribe((data) => {
+              this.listImage = data
+            })
           })
           this.pathEdit = ""
         });
@@ -175,10 +179,12 @@ export class AllProductComponent implements OnInit {
   }
 
   deleteImage(id: number) {
-    this.imageService.deleteById(id).subscribe()
-    this.imageService.findAllByProduct(this.productId).subscribe((data) => {
-      this.listImage = data
+    this.imageService.deleteById(id).subscribe(()=>{
+      this.imageService.findAllByProduct(this.productId).subscribe((data) => {
+        this.listImage = data
+      })
     })
+
   }
 
   @ViewChild('valueSearch') valueSearch: ElementRef | undefined;

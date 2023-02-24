@@ -354,13 +354,13 @@
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner" *ngIf="show">
                 <div class="carousel-item active" style="justify-content: center">
-                  <img class="d-block w-100" src="{{img.name}}"
+                  <img class="d-block w-100" src="{{img?.name}}"
                        alt="Second slide"
                        style="width: 390px; height: 350px ; border-radius: 3%;border-style: outset">
                 </div>
                 <div class="carousel-item " style="justify-content: center"
-                     *ngFor="let img of listImage">
-                  <img class="d-block w-100" src="{{img.name}}"
+                     *ngFor="let i of listImage">
+                  <img class="d-block w-100" src="{{i.name}}"
                        alt="Second slide"
                        style="width: 390px; height: 350px ; border-radius: 3%;border-style: outset">
                 </div>

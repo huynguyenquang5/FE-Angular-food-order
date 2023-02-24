@@ -3,7 +3,7 @@
 
 <div class="content-wrapper">
   <div class="container-fluid">
-    <div class="row" style="margin-top: 60px">
+    <div class="row">
       <div class="col-md-6">
         <div class="box_general padding_bottom">
           <div class="header_box version_2">
@@ -37,18 +37,18 @@
           </div>
           <div class="form-group">
             <label>Old password</label>
-            <input class="form-control" type="password">
+            <input class="form-control" type="password" id="oldPassword">
           </div>
           <div class="form-group">
             <label>New password</label>
-            <input class="form-control" type="password">
+            <input class="form-control" type="password" id="newPassword">
           </div>
           <div class="form-group">
             <label>Confirm new password</label>
-            <input class="form-control" type="password">
+            <input class="form-control" type="password" id="confirmNewPassword">
           </div>
           <div class="mt-2">
-            <a href="#0" class="btn_1 medium">Save</a>
+            <button (click)="changePassword()" class="btn_1 medium">Save</button>
           </div>
         </div>
         <div class="box_general padding_bottom" id="createAddress" style="display: none">

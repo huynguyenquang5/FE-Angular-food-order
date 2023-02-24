@@ -84,12 +84,13 @@ export class DetailStoreComponent implements OnInit {
   formFood !: FormGroup;
   product !: Product ;
   store !: Store ;
-  img !: Image;
+  img !: Image ;
   message !: Message;
   total : number =0;
   map = new Map();
   onDetailFood(p: Product) {
     let id :number = p.id;
+    this.listImage = [];
     this.imageService.findAllByProduct(id).subscribe(data => {
       this.listImage = data;
       this.img = this.listImage[this.listImage.length-1];

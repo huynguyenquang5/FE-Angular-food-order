@@ -11,7 +11,7 @@ import {Store} from "../../model/store/store";
   styleUrls: ['./merchant-nav.component.css'],
 })
 export class MerchantNavComponent implements OnInit {
-  private userId!: number;
+  userId!: number;
   store!:Store;
   constructor(private elementRef: ElementRef,
               private tokenStorageService: TokenStorageService,
@@ -42,4 +42,5 @@ export class MerchantNavComponent implements OnInit {
       this.store = data;
       })
   }
+
 }

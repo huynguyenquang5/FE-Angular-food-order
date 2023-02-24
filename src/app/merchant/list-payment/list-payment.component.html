@@ -1,47 +1,5 @@
 <app-home-header></app-home-header>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #1c7a30">
-  <a class="navbar-brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="167" height="36"></a>
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-          data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-          aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="width: 220px">
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Profile">
-        <a class="nav-link" [routerLink]="['/users/merchant']">
-          <i class="fa fa-fw fa-user"></i>
-          <span class="nav-link-text">My Profile</span>
-        </a>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Store">
-        <a class="nav-link" [routerLink]="['/merchant/store']">
-          <i class="fa fa-fw fa-store"></i>
-          <span class="nav-link-text">My Store</span>
-        </a>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Store">
-        <a class="nav-link" [routerLink]="['/store/payment-list/store', this.store?.id]">
-          <i class="fa fa-fw fa-store"></i>
-          <span class="nav-link-text">List Payment</span>
-        </a>
-      </li>
-    </ul>
-    <ul class="navbar-nav sidenav-toggler" style="width: 220px">
-      <li class="nav-item">
-        <a class="nav-link text-center" id="sidenavToggler">
-          <i class="fa fa-fw"></i>
-        </a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#logoutModal"><i
-          class="fa fa-fw fa-sign-out"></i>Logout</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<app-merchant-nav></app-merchant-nav>
 <div class="content-wrapper" style="height: 100px;margin-top: 77px">
   <div>
 

@@ -35,4 +35,7 @@ export class UserService {
     return this.httpClient.get<User>(`${apiUrl}/users/${name}`)
 
   }
+  changePassword(id: number, user: User): Observable<User> {
+    return this.httpClient.put<User>(`${apiUrl}/users/change/${id}`, user);
+  }
 }

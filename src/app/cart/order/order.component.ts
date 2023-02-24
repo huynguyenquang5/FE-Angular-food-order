@@ -92,11 +92,17 @@ export class OrderComponent implements OnInit{
   onSubmitOrder() {
     this.cartService.paymentOrder(this.userId,this.storeId,this.valueSelectAddress.nativeElement.value).subscribe(data=>{
       this.message = data;
-      if (this.message.message.toUpperCase() === 'SUCCESS'){
+      if (this.message.message.toLowerCase() === 'success'){
         Swal.fire({
           icon: 'success',
           title: 'Loading...',
           text: 'Your order has been placed successfully!',
+        })
+      }else if (this.message.message.toLowerCase() === 'error'){
+        Swal.fire({
+          icon: 'error',
+          title: 'Loading...',
+          text: 'Your order has been placed unsuccessfully!',
         })
       }else {
         Swal.fire({
