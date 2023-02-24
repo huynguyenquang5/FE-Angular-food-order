@@ -17,6 +17,7 @@ export class AdminMerchantComponent implements OnInit {
   addresses: Address[] = [];
   id: number | undefined;
   status: number | undefined;
+  total!: number;
   constructor(private adminService: AdminService,
               private router: Router) {
   }
@@ -45,6 +46,7 @@ export class AdminMerchantComponent implements OnInit {
     })
     this.adminService.findStoreByUserId(id).subscribe((data) => {
       this.store = data;
+      this.total = data.wallet;
     })
   }
   getIdAndStatus(id: number | undefined, status: number | undefined) {

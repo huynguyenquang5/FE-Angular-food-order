@@ -1,5 +1,5 @@
 <app-home-header></app-home-header>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #1c7a30;position: relative">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #1c7a30">
   <a class="navbar-brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="167" height="36"></a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -16,7 +16,7 @@
         <a class="nav-link nav-custom-out" [routerLink]="['/list-order/user',userId]"  style="color: white">
           <i class="fa fa-fw fa-store"></i>
           <span class="nav-link-text " >List of orders</span>
-        </a>w
+        </a>
       </li>
     </ul>
     <ul class="navbar-nav sidenav-toggler" style="width: 220px;background-color: #e33e3e;color: white;border: 0">
@@ -56,7 +56,7 @@
               <li><strong>Username</strong>{{user?.username}}</li>
               <li><strong>Phone</strong>{{user?.phone}}</li>
               <li><strong>Email</strong>{{user?.email}}</li>
-              <li><strong>Wallet</strong>{{user?.wallet}}</li>
+              <li><strong>Wallet</strong>${{user?.wallet}}</li>
             </ul>
             <button (click)="boxHiddenShow('editProfile')" class="btn_1 m-1"
             ><i class="fa fa-fw fa-edit"></i> Edit Profile
@@ -84,6 +84,7 @@
               <label>Confirm new password</label>
               <input class="form-control" type="password" id="confirmNewPassword">
             </div>
+            <div id="alertPassword"></div>
             <div class="mt-2">
               <button (click)="changePassword()" class="btn_1 medium">Save</button>
             </div>
@@ -148,7 +149,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control" formControlName="email">
+                    <input type="email" class="form-control" formControlName="email" #email>
                   </div>
                 </div>
               </div>
@@ -156,7 +157,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Phone</label>
-                    <input type="text" class="form-control" formControlName="phone">
+                    <input type="text" class="form-control" formControlName="phone" #phone>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -175,6 +176,7 @@
               <ng-template #other_message>
                 <p class="text-danger">You are pending for becoming a partner and you cannot change profile.</p>
               </ng-template>
+              <div id="alertValidate"></div>
               <div class="mt-2" *ngIf="user?.status == 1">
                 <button data-toggle="modal" data-target="#updateUserModal" class="btn_1 medium">Save</button>
               </div>
@@ -231,4 +233,3 @@
     </div>
   </div>
 </div>
-<app-home-footer></app-home-footer>

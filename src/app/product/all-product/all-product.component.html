@@ -23,7 +23,7 @@
           <tr *ngFor="let p of listProduct, index as index">
             <td style="text-align: center">{{index + 1}}</td>
             <td style="text-align: center">{{p.name}}</td>
-            <td style="text-align: center">{{p.productMethod.price}}</td>
+            <td style="text-align: center">${{p.productMethod.price}}</td>
             <td style="text-align: center">{{p.productMethod.category.name}}</td>
             <td style="text-align: center">{{p.productMethod.description}}</td>
             <td style=" text-align: center">
@@ -103,6 +103,7 @@
 
   </div>
 </div>
+
 
 
 

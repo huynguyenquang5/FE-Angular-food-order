@@ -1,3 +1,4 @@
+<app-home-header></app-home-header>
 <app-merchant-nav></app-merchant-nav>
 <div class="content-wrapper" [hidden]="storeId !== undefined" style="margin-top: 60px" >
 <a class="btn_1 m-1" [routerLink]="['/create/store']" >
@@ -43,8 +44,8 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Wallet</label>
-                  <p class="form-text">{{store?.wallet}}</p>
+                  <label>Revenue</label>
+                  <p class="form-text">${{store?.wallet}}</p>
                 </div>
               </div>
             </div>
@@ -105,7 +106,7 @@
           <input type="text" class="form-control" name="description" id="descriptionCreate" formControlName="description">
           <br>
           <label for="logoCreate" class="form-label">Logo:</label>
-          <input type="file" class="form-control" id="logoCreate" (change)="submitImage($event)">
+          <input type="file" class="form-inline" id="logoCreate" (change)="submitImage($event)">
           <br>
           <img src="{{path}}" alt="Image" style="width: 450px; height: 234px">
           <br>

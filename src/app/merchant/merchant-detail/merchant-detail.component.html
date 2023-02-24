@@ -3,9 +3,9 @@
 
 <div class="content-wrapper">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row" >
       <div class="col-md-6">
-        <div class="box_general padding_bottom">
+        <div class="box_general padding_bottom" style="margin-top: 60px">
           <div class="header_box version_2">
             <h2><i class="fa fa-user"></i>Profile details</h2>
           </div>
@@ -19,7 +19,7 @@
             <li><strong>Username</strong>{{user?.username}}</li>
             <li><strong>Phone</strong>{{user?.phone}}</li>
             <li><strong>Email</strong>{{user?.email}}</li>
-            <li><strong>Wallet</strong>{{user?.wallet}}</li>
+            <li><strong>Wallet</strong>${{user?.wallet}}</li>
           </ul>
           <button (click)="boxHiddenShow('editProfile')" class="btn_1 m-1"
           ><i class="fa fa-fw fa-edit"></i> Edit Profile
@@ -47,6 +47,7 @@
             <label>Confirm new password</label>
             <input class="form-control" type="password" id="confirmNewPassword">
           </div>
+          <div id="alertPassword"></div>
           <div class="mt-2">
             <button (click)="changePassword()" class="btn_1 medium">Save</button>
           </div>
@@ -111,7 +112,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Email</label>
-                  <input type="email" class="form-control" formControlName="email">
+                  <input type="email" class="form-control" formControlName="email" #email>
                 </div>
               </div>
             </div>
@@ -119,7 +120,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Phone</label>
-                  <input type="text" class="form-control" formControlName="phone">
+                  <input type="text" class="form-control" formControlName="phone" #phone>
                 </div>
               </div>
               <div class="col-md-6">
@@ -129,15 +130,10 @@
                 </div>
               </div>
             </div>
-            <div class="form-group mt-2" *ngIf="user?.status == 1; else other_message">
-              <label class="container_check">I want to be a partner
-                <input type="checkbox" id="checkboxStatus">
-                <span class="checkmark"></span>
-              </label>
-            </div>
             <ng-template #other_message>
               <p class="text-danger">You are pending for becoming a partner and you cannot change profile.</p>
             </ng-template>
+            <div id="alertValidate"></div>
             <div class="mt-2" *ngIf="user?.status == 1">
               <button type="submit" class="btn_1 medium">Save</button>
             </div>
@@ -145,7 +141,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="box_general padding_bottom">
+        <div class="box_general padding_bottom" style="margin-top: 60px">
           <div class="header_box version_2">
             <h2><i class="fa fa-address-book"></i>Address details</h2>
           </div>
@@ -174,7 +170,7 @@
 
 <div class="modal fade" id="deleteAddressModal" tabindex="-1" role="dialog" aria-labelledby="deleteAddressModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content" style="margin-top: 100px;">
       <div class="modal-header">
         <h5 class="modal-title" id="deleteAddressModalLabel">Delete address ?</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -189,5 +185,4 @@
     </div>
   </div>
 </div>
-<app-home-footer></app-home-footer>
 

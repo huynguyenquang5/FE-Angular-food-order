@@ -108,25 +108,6 @@
         </div>
       </li>
     </ul>
-    <ul class="drop_user top_menu">
-      <li>
-        <div class="dropdown user clearfix">
-          <a data-toggle="dropdown">
-            <span style="padding-right: 5px"> Welcome {{username}}</span>
-          </a>
-          <div class="dropdown-menu">
-            <div class="dropdown-menu-content">
-              <ul>
-                <li><a href="#0" [routerLink]="['/detail/user',userId]"><i class="icon_cog"></i>Dashboard</a></li>
-                <li><a href="#0"><i class="fa-brands fa-shopify"></i>Shop</a></li>
-                <li><a href="#0"><i class="icon_key"></i>Log out</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- /dropdown -->
-      </li>
-    </ul>
     <!-- /top_menu -->
     <a href="#0" class="open_close">
       <i class="icon_menu"></i><span>Menu</span>
@@ -163,24 +144,17 @@
 </header>
 <main>
   <div >
-    <div class="hero_in detail_page background-image" id="background">
+    <div class="hero_in detail_page background-image"
+         [ngStyle]="{'background': 'rgba(0, 0, 0, 0.3) url(' + store.logo + ') no-repeat'}">
       <div class="wrapper opacity-mask">
         <div class="container">
           <div class="main_info">
             <div class="row" style="color:#000;">
               <div class="col-xl-4 col-lg-5 col-md-6">
-                <div class="head">
-                  <div class="score"><span>Superb<em>999 Reviews</em></span><strong>10.0</strong></div>
-                </div>
                 <h1 style="color:#000;">{{store?.nameStore}}</h1>
-                {{store?.addressStore}} - <a
-                href="https://www.google.com/maps/dir/CodeGym,+Ph%E1%BB%91+H%C3%A0m+Nghi,+M%E1%BB%B9+%C4%90%C3%ACnh+1,+M%E1%BB%B9+%C4%90%C3%ACnh+2,+T%E1%BB%AB+Li%C3%AAm,+H%C3%A0+N%E1%BB%99i/CodeGym,+Nh%C3%A0+s%E1%BB%91+23,+L%C3%B4+TT-01,+Khu+%C4%91%C3%B4+th%E1%BB%8B+MonCity,+Ph%E1%BB%91+H%C3%A0m+Nghi,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0357866,105.7331979,13z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x313454b9444c676b:0xe713200541b7456d!2m2!1d105.7682175!2d21.0357101!1m5!1m1!1s0x313454b9444c676b:0xe713200541b7456d!2m2!1d105.7682175!2d21.0357101"
-                target="blank" style="color:#000;">Get Map</a>
+                {{store?.addressStore}}
               </div>
               <div class="col-xl-8 col-lg-7 col-md-6">
-                <div class="buttons clearfix">
-                  <a href="#0" class="btn_hero wishlist"><i class="icon_heart"></i>Wishlist</a>
-                </div>
               </div>
             </div>
             <!-- /row -->
@@ -191,16 +165,6 @@
     </div>
   </div>
   <!--/hero_in-->
-
-  <nav class="secondary_nav sticky_horizontal">
-    <div class="container">
-      <ul id="secondary_nav">
-        <li><a class="list-group-item list-group-item-action" href="store/{{storeId}}/#section-1">Main Courses</a></li>
-        <li><a class="list-group-item list-group-item-action" href="store/{{storeId}}/#section-4">Drinks</a></li>
-      </ul>
-    </div>
-    <span></span>
-  </nav>
   <!-- /secondary_nav -->
 
   <div class="bg_gray">

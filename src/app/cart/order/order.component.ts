@@ -123,30 +123,6 @@ export class OrderComponent implements OnInit{
         id:this.user.id
       }
     }
-    let timerInterval:any;
-    Swal.fire({
-      title: 'Loading .. . . .',
-      html: 'I will close in <b></b> milliseconds.',
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading()
-        // @ts-ignore
-        const b = Swal.getHtmlContainer().querySelector('b')
-        timerInterval = setInterval(() => {
-          // @ts-ignore
-          b.textContent = Swal.getTimerLeft()
-        }, 100)
-      },
-      willClose: () => {
-        clearInterval(timerInterval)
-      }
-    }).then((result:any) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log('I was closed by the timer')
-      }
-    })
     this.addressService.save(address).subscribe(data => {
       this.findALlAddress()
       this.newAddress.nativeElement.value = null;

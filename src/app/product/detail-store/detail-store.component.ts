@@ -15,6 +15,7 @@ import { UserService } from 'src/app/service/user/user.service';
 import {TokenStorageService} from "../../service/security/token-storage.service";
 import {Payment} from "../../model/cart/payment";
 import {Roles} from "../../model/user/roles";
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -115,21 +116,27 @@ export class DetailStoreComponent implements OnInit {
     })
   }
   onAddCart(p: Image) {
-    let cart = {
-      id: 0,
-      quantity: 1,
-      price:p.product.productMethod.price,
-      user:{
-        id: this.user.id
-      },
-      product:{
-        id: p.product.id
+    if (this.storageToken.getToken()) {
+      let cart = {
+        id: 0,
+        quantity: 1,
+        price:p.product.productMethod.price,
+        user:{
+          id: this.user.id
+        },
+        product:{
+          id: p.product.id
+        }
       }
+      this.cartService.save(cart).subscribe(data => {
+        this.message = data;
+        this.findAllCart(this.store.id,this.user.id)
+      }, error => {
+        Swal.fire("You are not allowed to order your own product!")
+      })
+    } else {
+      Swal.fire("You need to login first.")
     }
-    this.cartService.save(cart).subscribe(data => {
-      this.message = data;
-      this.findAllCart(this.store.id,this.user.id)
-    })
   }
   addMapProduct() {
     for (let img of this.listImageFilter) {

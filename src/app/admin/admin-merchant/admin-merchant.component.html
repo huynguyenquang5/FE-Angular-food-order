@@ -106,6 +106,8 @@
           <li><strong>Email</strong>{{user?.email}}</li>
           <li *ngFor="let a of addresses; index as i"><strong>Address {{i+1}}</strong>{{a?.name}}</li>
           <li><strong>Store</strong>{{store?.nameStore}}</li>
+          <li><strong>Store Revenue</strong>${{total}}</li>
+          <li><strong>Profit From Store</strong>${{total * 20 / 100}}</li>
         </ul>
         <p><a [routerLink]="['/store',store?.id]" class="btn_1" data-dismiss="modal"><i class="fa fa-fw fa-eye"></i>View Store</a></p>
       </div>

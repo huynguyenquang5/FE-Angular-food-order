@@ -123,11 +123,7 @@
           <a [routerLink]="['']" class="show-submenu">Home</a>
         </li>
         <li class="submenu" [hidden]="!isAdmin">
-          <a href="" class="show-submenu">Manager</a>
-          <ul>
-            <li><a href="/admin">User</a></li>
-            <li><a href="">Confirm Order</a></li>
-          </ul>
+          <a [routerLink]="['/admin']"  class="show-submenu">Manager</a>
         </li>
         <li class="submenu" [hidden]="isLoggedIn">
           <a href="accounts/login" class="show-submenu">Login</a>

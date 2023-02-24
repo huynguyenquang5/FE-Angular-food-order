@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
         console.log(this.userCheck)
         if (this.userCheck.status == 0) {
           Swal.fire(
-            "Your account has been locked, please contact admin to unlock it"
+            "Your account has been locked. Please contact support to unlock!"
           )
         } else {
           this.tokenStorageService.saveTokenSession(data.accessToken);

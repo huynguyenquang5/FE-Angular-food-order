@@ -23,6 +23,11 @@ export class MerchantDetailComponent implements OnInit {
   addresses!: Address[];
   address!: Address;
   addressId!: number;
+  listUser!: User[];
+  listPhone: string[] = [];
+  listEmail: string[] = [];
+  @ViewChild("email") email: ElementRef | undefined;
+  @ViewChild("phone") phone: ElementRef | undefined;
   userForm = new FormGroup({
     id: new FormControl(""),
     name: new FormControl(""),
@@ -62,6 +67,20 @@ export class MerchantDetailComponent implements OnInit {
       // @ts-ignore
       this.userForm.patchValue(this.user);
       this.storeDetail(this.userId)
+      this.listEmailAndPhone();
+    })
+  }
+  listEmailAndPhone() {
+    this.userService.findAll().subscribe((data) => {
+      this.listUser = data
+      for (let u of this.listUser) {
+        if (u.email != this.user.email) {
+          this.listEmail.push(u.email)
+        }
+        if (u.phone != this.user.phone) {
+          this.listPhone.push(u.phone)
+        }
+      }
     })
   }
 
@@ -160,18 +179,44 @@ export class MerchantDetailComponent implements OnInit {
       document.getElementById("cityUpdate").value = city;
     })
   }
-
   updateUser() {
-    // @ts-ignore
-    if (document.getElementById("checkboxStatus").checked == true) {
-      // @ts-ignore
-      this.userForm.get("status")?.setValue(3);
+   let i: number = 0;
+    let j: number = 0;
+    for (let e of this.listEmail) {
+      if (this.email?.nativeElement.value == e) {
+        i++;
+      }
     }
-    // @ts-ignore
-    this.user = this.userForm.value
-    this.userService.updateUser(this.userId, this.user).subscribe(() => {
-      window.location.reload();
-    })
+    for (let p of this.listPhone) {
+      if (this.phone?.nativeElement.value == p) {
+        j++;
+      }
+    }
+
+    if (i == 0) {
+      if (j == 0) {
+        // @ts-ignore
+        if (document.getElementById("checkboxStatus").checked == true) {
+          // @ts-ignore
+          this.userForm.get("status")?.setValue(3);
+        }
+        // @ts-ignore
+        this.user = this.userForm.value
+        this.userService.updateUser(this.userId, this.user).subscribe(() => {
+          window.location.reload();
+        })
+      } else {
+        // @ts-ignore
+        document.getElementById("alertValidate").innerHTML = '';
+        // @ts-ignore
+        document.getElementById("alertValidate").innerHTML = '<p class="text-danger">**Phone is exist</p>';
+      }
+    } else {
+      // @ts-ignore
+      document.getElementById("alertValidate").innerHTML = '';
+      // @ts-ignore
+      document.getElementById("alertValidate").innerHTML = '<p class="text-danger">**Email is exist</p>';
+    }
   }
 
   changePassword() {
@@ -198,16 +243,28 @@ export class MerchantDetailComponent implements OnInit {
               console.log(this.user);
             })
           } else {
-            Swal.fire("Wrong confirm password!")
+            // @ts-ignore
+            document.getElementById("alertPassword").innerHTML = '';
+            // @ts-ignore
+            document.getElementById("alertPassword").innerHTML = '<p class="text-danger">**Wrong confirm password</p>';
           }
         } else {
-          Swal.fire("New password is the same as old password. Please choose another new password!")
+          // @ts-ignore
+          document.getElementById("alertPassword").innerHTML = '';
+          // @ts-ignore
+          document.getElementById("alertPassword").innerHTML = '<p class="text-danger">**New password is the same as old password. Please choose another new password</p>';
         }
       } else {
-        Swal.fire("Wrong old password!")
+        // @ts-ignore
+        document.getElementById("alertPassword").innerHTML = '';
+        // @ts-ignore
+        document.getElementById("alertPassword").innerHTML = '<p class="text-danger">**Wrong old password</p>';
       }
     } else {
-      Swal.fire("Please enter password!")
+      // @ts-ignore
+      document.getElementById("alertPassword").innerHTML = '';
+      // @ts-ignore
+      document.getElementById("alertPassword").innerHTML = '<p class="text-danger">**Please enter password</p>';
     }
   }
 
