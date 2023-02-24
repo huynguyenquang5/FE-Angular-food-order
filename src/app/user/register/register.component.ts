@@ -49,14 +49,13 @@ export class RegisterComponent implements OnInit {
         this.listPhone.push(u.phone)
         this.listUserName.push(u.username)
       }
-      console.log(this.listUserName)
     })
     this.formUser = new FormGroup({
       id: new FormControl(''),
       name: new FormControl('',Validators.required),
       username: new FormControl('', Validators.required),
-      password: new FormControl('',Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(8)])),
-      phone: new FormControl('', Validators.compose([Validators.required,  Validators.pattern('')])),
+      password: new FormControl('',Validators.compose([Validators.required, Validators.min(6)])),
+      phone: new FormControl('', Validators.compose([Validators.required,  Validators.pattern(/^0\d{8,9}$/)])),
       email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')])),
       confirmPassword: new FormControl('', Validators.required),
       role: new FormGroup({

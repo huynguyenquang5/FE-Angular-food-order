@@ -30,7 +30,6 @@
               <label>Name</label>
               <input type="text" class="form-control" formControlName="name" placeholder="Enter name">
               <p *ngIf="formProduct.get(['name'])?.errors?.['required']" style="color: red">Name required</p>
-              <p *ngIf="formProduct.get(['name'])?.errors?.['pattern']" style="color: red">Name must only letter</p>
           </div>
         </div>
         </div>
@@ -41,7 +40,7 @@
                 <label>Price</label>
                 <input type="text" class="form-control" placeholder="Enter price" formControlName="price">
                 <p *ngIf="formProduct.get('productMethod.price')?.errors?.['required']" style="color: red">Price required</p>
-                <p *ngIf="formProduct.get('productMethod.price')?.errors?.['pattern']" style="color: red">Price must only number or float</p>
+                <p *ngIf="formProduct.get('productMethod.price')?.errors?.['pattern']" style="color: red">Price must only number</p>
               </div>
             </div>
           </div>

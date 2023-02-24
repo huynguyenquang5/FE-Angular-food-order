@@ -25,6 +25,8 @@ export class AllProductComponent implements OnInit {
   path!: string
   pathName!: string
   imageFile: any
+  imageFiles: any
+
   storeId!: number;
   store!: Store
   idUser!: number
@@ -119,12 +121,12 @@ export class AllProductComponent implements OnInit {
 
   submitImageEdit(event: any) {
     if (event.target.files && event.target.files[0]) {
-      this.imageFile = event.target.files[0];
-      if (this.pathName !== this.imageFile.name) {
-        this.pathName = this.imageFile.name
-        const imagePath = `image/${this.imageFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      this.imageFiles = event.target.files[0];
+      if (this.pathName !== this.imageFiles.name) {
+        this.pathName = this.imageFiles.name
+        const imagePath = `image/${this.imageFiles.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
         const fileRef = this.storage.ref(imagePath);
-        this.storage.upload(imagePath, this.imageFile).snapshotChanges().pipe(
+        this.storage.upload(imagePath, this.imageFiles).snapshotChanges().pipe(
           finalize(() => {
             fileRef.getDownloadURL().subscribe(url => {
               this.pathEdit = url
@@ -157,9 +159,9 @@ export class AllProductComponent implements OnInit {
   }
 
   editImage(id: number) {
-    const imagePath = `image/${this.imageFile.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+    const imagePath = `image/${this.imageFiles.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
     const fileRef = this.storage.ref(imagePath);
-    this.storage.upload(imagePath, this.imageFile).snapshotChanges().pipe(
+    this.storage.upload(imagePath, this.imageFiles).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe(url => {
           this.image = this.formImage.value
@@ -174,8 +176,12 @@ export class AllProductComponent implements OnInit {
           this.pathEdit = ""
         });
       })
-    ).subscribe()
-    this.ngOnInit()
+    ).subscribe(data => {
+        Swal.fire("Update successfully")
+        this.ngOnInit()
+      }
+    )
+
   }
 
   deleteImage(id: number) {
@@ -225,7 +231,7 @@ export class AllProductComponent implements OnInit {
     }).then((result: any) => {
       if (result.isConfirmed) {
         let check: string = ""
-        this.imageService.deleteProduct(p.id).subscribe(data=>{
+        this.imageService.deleteProduct(p.id).subscribe(data => {
           this.findAllProduct(this.storeId);
         })
 

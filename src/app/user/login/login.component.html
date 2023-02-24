@@ -5,9 +5,10 @@
         <a href="index.html"><img src="assets/img/logo_sticky.svg" width="140" height="35" alt=""></a>
       </figure>
       <div class="access_social">
-        <a href="#0" class="social_bt facebook">Sign In</a>
+        <a href="#0" class="social_bt facebook">Login with Facebook</a>
+        <a href="#0" class="social_bt google">Login with Google</a>
       </div>
-      <div class="divider"><span></span></div>
+      <div class="divider"><span>Or</span></div>
       <form autocomplete="off" [formGroup]="formUser" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <input class="form-control" type="text" placeholder="Username" formControlName="username">
@@ -18,6 +19,13 @@
           <i class="icon_lock_alt"></i>
         </div>
         <div class="clearfix add_bottom_15">
+          <div class="checkboxes float-left">
+            <label class="container_check">Remember me
+              <input type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="float-right"><a id="forgot" href="#0">Forgot Password?</a></div>
         </div>
         <button class="btn_1 gradient full-width" type="submit">Login Now!</button>
         <div class="text-center mt-2"><small>Don't have an acccount? <strong><a href="accounts/register">Sign
