@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.formUser.value).subscribe(
       data => {
         this.userCheck = data
-        console.log(this.userCheck)
         if (this.userCheck.status == 0) {
           Swal.fire(
             "Your account has been locked. Please contact support to unlock!"
@@ -60,7 +59,6 @@ export class LoginComponent implements OnInit {
           this.authService.isLoggedIn = true;
           this.username = this.tokenStorageService.getUser().username;
           this.roles = this.tokenStorageService.getUser().roles;
-          console.log(this.tokenStorageService.getUser())
           this.formUser.reset();
           this.router.navigate([''])
         }

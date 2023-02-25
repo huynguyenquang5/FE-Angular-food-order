@@ -78,6 +78,7 @@ export class ListPaymentComponent implements OnInit {
       this.listPaymentByStore(data.id)
       this.findAllProductByStoreId(data.id)
       this.storeId = data.id
+    },(error)=>{
     })
   }
 

@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AfterViewInit, Component, ElementRef, Input, OnInit} from '@angular/core';
 import {StoreService} from "../../service/store/store.service";
 import {Store} from "../../model/store/store";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-merchant-nav',
@@ -13,6 +14,7 @@ import {Store} from "../../model/store/store";
 export class MerchantNavComponent implements OnInit {
   userId!: number;
   store!:Store;
+  storeId!: number
   constructor(private elementRef: ElementRef,
               private tokenStorageService: TokenStorageService,
               private router:Router,
@@ -40,7 +42,15 @@ export class MerchantNavComponent implements OnInit {
   storeDetail(userId:number){
     this.storeService.findByUserId(userId).subscribe(data=>{
       this.store = data;
+      this.storeId = data.id
       })
+  }
+  listPaymentNavigate(){
+    if (this.storeId == null || this.storeId == undefined){
+      Swal.fire("You need create store first!")
+    }else {
+      this.router.navigate(['/store/payment-list/store',this.store?.id])
+    }
   }
 
 }
