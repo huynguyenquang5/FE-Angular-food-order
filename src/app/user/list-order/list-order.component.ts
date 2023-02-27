@@ -23,65 +23,83 @@ export class ListOrderComponent implements OnInit {
     this.checkStoreByUserId();
   }
 
-  constructor(private routerActive : ActivatedRoute,
+  constructor(private routerActive: ActivatedRoute,
               private storeService: StoreService,
               private cartService: CartService,
               private router: Router,
               private userService: UserService,
               private storageToken: TokenStorageService) {
   }
+
   @ViewChild('ofModal') ofModal!: ElementRef;
-  paymentModal!:Payment;
-  userId !:number;
-  user!:User;
-  listPayment:Payment[]=[];
-  check:boolean=false;
+  paymentModal!: Payment;
+  userId !: number;
+  user!: User;
+  listPayment: Payment[] = [];
+  check: boolean = false;
   storeId!: number;
+
   checkStoreByUserId() {
     this.storeService.findByUserId(this.userId).subscribe(data => {
       this.storeId = data.id;
     })
   }
-  userDetail(userId:number){
-    this.userService.findUserById(userId).subscribe(data=>{
+
+  userDetail(userId: number) {
+    this.userService.findUserById(userId).subscribe(data => {
       this.user = data;
     })
   }
-  listPaymentByUser(userId:number){
-    this.cartService.paymentsUser(userId).subscribe(data=>{
+
+  listPaymentByUser(userId: number) {
+    this.cartService.paymentsUser(userId).subscribe(data => {
       this.listPayment = data;
     })
   }
-  displayDate(date:string){
+
+  displayDate(date: string) {
     return formatDate(date, 'dd/MM/yyyy', 'en-US')
   }
 
   onStatusPayment(p: Payment, number: number) {
-    let status!:string;
-    switch (number){
-      case 0: status = 'cancel';break;
-      case 3: status = 'success';break;
+    let status!: string;
+    switch (number) {
+      case 0:
+        status = 'cancel';
+        break;
+      case 3:
+        status = 'success';
+        break;
     }
-    this.cartService.statusPayment(p.id,status).subscribe(data=>{
+    this.cartService.statusPayment(p.id, status).subscribe(data => {
       this.listPaymentByUser(this.user.id);
       this.ofModal.nativeElement.click()
     })
   }
 
-  onModal(p: Payment, action: string){
+  onModal(p: Payment, action: string) {
     this.paymentModal = p;
-    if ('cancel' === action){
+    if ('cancel' === action) {
       // @ts-ignore
       document.getElementById("main").innerText = "Click ok if you want to cancel this order?";
       this.check = false;
-    }else {
+    } else {
       // @ts-ignore
       document.getElementById("main").innerText = "Click ok if you have received the order?";
       this.check = true;
     }
   }
-  logOut(){
+
+  logOut() {
     this.storageToken.signOut();
     this.router.navigate([''])
+  }
+
+  isMerchant() {
+    for (let i = 0; i < this.user.roles.length; i++) {
+      if (this.user.roles[i].name == "MERCHANT") {
+        return true;
+      }
+    } return false;
   }
 }

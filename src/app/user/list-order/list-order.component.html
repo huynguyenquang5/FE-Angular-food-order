@@ -1,6 +1,6 @@
 <app-home-header></app-home-header>
-<app-merchant-nav *ngIf="undefined != storeId"></app-merchant-nav>
-<nav *ngIf="undefined == storeId" class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #1c7a30; height: 66px">
+<app-merchant-nav *ngIf="true == isMerchant()"></app-merchant-nav>
+<nav *ngIf="true != isMerchant()" class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #1c7a30; height: 66px">
   <a class="navbar-brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="167" height="36"></a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

@@ -47,7 +47,7 @@ export class MerchantNavComponent implements OnInit {
   }
   listPaymentNavigate(){
     if (this.storeId == null || this.storeId == undefined){
-      Swal.fire("You need create store first!")
+      Swal.fire("You need to create store first!")
     }else {
       this.router.navigate(['/store/payment-list/store',this.store?.id])
     }
