@@ -196,10 +196,6 @@ export class MerchantDetailComponent implements OnInit {
     if (i == 0) {
       if (j == 0) {
         // @ts-ignore
-        if (document.getElementById("checkboxStatus").checked == true) {
-          // @ts-ignore
-          this.userForm.get("status")?.setValue(3);
-        }
         // @ts-ignore
         this.user = this.userForm.value
         this.userService.updateUser(this.userId, this.user).subscribe(() => {

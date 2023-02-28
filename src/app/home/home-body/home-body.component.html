@@ -18,7 +18,7 @@
     <div class="container margin_60_0">
       <div class="main_title">
         <span><em></em></span>
-        <h2>Top food</h2>
+        <h2>Top Food</h2>
         <a [routerLink]="['/view']">View All &rarr;</a>
       </div>
       <div class="row">
@@ -49,7 +49,7 @@
       <div class="container margin_60_40">
         <div class="main_title">
           <span><em></em></span>
-          <h2>Top store</h2>
+          <h2>All Store</h2>
         </div>
         <div class="row add_bottom_25">
           <div class="col-lg-6" *ngFor="let s of stores| slice:0:6">
@@ -58,7 +58,7 @@
                 <li>
                   <a [routerLink]="['/store',s.id]" >
                     <figure>
-                      <img src="../../../assets/img/location_list_6.jpg" alt="" class="lazy" width="350" height="233">
+                      <img src="{{s.logo}}" alt="" class="lazy" width="350" height="233">
                     </figure>
                     <em>Viet Nam</em>
                     <h3>{{s.nameStore}}</h3>
